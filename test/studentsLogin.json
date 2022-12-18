@@ -1,0 +1,172 @@
+{
+    "login_details": [
+        {
+            "first_name": "Ciuciulete",
+            "last_name": "Mihai",
+            "user_name": "mihai.ciuciulete",
+            "user_password": "roacer_infect",
+            "icon": "ciuciu.png"
+        },
+        {
+            "first_name": "Osnaga",
+            "last_name": "Robert-Viorel",
+            "user_name": "robert.osnaga",
+            "user_password": "urzicescu",
+            "icon": "robi.png"
+        },
+        {
+            "first_name": "Sprincenatu",
+            "last_name": "Bogdan-Andrei",
+            "user_name": "bogdan.sprincenatu",
+            "user_password": "smecherescu",
+            "icon": "eu.png"
+        },
+        {
+            "first_name": "Manescu",
+            "last_name": "Bogdan-Constantin",
+            "user_name": "bogdan.manescu",
+            "user_password": "andrei@Tate",
+            "icon": "bog.png"
+        },
+        {
+            "first_name": "Voicu",
+            "last_name": "Catalin-Marian",
+            "user_name": "cata.voicu",
+            "user_password": "ugabuga@123",
+            "icon": "cata.png"
+        },
+        {
+            "first_name": "Manolache",
+            "last_name": "George-Vlad",
+            "user_name": "vlad.manolache",
+            "user_password": "barbut@12_3",
+            "icon": "vlad.png"
+        },
+        {
+            "first_name": "Anghel",
+            "last_name": "David-Tudor",
+            "user_name": "david.anghel",
+            "user_password": "control@forever",
+            "icon": "dave.png"
+        },
+        {
+            "first_name": "Duminica",
+            "last_name": "Alexandra",
+            "user_name": "alexandra.duminica",
+            "user_password": "da_si_mie_o_tigara",
+            "icon": "alexandra.png"
+        },
+        {
+            "first_name": "Radoi",
+            "last_name": "Alexandru-Mihail",
+            "user_name": "alex.radoi",
+            "user_password": "picioare_rupte_10",
+            "icon": "radoi.png"
+        },
+        {
+            "first_name": "Uretyan",
+            "last_name": "Dragos-Cristian",
+            "user_name": "dragos.uretyan",
+            "user_password": "beau_de_sting@14",
+            "icon": "uretyan.png"
+        },
+        {
+            "first_name": "Golea",
+            "last_name": "Milena-Georgiana",
+            "user_name": "milena.golea",
+            "user_password": "fumez_de_sting@25",
+            "icon": "mili.png"
+        },
+        {
+            "first_name": "Costin",
+            "last_name": "Bosoaga-Cornel",
+            "user_name": "costin.bosoaga",
+            "user_password": "partial@algebra",
+            "icon": "costi.png"
+        },
+        {
+            "first_name": "Popescu",
+            "last_name": "Maria-Teodora",
+            "user_name": "maria.popescu",
+            "user_password": "dipserata@nu@ma@descurc",
+            "icon": "maria.png"
+        },
+        {
+            "first_name": "Baluta",
+            "last_name": "Valentina-Teodora",
+            "user_name": "valentina.baluta",
+            "user_password": "mor@de@somn",
+            "icon": "vali.png"
+        },
+        {
+            "first_name": "Godeanu",
+            "last_name": "Robert",
+            "user_name": "robert.godeanu",
+            "user_password": "croissant_cu@sunca",
+            "icon": "robert.png"
+        },
+        {
+            "first_name": "Manolache",
+            "last_name": "Roberta-Elena",
+            "user_name": "roberta.manolache",
+            "user_password": "mam@mutat",
+            "icon": "mroberta.png"
+        },
+        {
+            "first_name": "Dumitrescu",
+            "last_name": "Daiana-Elena",
+            "user_name": "dayana.dumitrescu",
+            "user_password": "nimic@special",
+            "icon": "dayana.png"
+        },
+        {
+            "first_name": "Costea",
+            "last_name": "Maria-Irina",
+            "user_name": "mary.costea",
+            "user_password": "nush123",
+            "icon": "mirina.png"
+        },
+        {
+            "first_name": "Carp",
+            "last_name": "Alexandru",
+            "user_name": "alex.carp",
+            "user_password": "faru@constanta",
+            "icon": "carp.png"
+        },
+        {
+            "first_name": "Ghinea",
+            "last_name": "Ioana-Mara",
+            "user_name": "mara.ghinea",
+            "user_password": "ultra@urzicescu",
+            "icon": "mara.png"
+        },
+        {
+            "first_name": "Capra",
+            "last_name": "Cosmina-Ioana",
+            "user_name": "ioana.capra",
+            "user_password": "problem@cat",
+            "icon": "capra.png"
+        },
+        {
+            "first_name": "Cernaianu",
+            "last_name": "Maria-Mihaela",
+            "user_name": "maria.cernaianu",
+            "user_password": "am@o@viata_grea2.0",
+            "icon": "mariac.png"
+        },
+        {
+            "first_name": "Vuia",
+            "last_name": "Marina-Emilia",
+            "user_name": "marina.vuia",
+            "user_password": "no_comment@:(",
+            "icon": "marina.png"
+        },
+        {
+            "first_name": "Giurca",
+            "last_name": "Adrian",
+            "user_name": "adi.giurca",
+            "user_password": "da_ce-amFacut$efu",
+            "icon": "aditzu.png"
+        }
+    ]
+}

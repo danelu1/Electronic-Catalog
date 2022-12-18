@@ -1,0 +1,667 @@
+{
+    "courses": [
+        {
+            "course_name": "Programare orientata pe obiecte",
+            "course_credits": "5",
+            "course_teacher": {
+                "first_name": "Odubasteanu",
+                "last_name": "Carmen"
+            },
+            "course_assistants": [
+                {
+                    "first_name": "Bonteanu",
+                    "last_name": "Alex"
+                },
+
+                {
+                    "first_name": "Nan",
+                    "last_name": "Mihai"
+                },
+
+                {
+                    "first_name": "Ripanu",
+                    "last_name": "Catalin"
+                },
+                
+                {
+                    "first_name": "Iancu",
+                    "last_name": "David"
+                }
+            ],
+            "grades": [
+                {
+                    "partial_score": "3",
+                    "exam_score": "2",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "5",
+                    "exam_score": "3",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "2",
+                    "exam_score": "1.5",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "6",
+                    "exam_score": "3",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "5.5",
+                    "exam_score": "3",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "3.5",
+                    "exam_score": "2",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "2.5",
+                    "exam_score": "1",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "5",
+                    "exam_score": "3.5",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "5.8",
+                    "exam_score": "3.3",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "4.75",
+                    "exam_score": "3.25",
+                    "course_name": "POO"
+                },
+                
+                {
+                    "partial_score": "2.82",
+                    "exam_score": "2.2",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "3.6",
+                    "exam_score": "3.1",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "4.2",
+                    "exam_score": "3.3",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "4",
+                    "exam_score": "3",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "5.75",
+                    "exam_score": "4",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "2",
+                    "exam_score": "2",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "1",
+                    "exam_score": "1",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "5.5",
+                    "exam_score": "3.8",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "3",
+                    "exam_score": "2.1",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "2.95",
+                    "exam_score": "2.05",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "5",
+                    "exam_score": "2",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "3.1",
+                    "exam_score": "2.5",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "2.5",
+                    "exam_score": "2",
+                    "course_name": "POO"
+                },
+
+                {
+                    "partial_score": "4.2",
+                    "exam_score": "2.9",
+                    "course_name": "POO"
+                }
+            ],
+            "groups": [
+                {
+                    "ID": "321CC",
+                    "assistant": {
+                        "first_name": "Bonteanu",
+                        "last_name": "Alex"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Ciuciulete",
+                            "last_name": "Mihai"
+                        },
+
+                        {
+                            "first_name": "Osnaga",
+                            "last_name": "Robert-Viorel"
+                        },
+
+                        {
+                            "first_name": "Sprincenatu",
+                            "last_name": "Bogdan-Andrei"
+                        },
+
+                        {
+                            "first_name": "Manescu",
+                            "last_name": "Bogdan-Constantin"
+                        },
+
+                        {
+                            "first_name": "Voicu",
+                            "last_name": "Catalin-Marian"
+                        },
+
+                        {
+                            "first_name": "Manolache",
+                            "last_name": "George-Vlad"
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "322CC",
+                    "assistant": {
+                        "first_name": "Ripanu",
+                        "last_name": "Catalin"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Anghel",
+                            "last_name": "David-Tudor"
+                        },
+
+                        {
+                            "first_name": "Duminica",
+                            "last_name": "Alexandra"
+                        },
+
+                        {
+                            "first_name": "Radoi",
+                            "last_name": "Alexandru-Mihail"
+                        },
+
+                        {
+                            "first_name": "Uretyan",
+                            "last_name": "Dragos-Cristian"
+                        },
+
+                        {
+                            "first_name": "Golea",
+                            "last_name": "Milena-Georgiana"
+                        },
+
+                        {
+                            "first_name": "Costin",
+                            "last_name": "Bosoaga-Cornel"
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "323CC",
+                    "assistant": {
+                        "first_name": "Nan",
+                        "last_name": "Mihai"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Popescu",
+                            "last_name": "Maria-Teodora"
+                        },
+
+                        {
+                            "first_name": "Baluta",
+                            "last_name": "Valentina-Teodora"
+                        },
+
+                        {
+                            "first_name": "Godeanu",
+                            "last_name": "Robert"
+                        },
+
+                        {
+                            "first_name": "Manolache",
+                            "last_name": "Roberta-Elena"
+                        },
+
+                        {
+                            "first_name": "Dumitrescu",
+                            "last_name": "Daiana-Elena"
+                        },
+
+                        {
+                            "first_name": "Costea",
+                            "last_name": "Maria-Irina"
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "324CC",
+                    "assistant": {
+                        "first_name": "Iancu",
+                        "last_name": "David" 
+                    },
+                    "students": [
+                        {
+                            "first_name": "Carp",
+                            "last_name": "Alexandru"
+                        },
+
+                        {
+                            "first_name": "Ghinea",
+                            "last_name": "Ioana-Mara"
+                        },
+
+                        {
+                            "first_name": "Capra",
+                            "last_name": "Cosmina-Ioana"
+                        },
+
+                        {
+                            "first_name": "Cernaianu",
+                            "last_name": "Maria-Mihaela"
+                        },
+
+                        {
+                            "first_name": "Vuia",
+                            "last_name": "Marina-Emilia"
+                        },
+
+                        {
+                            "first_name": "Giurca",
+                            "last_name": "Adrian"
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        {
+            "course_name": "Sisteme de operare",
+            "course_credits": "5",
+            "course_teacher": {
+                "first_name": "Deaconescu",
+                "last_name": "Razvan-Andrei"
+            },
+            "course_assistants": [
+                {
+                    "first_name": "Virtan",
+                    "last_name": "Razvan-Nicolae"
+                },
+
+                {
+                    "first_name": "Mihailescu",
+                    "last_name": "Maria-Elena"
+                },
+                
+                {
+                    "first_name": "Nitu",
+                    "last_name": "Razvan-George"
+                },
+                
+                {
+                    "first_name": "Dutu",
+                    "last_name": "Teo"
+                }
+            ],
+            "grades": [
+                {
+                    "partial_score": "3",
+                    "exam_score": "2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "2.5",
+                    "exam_score": "2.2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "4.5",
+                    "exam_score": "3",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "2",
+                    "exam_score": "2.5",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "2.2",
+                    "exam_score": "2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "4.9",
+                    "exam_score": "3.6",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "3.1",
+                    "exam_score": "2.6",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "4.4",
+                    "exam_score": "1.7",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "5.9",
+                    "exam_score": "3.3",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "1.2",
+                    "exam_score": "1",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "2.5",
+                    "exam_score": "2.5",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "6",
+                    "exam_score": "3.7",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "4.3",
+                    "exam_score": "2.2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "1.9",
+                    "exam_score": "2.1",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "3.5",
+                    "exam_score": "1.5",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "5.2",
+                    "exam_score": "4",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "3",
+                    "exam_score": "3",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "4",
+                    "exam_score": "2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "2.8",
+                    "exam_score": "2.2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "4.1",
+                    "exam_score": "3.2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "2",
+                    "exam_score": "2",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "1",
+                    "exam_score": "1",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "3",
+                    "exam_score": "3.1",
+                    "course_name": "SO"
+                },
+
+                {
+                    "partial_score": "5.5",
+                    "exam_score": "3.7",
+                    "course_name": "SO"
+                }
+            ],
+            "groups": [
+                {
+                    "ID": "321CC",
+                    "assistant": {
+                        "first_name": "Virtan",
+                        "last_name": "Razvan-Nicolae"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Ciuciulete",
+                            "last_name": "Mihai"
+                        },
+
+                        {
+                            "first_name": "Osnaga",
+                            "last_name": "Robert-Viorel"
+                        },
+
+                        {
+                            "first_name": "Sprincenatu",
+                            "last_name": "Bogdan-Andrei"
+                        },
+
+                        {
+                            "first_name": "Manescu",
+                            "last_name": "Bogdan-Constantin"
+                        },
+
+                        {
+                            "first_name": "Voicu",
+                            "last_name": "Catalin-Marian"
+                        },
+
+                        {
+                            "first_name": "Manolache",
+                            "last_name": "George-Vlad"
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "322CC",
+                    "assistant": {
+                        "first_name": "Mihailescu",
+                        "last_name": "Maria-Elena"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Anghel",
+                            "last_name": "David-Tudor"
+                        },
+
+                        {
+                            "first_name": "Duminica",
+                            "last_name": "Alexandra"
+                        },
+
+                        {
+                            "first_name": "Radoi",
+                            "last_name": "Alexandru-Mihail"
+                        },
+
+                        {
+                            "first_name": "Uretyan",
+                            "last_name": "Dragos-Cristian"
+                        },
+
+                        {
+                            "first_name": "Golea",
+                            "last_name": "Milena-Georgiana"
+                        },
+
+                        {
+                            "first_name": "Costin",
+                            "last_name": "Bosoaga-Cornel"
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "323CC",
+                    "assistant": {
+                        "first_name": "Nitu",
+                        "last_name": "Razvan-George"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Popescu",
+                            "last_name": "Maria-Teodora"
+                        },
+
+                        {
+                            "first_name": "Baluta",
+                            "last_name": "Valentina-Teodora"
+                        },
+
+                        {
+                            "first_name": "Godeanu",
+                            "last_name": "Robert"
+                        },
+
+                        {
+                            "first_name": "Manolache",
+                            "last_name": "Roberta-Elena"
+                        },
+
+                        {
+                            "first_name": "Dumitrescu",
+                            "last_name": "Daiana-Elena"
+                        },
+
+                        {
+                            "first_name": "Costea",
+                            "last_name": "Maria-Irina"
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "324CC",
+                    "assistant": {
+                        "first_name": "Dutu",
+                        "last_name": "Teo" 
+                    },
+                    "students": [
+                        {
+                            "first_name": "Carp",
+                            "last_name": "Alexandru"
+                        },
+
+                        {
+                            "first_name": "Ghinea",
+                            "last_name": "Ioana-Mara"
+                        },
+
+                        {
+                            "first_name": "Capra",
+                            "last_name": "Cosmina-Ioana"
+                        },
+
+                        {
+                            "first_name": "Cernaianu",
+                            "last_name": "Maria-Mihaela"
+                        },
+
+                        {
+                            "first_name": "Vuia",
+                            "last_name": "Marina-Emilia"
+                        },
+
+                        {
+                            "first_name": "Giurca",
+                            "last_name": "Adrian"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

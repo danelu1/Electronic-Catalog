@@ -1,0 +1,16 @@
+{
+    "login_details": [
+        {
+            "first_name": "Odubasteanu",
+            "last_name": "Carmen",
+            "user_name": "carmen.odubasteanu",
+            "user_password": "poo@concepts@upb"
+        },
+        {
+            "first_name": "Deaconescu",
+            "last_name": "Adrian-Razvan",
+            "user_name": "razvan.deaconescu",
+            "user_password": "rd@is@your@master@upb"
+        }
+    ]
+}

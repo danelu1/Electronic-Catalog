@@ -1,0 +1,52 @@
+{
+    "login_details": [
+        {
+            "first_name": "Bonteanu",
+            "last_name": "Alex",
+            "user_name": "alex.bonteanu",
+            "user_password": "cfr@steaua:2-1"
+        },
+        {
+            "first_name": "Nan",
+            "last_name": "Miahi",
+            "user_name": "mihai.nan",
+            "user_password": "something@special"
+        },
+        {
+            "first_name": "Ripanu",
+            "last_name": "Catalin",
+            "user_name": "catalin.ripanu",
+            "user_password": "the_DARK@side123"
+        },
+        {
+            "first_name": "Iancu",
+            "last_name": "David",
+            "user_name": "david.iancu",
+            "user_password": "hello?mommy!23"
+        },
+        {
+            "first_name": "Virtan",
+            "last_name": "Razvan-Nicolae",
+            "user_name": "razvan.virtan",
+            "user_password": "nicolae?!6"
+        },
+        {
+            "first_name": "Mihailescu",
+            "last_name": "Maria-Elena",
+            "user_name": "maria.mihailescu",
+            "user_password": "pinkieP!e134"
+        },
+        {
+            "first_name": "Nitu",
+            "last_name": "Razvan-George",
+            "user_name": "razvan.nitu",
+            "user_password": "harder@michael@<:"
+        },
+        {
+            "first_name": "Dutu",
+            "last_name": "Teo",
+            "user_name": "teo.dutu",
+            "user_password": "teo@lautari?12"
+        }
+    ]
+}
