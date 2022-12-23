@@ -19,12 +19,11 @@
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,8 +41,12 @@ import org.json.simple.parser.JSONParser;
 
 class Main {
 	public static void main(String[] args) throws CloneNotSupportedException, ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
-		Catalog catalog = Catalog.getInstance();
-		catalog.open();
+//		Catalog catalog = Catalog.getInstance();
+//		catalog.open();
+		
+//		catalog.coursesParseJSON("./test/courses.json");
+		
+		new ModifiableInformationsPage("Haida");
 	}
 }
 
@@ -67,6 +70,19 @@ class Catalog implements Subject {
 	
 	public void addCourse(Course course) {
 		courses.add(course);
+		
+		ArrayList<Grade> grades = course.getGrades();
+		
+		for (int i = 0; i < grades.size(); i++) {
+			Grade grade = grades.get(i);
+			Notification notification = new Notification(grade.getCourse(), grade, grade.getStudent().getMother(), grade.getStudent().getFather());
+			
+			if (!observers.contains(notification)) {
+				addObserver(notification);
+			}
+			
+			notifyObservers(grade);
+		}
 	}
 	
 	public void removeCourse(Course course) {
@@ -93,7 +109,7 @@ class Catalog implements Subject {
 				Teacher courseTeacher = new Teacher(teacherFirstName, teacherLastName);
 				
 				Set<Assistant> assistants = new LinkedHashSet<>();
-				TreeSet<Grade> grades = new TreeSet<>();
+				ArrayList<Grade> grades = new ArrayList<>();
 				Map<String, Group> map = new LinkedHashMap<>();
 				
 				JSONArray assistantsArray = (JSONArray) arrayEntry.get("course_assistants");
@@ -114,15 +130,24 @@ class Catalog implements Subject {
 					String partialScore = (String) grade.get("partial_score");
 					String examScore = (String) grade.get("exam_score");
 					String name = (String) grade.get("course_name");
-					Grade grade_aux = new Grade(Double.parseDouble(partialScore), Double.parseDouble(examScore), name);
+					
+					JSONObject student = (JSONObject) grade.get("student");
+					String firstName = (String) student.get("first_name");
+					String lastName = (String) student.get("last_name");
+					Student s = new Student(firstName, lastName);
+					
+					JSONObject motherObject = (JSONObject) student.get("mother");
+					String motherFirstName = (String) motherObject.get("first_name");
+					String motherLastName = (String) motherObject.get("last_name");
+					s.setMother(new Parent(motherFirstName, motherLastName));
+					
+					JSONObject fatherObject = (JSONObject) student.get("father");
+					String fatherFirstName = (String) fatherObject.get("first_name");
+					String fatherLastName = (String)  fatherObject.get("last_name");
+					s.setFather(new Parent(fatherFirstName, fatherLastName));
+					
+					Grade grade_aux = new Grade(Double.parseDouble(partialScore), Double.parseDouble(examScore), name, s);
 					grades.add(grade_aux);
-				}
-				
-				ArrayList<Grade> studentsGrades = new ArrayList<>();
-				Iterator<Grade> it = grades.iterator();
-				
-				while (it.hasNext()) {
-					studentsGrades.add(it.next());
 				}
 				
 				JSONArray groupsArray = (JSONArray) arrayEntry.get("groups");
@@ -155,8 +180,20 @@ class Catalog implements Subject {
 					map.put(id, group_aux);
 				}
 				
+				String strategyObject = (String) arrayEntry.get("strategy");
+				
+				Strategy strategy = null;
+				
+				if (strategyObject.equals("1")) {
+					strategy = new BestPartialScore();
+				} else if (strategyObject.equals("2")) {
+					strategy = new BestExamScore();
+				} else if (strategyObject.equals("3")) {
+					strategy = new BestTotalScore();
+				}
+				
 				Course.CourseBuilder course = new FullCourse.FullCourseBuilder(courseName, Integer.parseInt(courseCredits));
-				course.setCourseAssistants(assistants).setGrades(grades).setMap(map).setTeacher(courseTeacher);
+				course.setCourseAssistants(assistants).setGrades(grades).setMap(map).setTeacher(courseTeacher).setStrategy(strategy);
 				Course newCourse = new FullCourse(course);
 				courses.add(newCourse);
 			}
@@ -251,21 +288,20 @@ class Catalog implements Subject {
 
 	@Override
 	public void addObserver(Observer observer) {
-		// TODO Auto-generated method stub
 		observers.add(observer);
 	}
 
 	@Override
 	public void removeObserver(Observer observer) {
-		// TODO Auto-generated method stub
 		observers.remove(observer);
 	}
 
 	@Override
 	public void notifyObservers(Grade grade) {
-		// TODO Auto-generated method stub
-		for (Observer o : observers) {
-			o.update(new Notification("partial", grade));
+		Notification notification = new Notification(grade.getCourse(), grade, grade.getStudent().getMother(), grade.getStudent().getFather());
+		
+		if (observers.contains(notification)) {
+			observers.get(observers.indexOf(notification)).update(notification);
 		}
 	}
 	
@@ -281,6 +317,7 @@ class Catalog implements Subject {
 		return null;
 	}
 	
+	@SuppressWarnings("unused")
 	public void open() throws ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
 		SelectionPage page = new SelectionPage("Select");
 	}
@@ -301,11 +338,12 @@ abstract class Course {
 	private String courseName;
 	private Teacher courseTeacher;
 	private Set<Assistant> courseAssistants;
-	private TreeSet<Grade> grades;
+	private ArrayList<Grade> grades;
 	private Map<String, Group> map;
 	private int courseCredits;
 	private Snapshot snapshot;
-	TreeSet<Grade> backup;
+	private Strategy strategy;
+	ArrayList<Grade> backup;
 	
 	public Course(CourseBuilder builder) {
 		this.courseName = builder.courseName;
@@ -315,7 +353,8 @@ abstract class Course {
 		this.map = builder.map;
 		this.courseCredits = builder.courseCredits;
 		this.snapshot = new Snapshot(grades);
-		backup = new TreeSet<>();
+		this.strategy = builder.strategy;
+		backup = new ArrayList<>();
 	}
 	
 	public String getCourseName() {
@@ -330,7 +369,7 @@ abstract class Course {
 		return courseAssistants;
 	}
 	
-	public TreeSet<Grade> getGrades() {
+	public ArrayList<Grade> getGrades() {
 		return grades;
 	}
 	
@@ -344,6 +383,10 @@ abstract class Course {
 	
 	public Snapshot getSnapshot() {
 		return snapshot;
+	}
+	
+	public Strategy getStrategy() {
+		return strategy;
 	}
 	
 	public void setCourseName(String course) {
@@ -362,7 +405,7 @@ abstract class Course {
 		this.courseAssistants = assistants;
 	}
 	
-	public void setCourseGrades(TreeSet<Grade> grades) {
+	public void setCourseGrades(ArrayList<Grade> grades) {
 		this.grades = grades;
 	}
 	
@@ -374,14 +417,19 @@ abstract class Course {
 		this.snapshot = snapshot;
 	}
 	
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
+	}
+	
 	public void addAssistant(String ID, Assistant assistant) {
 		if (map.get(ID).getAssistant() == null) {
 			map.get(ID).setAssistant(assistant);
+			return;
 		} else {
 			System.out.println("You can't assign an assistant to a group that already has one");
 		}
 		
-		if (!courseAssistants.contains(assistant)) {
+		if (!courseAssistants.contains(assistant) && map.get(ID).getAssistant() == null) {
 			courseAssistants.add(assistant);
 		} else {
 			System.out.println("The assistant is already assigned in this course");
@@ -389,7 +437,13 @@ abstract class Course {
 	}
 	
 	public void addStudent(String ID, Student student) {
-		map.get(ID).add(student);
+		Group group = map.get(ID);
+		
+		if (group.contains(student)) {
+			System.out.println("The student is already assigned in this group!");
+		} else {
+			group.add(student);
+		}
 	}
 	
 	public void addGroup(Group group) {
@@ -408,12 +462,23 @@ abstract class Course {
 	}
 	
 	public Grade getGrade(Student student) {
-		HashMap<Student, Grade> situation = getAllStudentGrades();
-		return situation.get(student);
+		LinkedHashMap<Student, Grade> situation = getAllStudentGrades();
+		if (situation.containsKey(student)) {
+			return situation.get(student);
+		}
+		return null;
 	}
 	
 	public void addGrade(Grade grade) {
-		grades.add(grade);
+		ArrayList<Student> students = getAllStudents();
+		
+		for (int i = 0; i < students.size(); i++) {
+			if (students.get(i).equals(grade.getStudent())) {
+				return;
+			} else if (!students.get(i).equals(grade.getStudent()) && grades.get(i) == null) {
+				grades.add(grade);
+			}
+		}
 	}
 	
 	public ArrayList<Student> getAllStudents() {
@@ -432,16 +497,9 @@ abstract class Course {
 	
 	public LinkedHashMap<Student, Grade> getAllStudentGrades() {
 		LinkedHashMap<Student, Grade> result = new LinkedHashMap<>();
-		ArrayList<Student> students = getAllStudents();
-		ArrayList<Grade> list = new ArrayList<>();
-		Iterator<Grade> it = grades.iterator();
-		
-		while (it.hasNext()) {
-			list.add(it.next());
-		}
 		
 		for (int i = 0; i < grades.size(); i++) {
-			result.put(students.get(i), list.get(i));
+			result.put(grades.get(i).getStudent(), grades.get(i));
 		}
 		
 		return result;
@@ -453,9 +511,10 @@ abstract class Course {
 		private String courseName;
 		private Teacher courseTeacher;
 		private Set<Assistant> courseAssistants;
-		private TreeSet<Grade> grades;
+		private ArrayList<Grade> grades;
 		private Map<String, Group> map;
 		private int courseCredits;
+		private Strategy strategy;
 		
 		public CourseBuilder(String courseName, int courseCredits) {
 			this.courseName = courseName;
@@ -472,7 +531,7 @@ abstract class Course {
 			return this;
 		}
 		
-		public CourseBuilder setGrades(TreeSet<Grade> grades) {
+		public CourseBuilder setGrades(ArrayList<Grade> grades) {
 			this.grades = grades;
 			return this;
 		}
@@ -482,48 +541,26 @@ abstract class Course {
 			return this;
 		}
 		
+		public CourseBuilder setStrategy(Strategy strategy) {
+			this.strategy = strategy;
+			return this;
+		}
+		
 		abstract Course build();
 	}
 	
 	public Student getBestStudent() {
-		Strategy strategy = null;
 		Student result = null;
 		
-		System.out.println("Select the best student according to your preferences:");
-		System.out.println("1) Best Partial Score;");
-		System.out.println("2) Best Exam Score;");
-		System.out.println("3) Best Total Score.");
-		System.out.print("Choose from above: ");
-		Scanner scanner = new Scanner(System.in);
-		int choice = scanner.nextInt();
-		
-		while (true) {
-			if (choice == 1) {
-				strategy = new BestPartialScore();
-				break;
-			} else if (choice == 2) {
-				strategy = new BestExamScore();
-				break;
-			} else if (choice == 3) {
-				strategy = new BestTotalScore();
-				break;
-			} else {
-				System.out.print("Invalid choice! Try again: ");
-				choice = scanner.nextInt();
-				System.out.println();
-			}
-			
-			scanner.close();
+		if (strategy instanceof BestPartialScore) {
+			strategy = new BestPartialScore();
+		} else if (strategy instanceof BestExamScore) {
+			strategy = new BestExamScore();
+		} else if (strategy instanceof BestTotalScore) {
+			strategy = new BestTotalScore();
 		}
 		
-		ArrayList<Grade> list = new ArrayList<>();
-		Iterator<Grade> it = grades.iterator();
-		
-		while(it.hasNext()) {
-			list.add(it.next());
-		}
-		
-		Grade score = strategy.getBestScore(list);
+		Grade score = strategy.getBestScore(grades);
 		
 		HashMap<Student, Grade> situation = getAllStudentGrades();
 		
@@ -537,9 +574,9 @@ abstract class Course {
 	}
 	
 	private class Snapshot {
-		private TreeSet<Grade> backup;
+		private ArrayList<Grade> backup;
 		
-		public Snapshot(TreeSet<Grade> grades_aux) {
+		public Snapshot(ArrayList<Grade> grades_aux) {
 			this.backup = grades_aux;
 		}
 		
@@ -772,9 +809,26 @@ class Student extends User implements Comparable<Student> {
 		String ans = "-> " + this.getFirstName() + " " + this.getLastName();
 		return ans;
 	}
+	
+	public boolean equals(Object obj) {
+		Student s = (Student) obj;
+		if (this.getFirstName().equals(s.getFirstName()) && this.getLastName().equals(s.getLastName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public int hashCode() {
+		if (this.getFirstName() == null ^ this.getLastName() == null) {
+			return 0;
+		} else {
+			return this.getFirstName().hashCode() ^ this.getLastName().hashCode();
+		}
+	}
 }
 
-class Parent extends User implements Observer {	
+class Parent extends User {	
 	public Parent(String firstName, String lastName, String userName, String userPassword, String icon) {
 		super(firstName, lastName, userName, userPassword, icon);
 	}
@@ -797,20 +851,6 @@ class Parent extends User implements Observer {
 	
 	public void setLastName(String name) {
 		super.setLastName(name);
-	}
-	
-	public String toString() {
-		String ans = "parent: {\n";
-		ans += "\tfirst name : " + this.getFirstName() + ",\n";
-		ans += "\tlast name : " + this.getLastName() + "\n" + "}";
-		
-		return ans;
-	}
-
-	@Override
-	public void update(Notification notification) {
-		// TODO Auto-generated method stub
-		System.out.println(notification);
 	}
 }
 
@@ -850,6 +890,16 @@ class Assistant extends User implements Element {
 		
 		return ans;
 	}
+	
+	public boolean equals(Object obj) {
+		Assistant a = (Assistant) obj;
+		
+		if (this.getFirstName().equals(a.getFirstName()) && this.getLastName().equals(a.getLastName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 class Teacher extends User implements Element {
@@ -882,12 +932,14 @@ class Teacher extends User implements Element {
 		visitor.visit(this);
 	}
 	
-	public String toString() {
-		String ans = "teacher: {\n";
-		ans += "\tfirst name : " + this.getFirstName() + ",\n";
-		ans += "\tlast name : " + this.getLastName() + "\n" + "}";
+	public boolean equals(Object obj) {
+		Teacher t = (Teacher) obj;
 		
-		return ans;
+		if (this.getFirstName().equals(t.getFirstName()) && this.getLastName().equals(t.getLastName())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 
@@ -898,10 +950,11 @@ class Grade implements Cloneable, Comparable {
 	private String course;
 	private Student student;
 	
-	public Grade(Double partialScore, Double examScore, String course) {
+	public Grade(Double partialScore, Double examScore, String course, Student student) {
 		this.partialScore = partialScore;
 		this.examScore = examScore;
 		this.course = course;
+		this.student = student;
 	}
 	
 	public Double getPartialScore() {
@@ -977,6 +1030,23 @@ class Grade implements Cloneable, Comparable {
 		ans += "-> Exam score: " + examScore + ";\n";
 		ans += "-> Total score: " + getTotal() + ".\n";
 		return ans;
+	}
+	
+	public boolean equals(Object obj) {
+		Grade g = (Grade) obj;
+		if (this.getPartialScore() == g.getPartialScore() && this.getExamScore() == g.getExamScore()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public int hashCode() {
+		if (this.getPartialScore() == null ^ this.getExamScore() == null) {
+			return 0;
+		} else {
+			return this.getPartialScore().hashCode() ^ this.getExamScore().hashCode();
+		}
 	}
 }
 
@@ -1087,21 +1157,46 @@ class ScoreVisitor implements Visitor {
 	}
 
 	@Override
-	public void visit(Assistant assistant) {
-		ArrayList<Tuple<Student, String, Double>> list = partialScores.get(assistant);
+	public void visit(Teacher teacher) {
+		Catalog catalog = Catalog.getInstance();
 		
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setC(1D);
+		ArrayList<Tuple<Student, String, Double>> grades = new ArrayList<>();
+		
+		for (int i = 0; i < catalog.courses.size(); i++) {
+			Course course = catalog.courses.get(i);
+			
+			if (course.getCourseTeacher().equals(teacher)) {
+				grades = examScores.get(teacher);
+				
+				for (Tuple<Student, String, Double> tuple : grades) {
+					course.addGrade(new Grade(null, tuple.getC(), tuple.getB(), tuple.getA()));
+					addGradesAsTeacher(teacher, tuple);
+					catalog.notifyObservers(new Grade(null, tuple.getC(), tuple.getB(), tuple.getA()));
+				}
+			}
+		}
+	}
+	
+	public void addGradesAsTeacher(Teacher teacher, Tuple<Student, String, Double> tuple) {
+		Catalog catalog = Catalog.getInstance();
+		
+		for (int i = 0; i < catalog.courses.size(); i++) {
+			Course course = catalog.courses.get(i);
+			
+			if (course.getCourseTeacher().equals(teacher)) {
+				ArrayList<Student> students = course.getAllStudents();
+				
+				if (students.contains(tuple.getA())) {
+					examScores.put(teacher, (ArrayList<ScoreVisitor.Tuple<Student, String, Double>>) Arrays.asList(tuple));
+					return;
+				}
+			}
 		}
 	}
 
 	@Override
-	public void visit(Teacher teacher) {
-		ArrayList<Tuple<Student, String, Double>> list = examScores.get(teacher);
+	public void visit(Assistant assistant) {
 		
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setC(1D);
-		}
 	}
 	
 	private class Tuple<A, B, C> {
@@ -1151,41 +1246,74 @@ interface Subject {
 	public void notifyObservers(Grade grade);
 }
 
-class Notification {
-	private String gradeType;
+class Notification implements Observer {
 	private Grade grade;
+	private Parent mother;
+	private Parent father;
+	public String courseName;
 	
-	public Notification(String message, Grade grade) {
-		this.gradeType = message;
+	public Notification(String courseName, Grade grade, Parent mother, Parent father) {
+		this.courseName = courseName;
 		this.grade = grade;
-	}
-	
-	public String getGradeType() {
-		return gradeType;
-	}
-	
-	public void setGradeType(String message) {
-		this.gradeType = message;
+		this.mother = mother;
+		this.father = father;
 	}
 	
 	public Grade getGrade() {
 		return grade;
 	}
 	
+	public Parent getMother() {
+		return mother;
+	}
+	
+	public Parent getFather() {
+		return father;
+	}
+	
+	public String getCourseName() {
+		return courseName;
+	}
+	
 	public void setGrade(Grade grade) {
 		this.grade = grade;
 	}
 	
+	public void setCourseName(String course) {
+		this.courseName = course;
+	}
+	
+	public void setMother(Parent mom) {
+		this.mother = mom;
+	}
+	
+	public void setFather(Parent dad) {
+		this.father = dad;
+	}
+	
 	public String toString() {
 		String str = "";
-		str += "Your child just got the " + gradeType + " grade : ";
-		
-		if (gradeType.equals("partial")) {
-			str += grade.getPartialScore();
-		} else if (gradeType.equals("exam")) {
-			str += grade.getExamScore();
-		}
+		str += "Dear Mr. " + father.getFirstName() + " " + father.getLastName() + " and Ms. " + mother.getFirstName() 
+			+ " " + mother.getLastName() + ", we announce you that your son has received the " + grade.getTotal() + 
+			" at the " + courseName + " subject";
 		
 		return str;
+	}
+
+	@Override
+	public void update(Notification notification) {
+		System.out.println(notification);
+	}
+	
+	public boolean equals(Object obj) {
+		Notification notification = (Notification) obj;
+		
+		if (this.father.getFirstName().equals(notification.father.getFirstName()) && this.father.getLastName()
+				.equals(notification.father.getLastName()) && this.mother.getFirstName().equals(notification
+						.mother.getFirstName()) && this.mother.getLastName().equals(notification.mother.getLastName())) {
+			return true;
+		}
+		
+		return false;
 	}
 }
