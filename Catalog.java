@@ -35,18 +35,16 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.sound.midi.SysexMessage;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 class Main {
 	public static void main(String[] args) throws CloneNotSupportedException, ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
-//		Catalog catalog = Catalog.getInstance();
-//		catalog.open();
-		
-//		catalog.coursesParseJSON("./test/courses.json");
-		
-		new ModifiableInformationsPage("Haida");
+		Catalog catalog = Catalog.getInstance();
+		catalog.open();
 	}
 }
 
@@ -55,6 +53,7 @@ class Catalog implements Subject {
 	List<Course> courses;
 	List<Observer> observers;
 	List<User> users;
+	List<Grade> grades;
 	
 	private Catalog() {
 		observers = new ArrayList<>();
@@ -89,9 +88,59 @@ class Catalog implements Subject {
 		courses.remove(course);
 	}
 	
+	public Grade getGrade(Student student, Course course) {
+		for (int i = 0; i < grades.size(); i++) {
+			if (grades.get(i).getStudent().equals(student) && course.getCourseName().equals(grades.get(i).getCourse())) {
+				return grades.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public void gradesParseJSON(String path) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
+		JSONParser parser = new JSONParser();
+		grades = new ArrayList<>();
+		
+		try (Reader reader = new FileReader(path)) {
+			JSONObject gradesJSONObject = (JSONObject) parser.parse(reader);
+			JSONArray gradesArray = (JSONArray) gradesJSONObject.get("grades");
+			
+			for (int j = 0; j < gradesArray.size(); j++) {
+				JSONObject grade = (JSONObject) gradesArray.get(j);
+				String partialScore = (String) grade.get("partial_score");
+				String examScore = (String) grade.get("exam_score");
+				String name = (String) grade.get("course_name");
+				
+				JSONObject student = (JSONObject) grade.get("student");
+				String firstName = (String) student.get("first_name");
+				String lastName = (String) student.get("last_name");
+				Student s = new Student(firstName, lastName);
+				
+				JSONObject motherObject = (JSONObject) student.get("mother");
+				String motherFirstName = (String) motherObject.get("first_name");
+				String motherLastName = (String) motherObject.get("last_name");
+				s.setMother(new Parent(motherFirstName, motherLastName));
+				
+				JSONObject fatherObject = (JSONObject) student.get("father");
+				String fatherFirstName = (String) fatherObject.get("first_name");
+				String fatherLastName = (String)  fatherObject.get("last_name");
+				s.setFather(new Parent(fatherFirstName, fatherLastName));
+				
+				Grade grade_aux = new Grade(Double.parseDouble(partialScore), Double.parseDouble(examScore), name, s);
+				grades.add(grade_aux);
+			}
+		}
+	}
+	
 	public void coursesParseJSON(String path) throws ParseException, org.json.simple.parser.ParseException {
 		JSONParser parser = new JSONParser();
 		courses = new ArrayList<>();
+		
+		try {
+			gradesParseJSON("./test/grades.json");
+		} catch (IOException | org.json.simple.parser.ParseException e1) {
+			e1.printStackTrace();
+		}
 		
 		try (Reader reader = new FileReader(path)) {
 			JSONObject coursesJSONObject = (JSONObject) parser.parse(reader);
@@ -109,7 +158,7 @@ class Catalog implements Subject {
 				Teacher courseTeacher = new Teacher(teacherFirstName, teacherLastName);
 				
 				Set<Assistant> assistants = new LinkedHashSet<>();
-				ArrayList<Grade> grades = new ArrayList<>();
+//				ArrayList<Grade> grades = new ArrayList<>();
 				Map<String, Group> map = new LinkedHashMap<>();
 				
 				JSONArray assistantsArray = (JSONArray) arrayEntry.get("course_assistants");
@@ -123,32 +172,32 @@ class Catalog implements Subject {
 					assistants.add(assistant_aux);
 				}
 				
-				JSONArray gradesArray = (JSONArray) arrayEntry.get("grades");
-				
-				for (int j = 0; j < gradesArray.size(); j++) {
-					JSONObject grade = (JSONObject) gradesArray.get(j);
-					String partialScore = (String) grade.get("partial_score");
-					String examScore = (String) grade.get("exam_score");
-					String name = (String) grade.get("course_name");
-					
-					JSONObject student = (JSONObject) grade.get("student");
-					String firstName = (String) student.get("first_name");
-					String lastName = (String) student.get("last_name");
-					Student s = new Student(firstName, lastName);
-					
-					JSONObject motherObject = (JSONObject) student.get("mother");
-					String motherFirstName = (String) motherObject.get("first_name");
-					String motherLastName = (String) motherObject.get("last_name");
-					s.setMother(new Parent(motherFirstName, motherLastName));
-					
-					JSONObject fatherObject = (JSONObject) student.get("father");
-					String fatherFirstName = (String) fatherObject.get("first_name");
-					String fatherLastName = (String)  fatherObject.get("last_name");
-					s.setFather(new Parent(fatherFirstName, fatherLastName));
-					
-					Grade grade_aux = new Grade(Double.parseDouble(partialScore), Double.parseDouble(examScore), name, s);
-					grades.add(grade_aux);
-				}
+//				JSONArray gradesArray = (JSONArray) arrayEntry.get("grades");
+//				
+//				for (int j = 0; j < gradesArray.size(); j++) {
+//					JSONObject grade = (JSONObject) gradesArray.get(j);
+//					String partialScore = (String) grade.get("partial_score");
+//					String examScore = (String) grade.get("exam_score");
+//					String name = (String) grade.get("course_name");
+//					
+//					JSONObject student = (JSONObject) grade.get("student");
+//					String firstName = (String) student.get("first_name");
+//					String lastName = (String) student.get("last_name");
+//					Student s = new Student(firstName, lastName);
+//					
+//					JSONObject motherObject = (JSONObject) student.get("mother");
+//					String motherFirstName = (String) motherObject.get("first_name");
+//					String motherLastName = (String) motherObject.get("last_name");
+//					s.setMother(new Parent(motherFirstName, motherLastName));
+//					
+//					JSONObject fatherObject = (JSONObject) student.get("father");
+//					String fatherFirstName = (String) fatherObject.get("first_name");
+//					String fatherLastName = (String)  fatherObject.get("last_name");
+//					s.setFather(new Parent(fatherFirstName, fatherLastName));
+//					
+//					Grade grade_aux = new Grade(Double.parseDouble(partialScore), Double.parseDouble(examScore), name, s);
+//					grades.add(grade_aux);
+//				}
 				
 				JSONArray groupsArray = (JSONArray) arrayEntry.get("groups");
 				
@@ -193,7 +242,7 @@ class Catalog implements Subject {
 				}
 				
 				Course.CourseBuilder course = new FullCourse.FullCourseBuilder(courseName, Integer.parseInt(courseCredits));
-				course.setCourseAssistants(assistants).setGrades(grades).setMap(map).setTeacher(courseTeacher).setStrategy(strategy);
+				course.setCourseAssistants(assistants).setMap(map).setTeacher(courseTeacher).setStrategy(strategy);
 				Course newCourse = new FullCourse(course);
 				courses.add(newCourse);
 			}
@@ -957,6 +1006,14 @@ class Grade implements Cloneable, Comparable {
 		this.student = student;
 	}
 	
+	public Grade(Double partialScore, String course, Student student) {
+		this(partialScore, null, course, student);
+	}
+	
+	public Grade(String course, Double examScore, Student student) {
+		this(null, examScore, course, student);
+	}
+	
 	public Double getPartialScore() {
 		return partialScore;
 	}
@@ -1025,12 +1082,12 @@ class Grade implements Cloneable, Comparable {
 		return "-> Total score: " + getTotal();
 	}
 	
-	public String toString() {
-		String ans = "-> Partial score: " + partialScore + ";\n";
-		ans += "-> Exam score: " + examScore + ";\n";
-		ans += "-> Total score: " + getTotal() + ".\n";
-		return ans;
-	}
+//	public String toString() {
+//		String ans = "-> Partial score: " + partialScore + ";\n";
+//		ans += "-> Exam score: " + examScore + ";\n";
+//		ans += "-> Total score: " + getTotal() + ".\n";
+//		return ans;
+//	}
 	
 	public boolean equals(Object obj) {
 		Grade g = (Grade) obj;
@@ -1160,35 +1217,31 @@ class ScoreVisitor implements Visitor {
 	public void visit(Teacher teacher) {
 		Catalog catalog = Catalog.getInstance();
 		
-		ArrayList<Tuple<Student, String, Double>> grades = new ArrayList<>();
-		
-		for (int i = 0; i < catalog.courses.size(); i++) {
-			Course course = catalog.courses.get(i);
-			
-			if (course.getCourseTeacher().equals(teacher)) {
-				grades = examScores.get(teacher);
-				
-				for (Tuple<Student, String, Double> tuple : grades) {
-					course.addGrade(new Grade(null, tuple.getC(), tuple.getB(), tuple.getA()));
-					addGradesAsTeacher(teacher, tuple);
-					catalog.notifyObservers(new Grade(null, tuple.getC(), tuple.getB(), tuple.getA()));
-				}
-			}
+		try {
+			catalog.gradesParseJSON("./test/grades.json");
+		} catch (IOException | org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
 		}
-	}
-	
-	public void addGradesAsTeacher(Teacher teacher, Tuple<Student, String, Double> tuple) {
-		Catalog catalog = Catalog.getInstance();
 		
 		for (int i = 0; i < catalog.courses.size(); i++) {
 			Course course = catalog.courses.get(i);
+			String courseName = course.getCourseName();
 			
 			if (course.getCourseTeacher().equals(teacher)) {
 				ArrayList<Student> students = course.getAllStudents();
 				
-				if (students.contains(tuple.getA())) {
-					examScores.put(teacher, (ArrayList<ScoreVisitor.Tuple<Student, String, Double>>) Arrays.asList(tuple));
-					return;
+				ArrayList<Tuple<Student, String, Double>> gradesList = new ArrayList<>();
+				
+				for (int j = 0; j < students.size(); j++) {
+					Grade grade = catalog.grades.get(j);
+					Tuple<Student, String, Double> grade_aux = new Tuple<>(students.get(j), courseName, catalog.getGrade(students.get(j), course).getExamScore());
+					gradesList.add(grade_aux);
+				}
+				
+				examScores.put(teacher, gradesList);
+				
+				for (Tuple<Student, String, Double> tuple : gradesList) {
+					catalog.notifyObservers(new Grade(tuple.getCourse(), tuple.getDoubleGrade(), tuple.getStudent()));
 				}
 			}
 		}
@@ -1196,7 +1249,47 @@ class ScoreVisitor implements Visitor {
 
 	@Override
 	public void visit(Assistant assistant) {
+		Catalog catalog = Catalog.getInstance();
 		
+		try {
+			catalog.gradesParseJSON("./test/grades.json");
+		} catch (IOException | org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < catalog.courses.size(); i++) {
+			Course course = catalog.courses.get(i);
+			String courseName = course.getCourseName();
+			
+			if (course.getCourseAssistants().contains(assistant)) {
+				ArrayList<Student> students = new ArrayList<>();
+				Map<String, Group> map = course.getGroup();
+				
+				for (Map.Entry<String, Group> mp : map.entrySet()) {
+					if (mp.getValue().getAssistant().equals(assistant)) {
+						Iterator<Student> it = mp.getValue().iterator();
+						
+						while (it.hasNext()) {
+							students.add(it.next());
+						}
+					}
+				}
+				
+				ArrayList<Tuple<Student, String, Double>> gradesList = new ArrayList<>();
+				
+				for (int j = 0; j < students.size(); j++) {
+					Student student = students.get(j);
+					Tuple<Student, String, Double> grade_aux = new Tuple<>(student, courseName, catalog.getGrade(student, course).getPartialScore());
+					gradesList.add(grade_aux);
+				}
+				
+				partialScores.put(assistant, gradesList);
+				
+				for (Tuple<Student, String, Double> tuple : gradesList) {
+					catalog.notifyObservers(new Grade(tuple.getDoubleGrade(), tuple.getCourse(), tuple.getStudent()));
+				}
+			}
+		}
 	}
 	
 	private class Tuple<A, B, C> {
@@ -1210,28 +1303,32 @@ class ScoreVisitor implements Visitor {
 			this.elementC = c;
 		}
 		
-		public A getA() {
+		public A getStudent() {
 			return elementA;
 		}
 		
-		public B getB() {
+		public B getCourse() {
 			return elementB;
 		}
 		
-		public C getC() {
+		public C getDoubleGrade() {
 			return elementC;
 		}
 		
-		public void setA(A a) {
+		public void setStudent(A a) {
 			elementA = a;
 		}
 		
-		public void setB(B b) {
+		public void setName(B b) {
 			elementB = b;
 		}
 		
-		public void setC(C c) {
+		public void setDoubleGrade(C c) {
 			elementC = c;
+		}
+		
+		public String toString() {
+			return elementA + " " + elementB + " " + elementC;
 		}
 	}
 }

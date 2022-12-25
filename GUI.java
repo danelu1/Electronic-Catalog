@@ -29,9 +29,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import org.json.simple.parser.ParseException;
-
 import java.lang.Thread;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -886,8 +884,10 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 	JButton validateButton;
 	
 	JTextArea informationsArea;
+	JTextArea validationArea;
 	
 	JScrollPane leftScroll;
+	JScrollPane middleScroll;
 	JScrollPane rightScroll;
 	
 	Catalog catalog;
@@ -966,11 +966,15 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 		panel.add(leftScroll);
 		
 		informationsArea = new JTextArea();
+		validationArea = new JTextArea();
+		
+		middleScroll = new JScrollPane(validationArea);
 		
 		rightScroll = new JScrollPane(informationsArea);
 		
-		centerPanel = new JPanel(new GridLayout(1, 2));
+		centerPanel = new JPanel(new GridLayout(1, 3));
 		centerPanel.add(panel);
+		centerPanel.add(middleScroll);
 		centerPanel.add(rightScroll);
 		
 		logoutButton = new JButton("Previous");
@@ -985,6 +989,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 		
 		myCourses.addListSelectionListener(this);
 		logoutButton.addActionListener(this);
+		validateButton.addActionListener(this);
 		
 		pack();
 		setVisible(true);
@@ -1002,7 +1007,19 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 				this.dispose();
 				page = new SelectionPage("Select");
 			} else if (e.getSource() == validateButton) {
-//				return;
+				User user = AssistantLoginPage.user;
+				Assistant assistant = (Assistant) factory.getUser("Assistant", user.getFirstName(), user.getLastName());
+				ScoreVisitor visitor = new ScoreVisitor();
+				assistant.accept(visitor);
+				
+				String grades = "Grades to validate:\n";
+				
+				for (int i = 0; i < visitor.partialScores.get(assistant).size(); i++) {
+					grades += "\t- " + visitor.partialScores.get(assistant).get(i) + "\n";
+				}
+				
+				validationArea.setText(grades);
+				validationArea.setEditable(false);
 			}
 		}
 	}
@@ -1041,6 +1058,8 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 			User user = AssistantLoginPage.user;
 			Assistant assistant = new Assistant(user.getFirstName(), user.getLastName());
 			
+			assistant.accept(new ScoreVisitor());
+			
 			for (Map.Entry<String, Group> mp : map.entrySet()) {
 				Group group = mp.getValue();
 				
@@ -1051,7 +1070,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 					while (studentsIterator.hasNext()) {
 						Student s = studentsIterator.next();
 						students += "\t\t" + s.toString() + "\n";
-						Grade grade = course.getGrade(s);
+						Grade grade = catalog.getGrade(s, course);
 						students += "\t\t\t" + grade.printPartialScore() + "\n";
 					}
 				}
