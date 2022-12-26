@@ -4,49 +4,57 @@
             "first_name": "Bonteanu",
             "last_name": "Alex",
             "user_name": "alex.bonteanu",
-            "user_password": "cfr@steaua:2-1"
+            "user_password": "cfr@steaua:2-1",
+            "icon": "alexb.png"
         },
         {
             "first_name": "Nan",
-            "last_name": "Miahi",
+            "last_name": "Mihai",
             "user_name": "mihai.nan",
-            "user_password": "something@special"
+            "user_password": "something@special",
+            "icon": "nan.png"
         },
         {
             "first_name": "Ripanu",
             "last_name": "Catalin",
             "user_name": "catalin.ripanu",
-            "user_password": "the_DARK@side123"
+            "user_password": "the_DARK@side123",
+            "icon": "ripanu.png"
         },
         {
             "first_name": "Iancu",
             "last_name": "David",
             "user_name": "david.iancu",
-            "user_password": "hello?mommy!23"
+            "user_password": "hello?mommy!23",
+            "icon": "david.png"
         },
         {
             "first_name": "Virtan",
             "last_name": "Razvan-Nicolae",
             "user_name": "razvan.virtan",
-            "user_password": "nicolae?!6"
+            "user_password": "nicolae?!6",
+            "icon": "razvan_virtan.png"
         },
         {
             "first_name": "Mihailescu",
             "last_name": "Maria-Elena",
             "user_name": "maria.mihailescu",
-            "user_password": "pinkieP!e134"
+            "user_password": "pinkieP!e134",
+            "icon": "maria_mih.png"
         },
         {
             "first_name": "Nitu",
             "last_name": "Razvan-George",
             "user_name": "razvan.nitu",
-            "user_password": "harder@michael@<:"
+            "user_password": "harder@michael@<:",
+            "icon": "nitu.png"
         },
         {
             "first_name": "Dutu",
             "last_name": "Teo",
             "user_name": "teo.dutu",
-            "user_password": "teo@lautari?12"
+            "user_password": "teo@lautari?12",
+            "icon": "dutu.png"
         }
     ]
 }

@@ -45,6 +45,10 @@ class Main {
 	public static void main(String[] args) throws CloneNotSupportedException, ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
 		Catalog catalog = Catalog.getInstance();
 		catalog.open();
+		
+		catalog.addGradesToCatalog();
+		
+		System.out.println(catalog.courses.get(1).getGrades());
 	}
 }
 
@@ -95,6 +99,38 @@ class Catalog implements Subject {
 			}
 		}
 		return null;
+	}
+	
+	public void addGradesToCatalog() {
+		try {
+			coursesParseJSON("./test/courses.json");
+		} catch (ParseException | org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<ArrayList<Grade>> grades = new ArrayList<ArrayList<Grade>>();
+		
+		ScoreVisitor visitor = new ScoreVisitor();
+		
+		
+		for (int i  = 0; i < courses.size(); i++) {
+			Iterator<Assistant> it = courses.get(i).getCourseAssistants().iterator();
+			ArrayList<Assistant> assistants = new ArrayList<>();
+			ArrayList<Grade> grades_aux = new ArrayList<>();
+			
+			while (it.hasNext()) {
+				assistants.add(it.next());
+			}
+			
+			for (int j = 0; j < assistants.size(); j++) {
+				ArrayList<Grade> gradesToAdd = visitor.combine(courses.get(i).getCourseTeacher(), assistants.get(j));
+				grades_aux.addAll(gradesToAdd);
+			}
+			
+			grades.add(grades_aux);
+			
+			courses.get(i).setCourseGrades(grades.get(i));
+		}
 	}
 	
 	public void gradesParseJSON(String path) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
@@ -1082,12 +1118,16 @@ class Grade implements Cloneable, Comparable {
 		return "-> Total score: " + getTotal();
 	}
 	
-//	public String toString() {
-//		String ans = "-> Partial score: " + partialScore + ";\n";
-//		ans += "-> Exam score: " + examScore + ";\n";
-//		ans += "-> Total score: " + getTotal() + ".\n";
-//		return ans;
-//	}
+	public String toString() {
+		String firstName = student.getFirstName();
+		String lastName = student.getLastName();
+		
+		String ans = "Student " + firstName + " " + lastName + " has at " + course + " the grades:\n";
+		ans = "\t-> Partial score: " + partialScore + ";\n";
+		ans += "\t-> Exam score: " + examScore + ";\n";
+		ans += "\t-> Total score: " + getTotal() + ".\n";
+		return ans;
+	}
 	
 	public boolean equals(Object obj) {
 		Grade g = (Grade) obj;
@@ -1290,6 +1330,43 @@ class ScoreVisitor implements Visitor {
 				}
 			}
 		}
+	}
+	
+	public ArrayList<Grade> combine(Teacher teacher, Assistant assistant) {
+//		System.out.println(teacher + " " + assistant);
+		Catalog catalog = Catalog.getInstance();
+		
+		ScoreVisitor visitor = new ScoreVisitor();
+		
+		teacher.accept(visitor);
+		assistant.accept(visitor);
+		
+		for (int i = 0; i < catalog.courses.size(); i++) {
+			Course course = catalog.courses.get(i);
+			
+			if (course.getCourseTeacher().equals(teacher) && course.getCourseAssistants().contains(assistant)) {
+				ArrayList<Tuple<Student, String, Double>> gradesAssistant = visitor.partialScores.get(assistant);
+				ArrayList<Tuple<Student, String, Double>> gradesTeacher = visitor.examScores.get(teacher);
+				ArrayList<Grade> grades = new ArrayList<>();
+				
+				for (int j = 0; j < gradesTeacher.size(); j++) {
+					for (int k = 0; k < gradesAssistant.size(); k++) {
+						if (gradesTeacher.get(j).getCourse().equals(gradesAssistant.get(k).getCourse()) && gradesTeacher.get(j).getStudent().
+								equals(gradesAssistant.get(k).getStudent())) {
+							Double partialScore = gradesAssistant.get(k).getDoubleGrade();
+							Double examScore = gradesTeacher.get(j).getDoubleGrade();
+							String name = course.getCourseName();
+							Student s = gradesTeacher.get(j).getStudent();
+							grades.add(new Grade(partialScore, examScore, name, s));
+						}
+					}
+				}
+				
+				return grades;
+			}
+		}
+		
+		return null;
 	}
 	
 	private class Tuple<A, B, C> {
