@@ -153,6 +153,7 @@ class ParentLoginPage extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 800));
 		setLayout(new BorderLayout());
+		setResizable(false);
 		
 		title = new JLabel("------------------------------------ Please enter your login details ------------------------------------");
 		title.setFont(new Font("Verdana", Font.BOLD, 15));
@@ -595,7 +596,6 @@ class ParentMainPage extends JFrame implements ActionListener {
 		}
 		
 		User user = ParentLoginPage.user;
-		Parent parent = (Parent) factory.getUser("Parent", user.getFirstName(), user.getLastName());
 		
 		accountLabel = new JLabel("--------------------- " + user.getFirstName() + " " + user.getLastName() + " Account ---------------------");
 		accountLabel.setFont(new Font("Verdana", Font.BOLD, 25));
@@ -636,7 +636,39 @@ class ParentMainPage extends JFrame implements ActionListener {
 				
 				page = new SelectionPage("Select");
 			} else if (e.getSource() == notificationsButton) {
+				ArrayList<Student> allStudents = new ArrayList<>();
 				
+				Catalog catalog = Catalog.getInstance();
+				
+				for (Course course : catalog.courses) {
+					ArrayList<Student> students = course.getAllStudents();
+					
+					for (Student s : students) {
+						if (!allStudents.contains(s)) {
+							allStudents.add(s);
+						}
+					}
+				}
+				
+				User user = ParentLoginPage.user;
+				Parent parent = (Parent) factory.getUser("Parent", user.getFirstName(), user.getLastName());
+				int index = 0;
+				
+				for (int i = 0; i < allStudents.size(); i++) {
+					Student s = allStudents.get(i);
+					if (parent.equals(s.getFather()) || parent.equals(s.getMother())) {
+						index = i;
+						break;
+					}
+				}
+				
+				Student student = allStudents.get(index);
+				
+				if (student.notifications.size() == 0) {
+					notificationsArea.setText("You don't have any notification yet");
+				} else {
+					notificationsArea.setText(student.notifications.get(0));
+				}
 			}
 		}
 	}
@@ -679,8 +711,7 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 		super(message);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 800));
-		getContentPane().setBackground(new Color(100, 120 ,140));
-		setLayout(new BorderLayout());
+		setResizable(false);
 		
 		catalog = Catalog.getInstance();
 		try {
@@ -890,13 +921,12 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 	Vector<String> informations;
 	SelectionPage page;
 	UserFactory factory = new UserFactory();
-	static Notification notification;
 
 	public AssistantMainPage(String message) {
 		super(message);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(1200, 1200));
-		getContentPane().setBackground(new Color(100, 101 ,102));
+		setMinimumSize(new Dimension(1200, 800));
+		setResizable(false);
 		
 		catalog = Catalog.getInstance();
 		
@@ -1007,6 +1037,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 				grades += "The grades have been succesfully validated";
 				validationArea.setText(grades);
 				validationArea.setForeground(Color.green);
+				validateButton.setEnabled(false);
 			}
 		}
 	}
@@ -1125,13 +1156,12 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 	Vector<String> informations;
 	SelectionPage page;
 	UserFactory factory = new UserFactory();
-	static Notification notification;
 	
 	public TeacherMainPage(String message) {
 		super(message);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(800, 800));
-		getContentPane().setBackground(new Color(14, 140 ,240));
+		setMinimumSize(new Dimension(1200, 800));
+		setResizable(false);
 		
 		catalog = Catalog.getInstance();
 		
@@ -1232,16 +1262,11 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 				this.dispose();
 				page = new SelectionPage("Select");
 			} else if (e.getSource() == validateButton) {
-				User user = TeacherLoginPage.user;
-				Teacher teacher = (Teacher) factory.getUser("Teacher", user.getFirstName(), user.getLastName());
-				ScoreVisitor visitor = new ScoreVisitor();
-				
-				teacher.accept(visitor);
-				
-				String grades = visitor.printGradesTeacher(teacher);
-				
+				String grades = validationArea.getText();
+				grades += "The grades have been succesfully validated";
 				validationArea.setText(grades);
-				validationArea.setEditable(false);
+				validationArea.setForeground(Color.green);
+				validateButton.setEnabled(false);
 			}
 		}
 	}
@@ -1256,7 +1281,6 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 			
 			courseInformations = new JLabel("Course informations:\n");
 			courseCredits = new JLabel("\t- Course credits: " + course.getCourseCredits() + "\n");
-			courseTeacher = new JLabel("\t- Course Teacher: " + course.getCourseTeacher().getFirstName() + " " + course.getCourseTeacher().getLastName() + "\n");
 			courseAssistants = new JLabel("\t- Course assistants:\n");
 			
 			Iterator<Assistant> it = course.getCourseAssistants().iterator();
@@ -1279,11 +1303,23 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 				students += "\t\t" + s + "\n";
 			}
 			
-			String info = courseInformations.getText() + courseCredits.getText() + courseTeacher.getText() + courseAssistants.getText() 
+			String info = courseInformations.getText() + courseCredits.getText() + courseAssistants.getText() 
 			+ assistants + students;
 		
 			informationsArea.setText(info);
 			informationsArea.setEditable(false);
+			
+			User user = TeacherLoginPage.user;
+			Teacher teacher = (Teacher) factory.getUser("Teacher", user.getFirstName(), user.getLastName());
+			
+			ScoreVisitor visitor = new ScoreVisitor();
+			
+			teacher.accept(visitor);
+			
+			String grades = visitor.printGradesTeacher(teacher);
+			
+			validationArea.setText(grades);
+			validationArea.setEditable(false);
 		
 			SwingUtilities.updateComponentTreeUI(this);
 		}
@@ -1328,8 +1364,6 @@ class GeneralInformationsPage extends JFrame implements ActionListener {
 		super(messsage);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 800));
-		getContentPane().setBackground(new Color(24, 195, 212));
-		setLayout(new BorderLayout());
 		
 		catalog = Catalog.getInstance();
 		

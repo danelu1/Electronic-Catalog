@@ -47,7 +47,7 @@
             "last_name": "Razvan-George",
             "user_name": "razvan.nutu",
             "user_password": "harder@michael@<:",
-            "icon": "nitu.png"
+            "icon": "nutu.png"
         },
         {
             "first_name": "Dutu",
@@ -55,6 +55,34 @@
             "user_name": "teo.dutu",
             "user_password": "teo@lautari?12",
             "icon": "dutu.png"
+        },
+        {
+           "first_name": "Tataroiu",
+            "last_name": "Razvan",
+            "user_name": "razvan.tataroiu",
+            "user_password": "electro@cil_123",
+            "icon": "tataroiu.png"
+        },
+        {
+            "first_name": "Constantin",
+            "last_name": "Alexandru",
+            "user_name": "alex.constantin",
+            "user_password": "jim_CARREY_!@123?",
+            "icon": "jim.png"
+        },
+        {
+            "first_name": "Oprea",
+            "last_name": "Theodor",
+            "user_name": "theo.oprea",
+            "user_password": "finance=money@simple:>",
+            "icon": "theo.png"
+        },
+        {
+            "first_name": "Simion",
+            "last_name": "Ana-Maria",
+            "user_name": "ana.simion",
+            "user_password": "no@comment_for!now",
+            "icon": "sd.png"
         }
     ]
 }

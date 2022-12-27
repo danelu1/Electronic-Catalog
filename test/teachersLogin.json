@@ -4,13 +4,22 @@
             "first_name": "Odubasteanu",
             "last_name": "Carmen",
             "user_name": "carmen.odubasteanu",
-            "user_password": "poo@concepts@upb"
+            "user_password": "poo@concepts@upb",
+            "icon": "carmen.png"
         },
         {
             "first_name": "Deaconescu",
             "last_name": "Razvan-Andrei",
             "user_name": "razvan.deaconescu",
-            "user_password": "rd@is@your@master@upb"
+            "user_password": "rd@is@your@master@upb",
+            "icon": "rd.png"
+        },
+        {
+            "first_name": "Rosner",
+            "last_name": "Daniel",
+            "user_name": "daniel.rosner",
+            "user_password": "money_is_a_quality@123",
+            "icon": "rosner.png"
         }
     ]
 }

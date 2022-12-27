@@ -41,7 +41,17 @@ class Main {
 		Catalog catalog = Catalog.getInstance();
 		catalog.open();
 		
-		catalog.coursesParseJSON("./test/courses.json");
+//		catalog.coursesParseJSON("./test/courses.json");
+//		
+//		ScoreVisitor visitor = new ScoreVisitor();
+//		
+//		catalog.courses.get(0).getCourseTeacher().accept(visitor);
+//		
+//		ArrayList<Student> students = catalog.courses.get(0).getAllStudents();
+//		
+//		for (Student s : students) {
+//			System.out.println(s.notifications);
+//		}
 	}
 }
 
@@ -366,9 +376,10 @@ class Catalog implements Subject {
 	public void notifyObservers(Grade grade) {
 		Notification notification = new Notification(grade.getCourse(), grade, grade.getStudent().getMother(), grade.getStudent().getFather());
 		
-//		if (observers.contains(notification)) {
-//			observers.get(observers.indexOf(notification)).update(notification);
-//		}
+		if (observers.contains(notification)) {
+			observers.get(observers.indexOf(notification)).update(notification);
+			notification.getGrade().getStudent().notifications.add(notification.toString());
+		}
 	}
 	
 	public User checkUserNamePassword(String type, String userName, String userPassword) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
@@ -832,13 +843,16 @@ abstract class User {
 class Student extends User implements Comparable<Student> {
 	private Parent mother;
 	private Parent father;
+	ArrayList<String> notifications;
 	
 	public Student(String firstName, String lastName, String userName, String userPassword, String icon) {
 		super(firstName, lastName, userName, userPassword, icon);
+		notifications = new ArrayList<>();
 	}
 	
 	public Student(String firstName, String lastName) {
 		this(firstName, lastName, null, null, null);
+		notifications = new ArrayList<>();
 	}
 	
 	public String getFirstName() {
@@ -1305,7 +1319,7 @@ class ScoreVisitor implements Visitor {
 	}
 	
 	public String printGradesTeacher(Teacher teacher) {
-		String grades = "The following grades have been validated:\n";
+		String grades = "Grades to validate:\n";
 		
 		ScoreVisitor visitor = new ScoreVisitor();
 		
@@ -1532,7 +1546,7 @@ class Notification implements Observer {
 
 	@Override
 	public void update(Notification notification) {
-		System.out.println(notification);
+//		System.out.println(notification);
 	}
 	
 	public Notification updateParent(Notification notification) {
