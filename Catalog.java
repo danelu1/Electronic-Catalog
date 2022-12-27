@@ -40,18 +40,6 @@ class Main {
 	public static void main(String[] args) throws CloneNotSupportedException, ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
 		Catalog catalog = Catalog.getInstance();
 		catalog.open();
-		
-//		catalog.coursesParseJSON("./test/courses.json");
-//		
-//		ScoreVisitor visitor = new ScoreVisitor();
-//		
-//		catalog.courses.get(0).getCourseTeacher().accept(visitor);
-//		
-//		ArrayList<Student> students = catalog.courses.get(0).getAllStudents();
-//		
-//		for (Student s : students) {
-//			System.out.println(s.notifications);
-//		}
 	}
 }
 
@@ -1546,7 +1534,7 @@ class Notification implements Observer {
 
 	@Override
 	public void update(Notification notification) {
-//		System.out.println(notification);
+		System.out.println(notification);
 	}
 	
 	public Notification updateParent(Notification notification) {

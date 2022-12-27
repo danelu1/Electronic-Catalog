@@ -27,6 +27,7 @@ import org.json.simple.parser.ParseException;
 import java.lang.Thread;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Vector;
 
@@ -636,38 +637,44 @@ class ParentMainPage extends JFrame implements ActionListener {
 				
 				page = new SelectionPage("Select");
 			} else if (e.getSource() == notificationsButton) {
-				ArrayList<Student> allStudents = new ArrayList<>();
-				
-				Catalog catalog = Catalog.getInstance();
-				
-				for (Course course : catalog.courses) {
-					ArrayList<Student> students = course.getAllStudents();
-					
-					for (Student s : students) {
-						if (!allStudents.contains(s)) {
-							allStudents.add(s);
-						}
-					}
-				}
+				ArrayList<Student> allStudents = TeacherMainPage.allStudents;
 				
 				User user = ParentLoginPage.user;
 				Parent parent = (Parent) factory.getUser("Parent", user.getFirstName(), user.getLastName());
 				int index = 0;
 				
-				for (int i = 0; i < allStudents.size(); i++) {
-					Student s = allStudents.get(i);
-					if (parent.equals(s.getFather()) || parent.equals(s.getMother())) {
-						index = i;
-						break;
-					}
-				}
-				
-				Student student = allStudents.get(index);
-				
-				if (student.notifications.size() == 0) {
+				if (allStudents == null) {
 					notificationsArea.setText("You don't have any notification yet");
 				} else {
-					notificationsArea.setText(student.notifications.get(0));
+					for (int i = 0; i < allStudents.size(); i++) {
+						Student s = allStudents.get(i);
+						if (parent.equals(s.getFather()) || parent.equals(s.getMother())) {
+							index = i;
+							break;
+						}
+					}
+					
+					Student student = allStudents.get(index);
+					
+					String notification = "";
+					
+					if (student.notifications.size() == 0) {
+						notificationsArea.setText("You don't have any notification yet");
+					} else {
+						LinkedHashSet<String> set = new LinkedHashSet<>();
+						
+						for (int i = 0; i < student.notifications.size(); i++) {
+							set.add(student.notifications.get(i).toString());
+						}
+						
+						Iterator<String> it = set.iterator();
+						
+						while (it.hasNext()) {
+							notification += it.next() + "\n";
+						}
+						
+						notificationsArea.setText(notification);
+					}
 				}
 			}
 		}
@@ -921,6 +928,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 	Vector<String> informations;
 	SelectionPage page;
 	UserFactory factory = new UserFactory();
+	static ArrayList<Student> allStudents;
 
 	public AssistantMainPage(String message) {
 		super(message);
@@ -1073,6 +1081,8 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 			String id = "\t\tID: ";
 			String students = "\t\tStudents:\n";
 			
+			allStudents = new ArrayList<>();
+			
 			User user = AssistantLoginPage.user;
 			Assistant assistant = new Assistant(user.getFirstName(), user.getLastName());
 			
@@ -1088,6 +1098,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 					while (studentsIterator.hasNext()) {
 						Student s = studentsIterator.next();
 						students += "\t\t" + s.toString() + "\n";
+						allStudents.add(s);
 					}
 				}
 			}
@@ -1156,6 +1167,7 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 	Vector<String> informations;
 	SelectionPage page;
 	UserFactory factory = new UserFactory();
+	static ArrayList<Student> allStudents;
 	
 	public TeacherMainPage(String message) {
 		super(message);
@@ -1298,9 +1310,11 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 			String students = "\t- Course students:\n";
 			
 			ArrayList<Student> studentsArray = course.getAllStudents();
+			allStudents = new ArrayList<>();
 			
 			for (Student s : studentsArray) {
 				students += "\t\t" + s + "\n";
+				allStudents.add(s);
 			}
 			
 			String info = courseInformations.getText() + courseCredits.getText() + courseAssistants.getText() 
