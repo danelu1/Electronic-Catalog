@@ -39,32 +39,80 @@
                     "students": [
                         {
                             "first_name": "Ciuciulete",
-                            "last_name": "Mihai"
+                            "last_name": "Mihai",
+                            "mother": {
+                                "first_name": "Ciuciulete",
+                                "last_name": "Anemona"
+                            },
+                            "father": {
+                                "first_name": "Ciuciulete",
+                                "last_name": "Adrian"
+                            }
                         },
 
                         {
                             "first_name": "Osnaga",
-                            "last_name": "Robert-Viorel"
+                            "last_name": "Robert-Viorel",
+                            "mother": {
+                                "first_name": "Osnaga",
+                                "last_name": "Loredana"
+                            },
+                            "father": {
+                                "first_name": "Osnaga",
+                                "last_name": "Augustin"
+                            }
                         },
 
                         {
                             "first_name": "Sprincenatu",
-                            "last_name": "Bogdan-Andrei"
+                            "last_name": "Bogdan-Andrei",
+                            "mother": {
+                                "first_name": "Sprincenatu",
+                                "last_name": "Camelia"
+                            },
+                            "father": {
+                                "first_name": "Sprincenatu",
+                                "last_name": "Marius-Constantin"
+                            }
                         },
 
                         {
                             "first_name": "Manescu",
-                            "last_name": "Bogdan-Constantin"
+                            "last_name": "Bogdan-Constantin",
+                            "mother": {
+                                "first_name": "Manescu",
+                                "last_name": "Camelia"
+                            },
+                            "father": {
+                                "first_name": "Manescu",
+                                "last_name": "Constantin"
+                            }
                         },
 
                         {
                             "first_name": "Voicu",
-                            "last_name": "Catalin-Marian"
+                            "last_name": "Catalin-Marian",
+                            "mother": {
+                                "first_name": "Voicu",
+                                "last_name": "Oana"
+                            },
+                            "father": {
+                                "first_name": "Voicu",
+                                "last_name": "Marian"
+                            }
                         },
 
                         {
                             "first_name": "Manolache",
-                            "last_name": "George-Vlad"
+                            "last_name": "George-Vlad",
+                            "mother": {
+                                "first_name": "Manolache",
+                                "last_name": "Elena"
+                            },
+                            "father": {
+                                "first_name": "Manolache",
+                                "last_name": "Mihai"
+                            }
                         }
                     ]
                 },
@@ -78,32 +126,80 @@
                     "students": [
                         {
                             "first_name": "Anghel",
-                            "last_name": "David-Tudor"
+                            "last_name": "David-Tudor",
+                            "mother": {
+                                "first_name": "Anghel",
+                                "last_name": "Lucretia"
+                            },
+                            "father": {
+                                "first_name": "Anghel",
+                                "last_name": "Ilie"
+                            }
                         },
 
                         {
                             "first_name": "Duminica",
-                            "last_name": "Alexandra"
+                            "last_name": "Alexandra",
+                            "mother": {
+                                "first_name": "Duminica",
+                                "last_name": "Ramona"
+                            },
+                            "father": {
+                                "first_name": "Duminica",
+                                "last_name": "Cornel"
+                            }
                         },
 
                         {
                             "first_name": "Radoi",
-                            "last_name": "Alexandru-Mihail"
+                            "last_name": "Alexandru-Mihail",
+                            "mother": {
+                                "first_name": "Radoi",
+                                "last_name": "Lorena"
+                            },
+                            "father": {
+                                "first_name": "Radoi",
+                                "last_name": "Augustin"
+                            }
                         },
 
                         {
                             "first_name": "Uretyan",
-                            "last_name": "Dragos-Cristian"
+                            "last_name": "Dragos-Cristian",
+                            "mother": {
+                                "first_name": "Uretyan",
+                                "last_name": "Argentina"
+                            },
+                            "father": {
+                                "first_name": "Uretyan",
+                                "last_name": "Remus"
+                            }
                         },
 
                         {
                             "first_name": "Golea",
-                            "last_name": "Milena-Georgiana"
+                            "last_name": "Milena-Georgiana",
+                            "mother": {
+                                "first_name": "Golea",
+                                "last_name": "Teodora"
+                            },
+                            "father": {
+                                "first_name": "Golea",
+                                "last_name": "Andrei"
+                            }
                         },
 
                         {
                             "first_name": "Costin",
-                            "last_name": "Bosoaga-Cornel"
+                            "last_name": "Bosoaga-Cornel",
+                            "mother": {
+                                "first_name": "Costin",
+                                "last_name": "Mirela"
+                            },
+                            "father": {
+                                "first_name": "Costin",
+                                "last_name": "Ramon"
+                            }
                         }
                     ]
                 },
@@ -117,32 +213,80 @@
                     "students": [
                         {
                             "first_name": "Popescu",
-                            "last_name": "Maria-Teodora"
+                            "last_name": "Maria-Teodora",
+                            "mother": {
+                                "first_name": "Popescu",
+                                "last_name": "Iuliana"
+                            },
+                            "father": {
+                                "first_name": "Popescu",
+                                "last_name": "Vasile"
+                            }
                         },
 
                         {
                             "first_name": "Baluta",
-                            "last_name": "Valentina-Teodora"
+                            "last_name": "Valentina-Teodora",
+                            "mother": {
+                                "first_name": "Baluta",
+                                "last_name": "Oriana"
+                            },
+                            "father": {
+                                "first_name": "Baluta",
+                                "last_name": "Valenin"
+                            }
                         },
 
                         {
                             "first_name": "Godeanu",
-                            "last_name": "Robert"
+                            "last_name": "Robert",
+                            "mother": {
+                                "first_name": "Godeanu",
+                                "last_name": "Miruna"
+                            },
+                            "father": {
+                                "first_name": "Godeanu",
+                                "last_name": "Alex"
+                            }
                         },
 
                         {
                             "first_name": "Manolache",
-                            "last_name": "Roberta-Elena"
+                            "last_name": "Roberta-Elena",
+                            "mother": {
+                                "first_name": "Manolache",
+                                "last_name": "Iolanda"
+                            },
+                            "father": {
+                                "first_name": "Manolache",
+                                "last_name": "Ionel"
+                            }
                         },
 
                         {
                             "first_name": "Dumitrescu",
-                            "last_name": "Daiana-Elena"
+                            "last_name": "Daiana-Elena",
+                            "mother": {
+                                "first_name": "Dumitrescu",
+                                "last_name": "Iarina"
+                            },
+                            "father": {
+                                "first_name": "Dumitrescu",
+                                "last_name": "Narcis"
+                            }
                         },
 
                         {
                             "first_name": "Costea",
-                            "last_name": "Maria-Irina"
+                            "last_name": "Maria-Irina",
+                            "mother": {
+                                "first_name": "Costea",
+                                "last_name": "Adriana"
+                            },
+                            "father": {
+                                "first_name": "Costea",
+                                "last_name": "Marius"
+                            }
                         }
                     ]
                 },
@@ -156,32 +300,80 @@
                     "students": [
                         {
                             "first_name": "Carp",
-                            "last_name": "Alexandru"
+                            "last_name": "Alexandru",
+                            "mother": {
+                                "first_name": "Carp",
+                                "last_name": "Miruna"
+                            },
+                            "father": {
+                                "first_name": "Carp",
+                                "last_name": "Ion"
+                            }
                         },
 
                         {
                             "first_name": "Ghinea",
-                            "last_name": "Ioana-Mara"
+                            "last_name": "Ioana-Mara",
+                            "mother": {
+                                "first_name": "Ghinea",
+                                "last_name": "Irina"
+                            },
+                            "father": {
+                                "first_name": "Ghinea",
+                                "last_name": "Stefan"
+                            }
                         },
 
                         {
                             "first_name": "Capra",
-                            "last_name": "Cosmina-Ioana"
+                            "last_name": "Cosmina-Ioana",
+                            "mother": {
+                                "first_name": "Capra",
+                                "last_name": "Pandora"
+                            },
+                            "father": {
+                                "first_name": "Capra",
+                                "last_name": "Teodor"
+                            }
                         },
 
                         {
                             "first_name": "Cernaianu",
-                            "last_name": "Maria-Mihaela"
+                            "last_name": "Maria-Mihaela",
+                            "mother": {
+                                "first_name": "Cernaianu",
+                                "last_name": "Ioana"
+                            },
+                            "father": {
+                                "first_name": "Cernaianu",
+                                "last_name": "Ginel"
+                            }
                         },
 
                         {
                             "first_name": "Vuia",
-                            "last_name": "Marina-Emilia"
+                            "last_name": "Marina-Emilia",
+                            "mother": {
+                                "first_name": "Vuia",
+                                "last_name": "Ariana"
+                            },
+                            "father": {
+                                "first_name": "Vuia",
+                                "last_name": "Iulian"
+                            }
                         },
 
                         {
                             "first_name": "Giurca",
-                            "last_name": "Adrian"
+                            "last_name": "Adrian",
+                            "mother": {
+                                "first_name": "Giurca",
+                                "last_name": "Andreea"
+                            },
+                            "father": {
+                                "first_name": "Giurca",
+                                "last_name": "Eusebiu"
+                            }
                         }
                     ]
                 }
@@ -227,32 +419,80 @@
                     "students": [
                         {
                             "first_name": "Ciuciulete",
-                            "last_name": "Mihai"
+                            "last_name": "Mihai",
+                            "mother": {
+                                "first_name": "Ciuciulete",
+                                "last_name": "Anemona"
+                            },
+                            "father": {
+                                "first_name": "Ciuciulete",
+                                "last_name": "Adrian"
+                            }
                         },
 
                         {
                             "first_name": "Osnaga",
-                            "last_name": "Robert-Viorel"
+                            "last_name": "Robert-Viorel",
+                            "mother": {
+                                "first_name": "Osnaga",
+                                "last_name": "Loredana"
+                            },
+                            "father": {
+                                "first_name": "Osnaga",
+                                "last_name": "Augustin"
+                            }
                         },
 
                         {
                             "first_name": "Sprincenatu",
-                            "last_name": "Bogdan-Andrei"
+                            "last_name": "Bogdan-Andrei",
+                            "mother": {
+                                "first_name": "Sprincenatu",
+                                "last_name": "Camelia"
+                            },
+                            "father": {
+                                "first_name": "Sprincenatu",
+                                "last_name": "Marius-Constantin"
+                            }
                         },
 
                         {
                             "first_name": "Manescu",
-                            "last_name": "Bogdan-Constantin"
+                            "last_name": "Bogdan-Constantin",
+                            "mother": {
+                                "first_name": "Manescu",
+                                "last_name": "Camelia"
+                            },
+                            "father": {
+                                "first_name": "Manescu",
+                                "last_name": "Constantin"
+                            }
                         },
 
                         {
                             "first_name": "Voicu",
-                            "last_name": "Catalin-Marian"
+                            "last_name": "Catalin-Marian",
+                            "mother": {
+                                "first_name": "Voicu",
+                                "last_name": "Oana"
+                            },
+                            "father": {
+                                "first_name": "Voicu",
+                                "last_name": "Marian"
+                            }
                         },
 
                         {
                             "first_name": "Manolache",
-                            "last_name": "George-Vlad"
+                            "last_name": "George-Vlad",
+                            "mother": {
+                                "first_name": "Manolache",
+                                "last_name": "Elena"
+                            },
+                            "father": {
+                                "first_name": "Manolache",
+                                "last_name": "Mihai"
+                            }
                         }
                     ]
                 },
@@ -266,32 +506,80 @@
                     "students": [
                         {
                             "first_name": "Anghel",
-                            "last_name": "David-Tudor"
+                            "last_name": "David-Tudor",
+                            "mother": {
+                                "first_name": "Anghel",
+                                "last_name": "Lucretia"
+                            },
+                            "father": {
+                                "first_name": "Anghel",
+                                "last_name": "Ilie"
+                            }
                         },
 
                         {
                             "first_name": "Duminica",
-                            "last_name": "Alexandra"
+                            "last_name": "Alexandra",
+                            "mother": {
+                                "first_name": "Duminica",
+                                "last_name": "Ramona"
+                            },
+                            "father": {
+                                "first_name": "Duminica",
+                                "last_name": "Cornel"
+                            }
                         },
 
                         {
                             "first_name": "Radoi",
-                            "last_name": "Alexandru-Mihail"
+                            "last_name": "Alexandru-Mihail",
+                            "mother": {
+                                "first_name": "Radoi",
+                                "last_name": "Lorena"
+                            },
+                            "father": {
+                                "first_name": "Radoi",
+                                "last_name": "Augustin"
+                            }
                         },
 
                         {
                             "first_name": "Uretyan",
-                            "last_name": "Dragos-Cristian"
+                            "last_name": "Dragos-Cristian",
+                            "mother": {
+                                "first_name": "Uretyan",
+                                "last_name": "Argentina"
+                            },
+                            "father": {
+                                "first_name": "Uretyan",
+                                "last_name": "Remus"
+                            }
                         },
 
                         {
                             "first_name": "Golea",
-                            "last_name": "Milena-Georgiana"
+                            "last_name": "Milena-Georgiana",
+                            "mother": {
+                                "first_name": "Golea",
+                                "last_name": "Teodora"
+                            },
+                            "father": {
+                                "first_name": "Golea",
+                                "last_name": "Andrei"
+                            }
                         },
 
                         {
                             "first_name": "Costin",
-                            "last_name": "Bosoaga-Cornel"
+                            "last_name": "Bosoaga-Cornel",
+                            "mother": {
+                                "first_name": "Costin",
+                                "last_name": "Mirela"
+                            },
+                            "father": {
+                                "first_name": "Costin",
+                                "last_name": "Ramon"
+                            }
                         }
                     ]
                 },
@@ -305,32 +593,80 @@
                     "students": [
                         {
                             "first_name": "Popescu",
-                            "last_name": "Maria-Teodora"
+                            "last_name": "Maria-Teodora",
+                            "mother": {
+                                "first_name": "Popescu",
+                                "last_name": "Iuliana"
+                            },
+                            "father": {
+                                "first_name": "Popescu",
+                                "last_name": "Vasile"
+                            }
                         },
 
                         {
                             "first_name": "Baluta",
-                            "last_name": "Valentina-Teodora"
+                            "last_name": "Valentina-Teodora",
+                            "mother": {
+                                "first_name": "Baluta",
+                                "last_name": "Oriana"
+                            },
+                            "father": {
+                                "first_name": "Baluta",
+                                "last_name": "Valenin"
+                            }
                         },
 
                         {
                             "first_name": "Godeanu",
-                            "last_name": "Robert"
+                            "last_name": "Robert",
+                            "mother": {
+                                "first_name": "Godeanu",
+                                "last_name": "Miruna"
+                            },
+                            "father": {
+                                "first_name": "Godeanu",
+                                "last_name": "Alex"
+                            }
                         },
 
                         {
                             "first_name": "Manolache",
-                            "last_name": "Roberta-Elena"
+                            "last_name": "Roberta-Elena",
+                            "mother": {
+                                "first_name": "Manolache",
+                                "last_name": "Iolanda"
+                            },
+                            "father": {
+                                "first_name": "Manolache",
+                                "last_name": "Ionel"
+                            }
                         },
 
                         {
                             "first_name": "Dumitrescu",
-                            "last_name": "Daiana-Elena"
+                            "last_name": "Daiana-Elena",
+                            "mother": {
+                                "first_name": "Dumitrescu",
+                                "last_name": "Iarina"
+                            },
+                            "father": {
+                                "first_name": "Dumitrescu",
+                                "last_name": "Narcis"
+                            }
                         },
 
                         {
                             "first_name": "Costea",
-                            "last_name": "Maria-Irina"
+                            "last_name": "Maria-Irina",
+                            "mother": {
+                                "first_name": "Costea",
+                                "last_name": "Adriana"
+                            },
+                            "father": {
+                                "first_name": "Costea",
+                                "last_name": "Marius"
+                            }
                         }
                     ]
                 },
@@ -344,32 +680,460 @@
                     "students": [
                         {
                             "first_name": "Carp",
-                            "last_name": "Alexandru"
+                            "last_name": "Alexandru",
+                            "mother": {
+                                "first_name": "Carp",
+                                "last_name": "Miruna"
+                            },
+                            "father": {
+                                "first_name": "Carp",
+                                "last_name": "Ion"
+                            }
                         },
 
                         {
                             "first_name": "Ghinea",
-                            "last_name": "Ioana-Mara"
+                            "last_name": "Ioana-Mara",
+                            "mother": {
+                                "first_name": "Ghinea",
+                                "last_name": "Irina"
+                            },
+                            "father": {
+                                "first_name": "Ghinea",
+                                "last_name": "Stefan"
+                            }
                         },
 
                         {
                             "first_name": "Capra",
-                            "last_name": "Cosmina-Ioana"
+                            "last_name": "Cosmina-Ioana",
+                            "mother": {
+                                "first_name": "Capra",
+                                "last_name": "Pandora"
+                            },
+                            "father": {
+                                "first_name": "Capra",
+                                "last_name": "Teodor"
+                            }
                         },
 
                         {
                             "first_name": "Cernaianu",
-                            "last_name": "Maria-Mihaela"
+                            "last_name": "Maria-Mihaela",
+                            "mother": {
+                                "first_name": "Cernaianu",
+                                "last_name": "Ioana"
+                            },
+                            "father": {
+                                "first_name": "Cernaianu",
+                                "last_name": "Ginel"
+                            }
                         },
 
                         {
                             "first_name": "Vuia",
-                            "last_name": "Marina-Emilia"
+                            "last_name": "Marina-Emilia",
+                            "mother": {
+                                "first_name": "Vuia",
+                                "last_name": "Ariana"
+                            },
+                            "father": {
+                                "first_name": "Vuia",
+                                "last_name": "Iulian"
+                            }
                         },
 
                         {
                             "first_name": "Giurca",
-                            "last_name": "Adrian"
+                            "last_name": "Adrian",
+                            "mother": {
+                                "first_name": "Giurca",
+                                "last_name": "Andreea"
+                            },
+                            "father": {
+                                "first_name": "Giurca",
+                                "last_name": "Eusebiu"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "course_name": "Electronica analogica",
+            "course_credits": "5",
+            "strategy": "2",
+            "course_teacher": {
+                "first_name": "Rosner",
+                "last_name": "Daniel"
+            },
+            "course_assistants": [
+                {
+                    "first_name": "Tataroiu",
+                    "last_name": "Razvan"
+                },
+
+                {
+                    "first_name": "Constantin",
+                    "last_name": "Alexandru"
+                },
+                
+                {
+                    "first_name": "Oprea",
+                    "last_name": "Theodor"
+                },
+                
+                {
+                    "first_name": "Simion",
+                    "last_name": "Ana-Maria"
+                }
+            ],
+            "groups": [
+                {
+                    "ID": "321CC",
+                    "assistant": {
+                        "first_name": "Tataroiu",
+                        "last_name": "Razvan"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Ciuciulete",
+                            "last_name": "Mihai",
+                            "mother": {
+                                "first_name": "Ciuciulete",
+                                "last_name": "Anemona"
+                            },
+                            "father": {
+                                "first_name": "Ciuciulete",
+                                "last_name": "Adrian"
+                            }
+                        },
+
+                        {
+                            "first_name": "Osnaga",
+                            "last_name": "Robert-Viorel",
+                            "mother": {
+                                "first_name": "Osnaga",
+                                "last_name": "Loredana"
+                            },
+                            "father": {
+                                "first_name": "Osnaga",
+                                "last_name": "Augustin"
+                            }
+                        },
+
+                        {
+                            "first_name": "Sprincenatu",
+                            "last_name": "Bogdan-Andrei",
+                            "mother": {
+                                "first_name": "Sprincenatu",
+                                "last_name": "Camelia"
+                            },
+                            "father": {
+                                "first_name": "Sprincenatu",
+                                "last_name": "Marius-Constantin"
+                            }
+                        },
+
+                        {
+                            "first_name": "Manescu",
+                            "last_name": "Bogdan-Constantin",
+                            "mother": {
+                                "first_name": "Manescu",
+                                "last_name": "Camelia"
+                            },
+                            "father": {
+                                "first_name": "Manescu",
+                                "last_name": "Constantin"
+                            }
+                        },
+
+                        {
+                            "first_name": "Voicu",
+                            "last_name": "Catalin-Marian",
+                            "mother": {
+                                "first_name": "Voicu",
+                                "last_name": "Oana"
+                            },
+                            "father": {
+                                "first_name": "Voicu",
+                                "last_name": "Marian"
+                            }
+                        },
+
+                        {
+                            "first_name": "Manolache",
+                            "last_name": "George-Vlad",
+                            "mother": {
+                                "first_name": "Manolache",
+                                "last_name": "Elena"
+                            },
+                            "father": {
+                                "first_name": "Manolache",
+                                "last_name": "Mihai"
+                            }
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "322CC",
+                    "assistant": {
+                        "first_name": "Constantin",
+                        "last_name": "Alexandru"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Anghel",
+                            "last_name": "David-Tudor",
+                            "mother": {
+                                "first_name": "Anghel",
+                                "last_name": "Lucretia"
+                            },
+                            "father": {
+                                "first_name": "Anghel",
+                                "last_name": "Ilie"
+                            }
+                        },
+
+                        {
+                            "first_name": "Duminica",
+                            "last_name": "Alexandra",
+                            "mother": {
+                                "first_name": "Duminica",
+                                "last_name": "Ramona"
+                            },
+                            "father": {
+                                "first_name": "Duminica",
+                                "last_name": "Cornel"
+                            }
+                        },
+
+                        {
+                            "first_name": "Radoi",
+                            "last_name": "Alexandru-Mihail",
+                            "mother": {
+                                "first_name": "Radoi",
+                                "last_name": "Lorena"
+                            },
+                            "father": {
+                                "first_name": "Radoi",
+                                "last_name": "Augustin"
+                            }
+                        },
+
+                        {
+                            "first_name": "Uretyan",
+                            "last_name": "Dragos-Cristian",
+                            "mother": {
+                                "first_name": "Uretyan",
+                                "last_name": "Argentina"
+                            },
+                            "father": {
+                                "first_name": "Uretyan",
+                                "last_name": "Remus"
+                            }
+                        },
+
+                        {
+                            "first_name": "Golea",
+                            "last_name": "Milena-Georgiana",
+                            "mother": {
+                                "first_name": "Golea",
+                                "last_name": "Teodora"
+                            },
+                            "father": {
+                                "first_name": "Golea",
+                                "last_name": "Andrei"
+                            }
+                        },
+
+                        {
+                            "first_name": "Costin",
+                            "last_name": "Bosoaga-Cornel",
+                            "mother": {
+                                "first_name": "Costin",
+                                "last_name": "Mirela"
+                            },
+                            "father": {
+                                "first_name": "Costin",
+                                "last_name": "Ramon"
+                            }
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "323CC",
+                    "assistant": {
+                        "first_name": "Oprea",
+                        "last_name": "Theodor"
+                    },
+                    "students": [
+                        {
+                            "first_name": "Popescu",
+                            "last_name": "Maria-Teodora",
+                            "mother": {
+                                "first_name": "Popescu",
+                                "last_name": "Iuliana"
+                            },
+                            "father": {
+                                "first_name": "Popescu",
+                                "last_name": "Vasile"
+                            }
+                        },
+
+                        {
+                            "first_name": "Baluta",
+                            "last_name": "Valentina-Teodora",
+                            "mother": {
+                                "first_name": "Baluta",
+                                "last_name": "Oriana"
+                            },
+                            "father": {
+                                "first_name": "Baluta",
+                                "last_name": "Valenin"
+                            }
+                        },
+
+                        {
+                            "first_name": "Godeanu",
+                            "last_name": "Robert",
+                            "mother": {
+                                "first_name": "Godeanu",
+                                "last_name": "Miruna"
+                            },
+                            "father": {
+                                "first_name": "Godeanu",
+                                "last_name": "Alex"
+                            }
+                        },
+
+                        {
+                            "first_name": "Manolache",
+                            "last_name": "Roberta-Elena",
+                            "mother": {
+                                "first_name": "Manolache",
+                                "last_name": "Iolanda"
+                            },
+                            "father": {
+                                "first_name": "Manolache",
+                                "last_name": "Ionel"
+                            }
+                        },
+
+                        {
+                            "first_name": "Dumitrescu",
+                            "last_name": "Daiana-Elena",
+                            "mother": {
+                                "first_name": "Dumitrescu",
+                                "last_name": "Iarina"
+                            },
+                            "father": {
+                                "first_name": "Dumitrescu",
+                                "last_name": "Narcis"
+                            }
+                        },
+
+                        {
+                            "first_name": "Costea",
+                            "last_name": "Maria-Irina",
+                            "mother": {
+                                "first_name": "Costea",
+                                "last_name": "Adriana"
+                            },
+                            "father": {
+                                "first_name": "Costea",
+                                "last_name": "Marius"
+                            }
+                        }
+                    ]
+                },
+
+                {
+                    "ID": "324CC",
+                    "assistant": {
+                        "first_name": "Simion",
+                        "last_name": "Ana-Maria" 
+                    },
+                    "students": [
+                        {
+                            "first_name": "Carp",
+                            "last_name": "Alexandru",
+                            "mother": {
+                                "first_name": "Carp",
+                                "last_name": "Miruna"
+                            },
+                            "father": {
+                                "first_name": "Carp",
+                                "last_name": "Ion"
+                            }
+                        },
+
+                        {
+                            "first_name": "Ghinea",
+                            "last_name": "Ioana-Mara",
+                            "mother": {
+                                "first_name": "Ghinea",
+                                "last_name": "Irina"
+                            },
+                            "father": {
+                                "first_name": "Ghinea",
+                                "last_name": "Stefan"
+                            }
+                        },
+
+                        {
+                            "first_name": "Capra",
+                            "last_name": "Cosmina-Ioana",
+                            "mother": {
+                                "first_name": "Capra",
+                                "last_name": "Pandora"
+                            },
+                            "father": {
+                                "first_name": "Capra",
+                                "last_name": "Teodor"
+                            }
+                        },
+
+                        {
+                            "first_name": "Cernaianu",
+                            "last_name": "Maria-Mihaela",
+                            "mother": {
+                                "first_name": "Cernaianu",
+                                "last_name": "Ioana"
+                            },
+                            "father": {
+                                "first_name": "Cernaianu",
+                                "last_name": "Ginel"
+                            }
+                        },
+
+                        {
+                            "first_name": "Vuia",
+                            "last_name": "Marina-Emilia",
+                            "mother": {
+                                "first_name": "Vuia",
+                                "last_name": "Ariana"
+                            },
+                            "father": {
+                                "first_name": "Vuia",
+                                "last_name": "Iulian"
+                            }
+                        },
+
+                        {
+                            "first_name": "Giurca",
+                            "last_name": "Adrian",
+                            "mother": {
+                                "first_name": "Giurca",
+                                "last_name": "Andreea"
+                            },
+                            "father": {
+                                "first_name": "Giurca",
+                                "last_name": "Eusebiu"
+                            }
                         }
                     ]
                 }

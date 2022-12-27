@@ -40,6 +40,8 @@ class Main {
 	public static void main(String[] args) throws CloneNotSupportedException, ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
 		Catalog catalog = Catalog.getInstance();
 		catalog.open();
+		
+		catalog.coursesParseJSON("./test/courses.json");
 	}
 }
 
@@ -156,7 +158,9 @@ class Catalog implements Subject {
 				s.setFather(new Parent(fatherFirstName, fatherLastName));
 				
 				Grade grade_aux = new Grade(Double.parseDouble(partialScore), Double.parseDouble(examScore), name, s);
+				Notification notification = new Notification(name, grade_aux, s.getMother(), s.getFather());
 				grades.add(grade_aux);
+				observers.add(notification);
 			}
 		}
 	}
@@ -222,8 +226,20 @@ class Catalog implements Subject {
 						JSONObject student = (JSONObject) students.get(k);
 						String firstName = (String) student.get("first_name");
 						String lastName = (String) student.get("last_name");
+						
+						JSONObject motherObject = (JSONObject) student.get("mother");
+						JSONObject fatherObject = (JSONObject) student.get("father");
+						String motherFirstName = (String) motherObject.get("first_name");
+						String motherLastName = (String) motherObject.get("last_name");
+						String fatherFirstName = (String) fatherObject.get("first_name");
+						String fatherLastName = (String) fatherObject.get("last_name");
+						Parent mother = new Parent(motherFirstName, motherLastName);
+						Parent father = new Parent(fatherFirstName, fatherLastName);
 				
 						Student s = new Student(firstName, lastName);
+						s.setMother(mother);
+						s.setFather(father);
+						
 						group_aux.add(s);
 						m++;
 					}
@@ -350,9 +366,9 @@ class Catalog implements Subject {
 	public void notifyObservers(Grade grade) {
 		Notification notification = new Notification(grade.getCourse(), grade, grade.getStudent().getMother(), grade.getStudent().getFather());
 		
-		if (observers.contains(notification)) {
-			observers.get(observers.indexOf(notification)).update(notification);
-		}
+//		if (observers.contains(notification)) {
+//			observers.get(observers.indexOf(notification)).update(notification);
+//		}
 	}
 	
 	public User checkUserNamePassword(String type, String userName, String userPassword) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
@@ -545,22 +561,6 @@ abstract class Course {
 		return result;
 	}
 	
-//	public void addGrades() {
-//		Catalog catalog = Catalog.getInstance();
-//		ArrayList<ArrayList<Grade>> list = catalog.addGradesToCatalog();
-//		ArrayList<Grade> aux = new ArrayList<>();
-//		
-//		for (int i = 0; i < catalog.courses.size(); i++) {
-//			for (int j = 0; j < list.get(i).size(); j++) {
-//				if (this.getCourseName().equals(list.get(i).get(j).getCourse())) {
-//					aux.add(list.get(i).get(j));
-//				}
-//			}
-//		}
-//		
-//		grades.addAll(aux);
-//	}
-	
 	public LinkedHashMap<Student, Grade> getAllStudentGrades() {
 		Catalog catalog = Catalog.getInstance();
 		
@@ -577,12 +577,6 @@ abstract class Course {
 		}
 		
 		return result;
-		
-//		for (int i = 0; i < this.getGrades().size(); i++) {
-//			result.put(grades.get(i).getStudent(), grades.get(i));
-//		}
-//		
-//		return result;
 	}
 	
 	public abstract ArrayList<Student> getGraduatedStudents();
@@ -943,6 +937,16 @@ class Parent extends User {
 			return this.getFirstName().hashCode() ^ this.getLastName().hashCode();
 		}
 	}
+	
+	public boolean equals(Object obj) {
+		Parent p = (Parent) obj;
+		
+		if (this.getFirstName().equals(p.getFirstName()) && this.getLastName().equals(p.getLastName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 class Assistant extends User implements Element {
@@ -1111,7 +1115,7 @@ class Grade implements Cloneable, Comparable {
 	
 	public Double getTotal() {
 		Double total = null;
-		total = partialScore + examScore;
+		total = partialScore.doubleValue() + examScore.doubleValue();
 		return total;
 	}
 	
@@ -1294,7 +1298,7 @@ class ScoreVisitor implements Visitor {
 				examScores.put(teacher, gradesList);
 				
 				for (Tuple<Student, String, Double> tuple : gradesList) {
-					catalog.notifyObservers(new Grade(tuple.getCourse(), tuple.getDoubleGrade(), tuple.getStudent()));
+					catalog.notifyObservers(new Grade(0.0,  tuple.getDoubleGrade(), tuple.getCourse(), tuple.getStudent()));
 				}
 			}
 		}
@@ -1355,14 +1359,14 @@ class ScoreVisitor implements Visitor {
 				partialScores.put(assistant, gradesList);
 				
 				for (Tuple<Student, String, Double> tuple : gradesList) {
-					catalog.notifyObservers(new Grade(tuple.getDoubleGrade(), tuple.getCourse(), tuple.getStudent()));
+					catalog.notifyObservers(new Grade(tuple.getDoubleGrade(), 0.0, tuple.getCourse(), tuple.getStudent()));
 				}
 			}
 		}
 	}
 	
 	public String printGradesAssistant(Assistant assistant) {
-		String grades = "The following grades have been validated:\n";
+		String grades = "Grades to validate:\n";
 		
 		ScoreVisitor visitor = new ScoreVisitor();
 		
@@ -1520,7 +1524,7 @@ class Notification implements Observer {
 	public String toString() {
 		String str = "";
 		str += "Dear Mr. " + father.getFirstName() + " " + father.getLastName() + " and Ms. " + mother.getFirstName() 
-			+ " " + mother.getLastName() + ", we announce you that your son has received the " + grade.getTotal() + 
+			+ " " + mother.getLastName() + ", we announce you that your son/daughter has received the grade " + grade.getTotal() + 
 			" at the " + courseName + " subject";
 		
 		return str;
@@ -1529,6 +1533,10 @@ class Notification implements Observer {
 	@Override
 	public void update(Notification notification) {
 		System.out.println(notification);
+	}
+	
+	public Notification updateParent(Notification notification) {
+		return notification;
 	}
 	
 	public boolean equals(Object obj) {

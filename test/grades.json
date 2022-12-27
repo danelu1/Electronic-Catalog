@@ -265,7 +265,7 @@
                         },
                         "father": {
                             "first_name": "Giurca",
-                            "last_name": "Alehandro"
+                            "last_name": "Eusebiu"
                         }
                     }
                 },
@@ -440,12 +440,12 @@
                         "first_name": "Giurca",
                         "last_name": "Adrian",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Giurca",
+                            "last_name": "Andreea"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Giurca",
+                            "last_name": "Eusebiu"
                         }
                     }
                 },
@@ -476,12 +476,12 @@
                         "first_name": "Manescu",
                         "last_name": "Bogdan-Constantin",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Manescu",
+                            "last_name": "Camelia"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Manescu",
+                            "last_name": "Constantin"
                         }
                     }
                 },
@@ -494,12 +494,12 @@
                         "first_name": "Sprincenatu",
                         "last_name": "Bogdan-Andrei",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Sprincenatu",
+                            "last_name": "Camelia"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Sprincenatu",
+                            "last_name": "Marius-Constantin"
                         }
                     }
                 },
@@ -512,12 +512,12 @@
                         "first_name": "Duminica",
                         "last_name": "Alexandra",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Duminica",
+                            "last_name": "Ramona"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Duminica",
+                            "last_name": "Cornel"
                         }
                     }
                 },
@@ -530,12 +530,12 @@
                         "first_name": "Ciuciulete",
                         "last_name": "Mihai",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Ciuciulete",
+                            "last_name": "Anemona"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Ciuciulete",
+                            "last_name": "Adrian"
                         }
                     }
                 },
@@ -566,12 +566,12 @@
                         "first_name": "Godeanu",
                         "last_name": "Robert",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Godeanu",
+                            "last_name": "Miruna"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Godeanu",
+                            "last_name": "Alex"
                         }
                     }
                 },
@@ -584,12 +584,12 @@
                         "first_name": "Vuia",
                         "last_name": "Marina-Emilia",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Vuia",
+                            "last_name": "Ariana"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Vuia",
+                            "last_name": "Iulian"
                         }
                     }
                 },
@@ -602,12 +602,12 @@
                         "first_name": "Uretyan",
                         "last_name": "Dragos-Cristian",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Uretyan",
+                            "last_name": "Argentina"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Uretyan",
+                            "last_name": "Remus"
                         }
                     }
                 },
@@ -620,12 +620,12 @@
                         "first_name": "Manolache",
                         "last_name": "Roberta-Elena",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Manolache",
+                            "last_name": "Iolanda"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Manolache",
+                            "last_name": "Ionel"
                         }
                     }
                 },
@@ -656,12 +656,12 @@
                         "first_name": "Popescu",
                         "last_name": "Maria-Teodora",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Popescu",
+                            "last_name": "Iuliana"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Popescu",
+                            "last_name": "Vasile"
                         }
                     }
                 },
@@ -674,12 +674,12 @@
                         "first_name": "Costea",
                         "last_name": "Maria-Irina",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Costea",
+                            "last_name": "Adriana"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Costea",
+                            "last_name": "Marius"
                         }
                     }
                 },
@@ -692,12 +692,12 @@
                         "first_name": "Cernaianu",
                         "last_name": "Maria-Mihaela",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Cernaianu",
+                            "last_name": "Ioana"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Cernaianu",
+                            "last_name": "Ginel"
                         }
                     }
                 },
@@ -710,12 +710,12 @@
                         "first_name": "Carp",
                         "last_name": "Alexandru",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Carp",
+                            "last_name": "Miruna"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Carp",
+                            "last_name": "Ion"
                         }
                     }
                 },
@@ -728,12 +728,12 @@
                         "first_name": "Radoi",
                         "last_name": "Alexandru-Mihail",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Radoi",
+                            "last_name": "Lorena"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Radoi",
+                            "last_name": "Augustin"
                         }
                     }
                 },
@@ -746,12 +746,12 @@
                         "first_name": "Golea",
                         "last_name": "Milena-Georgiana",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Golea",
+                            "last_name": "Teodora"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Golea",
+                            "last_name": "Andrei"
                         }
                     }
                 },
@@ -764,12 +764,12 @@
                         "first_name": "Costin",
                         "last_name": "Bosoaga-Cornel",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Costin",
+                            "last_name": "Mirela"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Costin",
+                            "last_name": "Ramon"
                         }
                     }
                 },
@@ -782,12 +782,12 @@
                         "first_name": "Dumitrescu",
                         "last_name": "Daiana-Elena",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Dumitrescu",
+                            "last_name": "Iarina"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Dumitrescu",
+                            "last_name": "Narcis"
                         }
                     }
                 },
@@ -800,12 +800,12 @@
                         "first_name": "Baluta",
                         "last_name": "Valentina-Teodora",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Baluta",
+                            "last_name": "Oriana"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Baluta",
+                            "last_name": "Valentin"
                         }
                     }
                 },
@@ -818,12 +818,12 @@
                         "first_name": "Ghinea",
                         "last_name": "Ioana-Mara",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Ghinea",
+                            "last_name": "Irina"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Ghinea",
+                            "last_name": "Stefan"
                         }
                     }
                 },
@@ -854,12 +854,444 @@
                         "first_name": "Capra",
                         "last_name": "Cosmina-Ioana",
                         "mother": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Capra",
+                            "last_name": "Pandora"
                         },
                         "father": {
-                            "first_name": "",
-                            "last_name": ""
+                            "first_name": "Capra",
+                            "last_name": "Teodor"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "3",
+                    "exam_score": "2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Giurca",
+                        "last_name": "Adrian",
+                        "mother": {
+                            "first_name": "Giurca",
+                            "last_name": "Andreea"
+                        },
+                        "father": {
+                            "first_name": "Giurca",
+                            "last_name": "Eusebiu"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "2.5",
+                    "exam_score": "2.2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Voicu",
+                        "last_name": "Catalin-Marian",
+                        "mother": {
+                            "first_name": "Voicu",
+                            "last_name": "Oana"
+                        },
+                        "father": {
+                            "first_name": "Voicu",
+                            "last_name": "Marian"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "4.5",
+                    "exam_score": "3",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Manescu",
+                        "last_name": "Bogdan-Constantin",
+                        "mother": {
+                            "first_name": "Manescu",
+                            "last_name": "Camelia"
+                        },
+                        "father": {
+                            "first_name": "Manescu",
+                            "last_name": "Constantin"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "2",
+                    "exam_score": "2.5",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Sprincenatu",
+                        "last_name": "Bogdan-Andrei",
+                        "mother": {
+                            "first_name": "Sprincenatu",
+                            "last_name": "Camelia"
+                        },
+                        "father": {
+                            "first_name": "Sprincenatu",
+                            "last_name": "Marius-Constantin"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "2.2",
+                    "exam_score": "2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Duminica",
+                        "last_name": "Alexandra",
+                        "mother": {
+                            "first_name": "Duminica",
+                            "last_name": "Ramona"
+                        },
+                        "father": {
+                            "first_name": "Duminica",
+                            "last_name": "Cornel"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "4.9",
+                    "exam_score": "3.6",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Ciuciulete",
+                        "last_name": "Mihai",
+                        "mother": {
+                            "first_name": "Ciuciulete",
+                            "last_name": "Anemona"
+                        },
+                        "father": {
+                            "first_name": "Ciuciulete",
+                            "last_name": "Adrian"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "3.1",
+                    "exam_score": "2.6",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Anghel",
+                        "last_name": "David-Tudor",
+                        "mother": {
+                            "first_name": "Anghel",
+                            "last_name": "Lucretia"
+                        },
+                        "father": {
+                            "first_name": "Anghel",
+                            "last_name": "Ilie"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "4.4",
+                    "exam_score": "1.7",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Godeanu",
+                        "last_name": "Robert",
+                        "mother": {
+                            "first_name": "Godeanu",
+                            "last_name": "Miruna"
+                        },
+                        "father": {
+                            "first_name": "Godeanu",
+                            "last_name": "Alex"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "5.9",
+                    "exam_score": "3.3",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Vuia",
+                        "last_name": "Marina-Emilia",
+                        "mother": {
+                            "first_name": "Vuia",
+                            "last_name": "Ariana"
+                        },
+                        "father": {
+                            "first_name": "Vuia",
+                            "last_name": "Iulian"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "1.2",
+                    "exam_score": "1",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Uretyan",
+                        "last_name": "Dragos-Cristian",
+                        "mother": {
+                            "first_name": "Uretyan",
+                            "last_name": "Argentina"
+                        },
+                        "father": {
+                            "first_name": "Uretyan",
+                            "last_name": "Remus"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "2.5",
+                    "exam_score": "2.5",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Manolache",
+                        "last_name": "Roberta-Elena",
+                        "mother": {
+                            "first_name": "Manolache",
+                            "last_name": "Iolanda"
+                        },
+                        "father": {
+                            "first_name": "Manolache",
+                            "last_name": "Ionel"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "6",
+                    "exam_score": "3.7",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Manolache",
+                        "last_name": "George-Vlad",
+                        "mother": {
+                            "first_name": "Manolache",
+                            "last_name": "Elena"
+                        },
+                        "father": {
+                            "first_name": "Manolache",
+                            "last_name": "Mihai"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "4.3",
+                    "exam_score": "2.2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Popescu",
+                        "last_name": "Maria-Teodora",
+                        "mother": {
+                            "first_name": "Popescu",
+                            "last_name": "Iuliana"
+                        },
+                        "father": {
+                            "first_name": "Popescu",
+                            "last_name": "Vasile"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "1.9",
+                    "exam_score": "2.1",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Costea",
+                        "last_name": "Maria-Irina",
+                        "mother": {
+                            "first_name": "Costea",
+                            "last_name": "Adriana"
+                        },
+                        "father": {
+                            "first_name": "Costea",
+                            "last_name": "Marius"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "3.5",
+                    "exam_score": "1.5",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Cernaianu",
+                        "last_name": "Maria-Mihaela",
+                        "mother": {
+                            "first_name": "Cernaianu",
+                            "last_name": "Ioana"
+                        },
+                        "father": {
+                            "first_name": "Cernaianu",
+                            "last_name": "Ginel"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "5.2",
+                    "exam_score": "4",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Carp",
+                        "last_name": "Alexandru",
+                        "mother": {
+                            "first_name": "Carp",
+                            "last_name": "Miruna"
+                        },
+                        "father": {
+                            "first_name": "Carp",
+                            "last_name": "Ion"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "3",
+                    "exam_score": "3",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Radoi",
+                        "last_name": "Alexandru-Mihail",
+                        "mother": {
+                            "first_name": "Radoi",
+                            "last_name": "Lorena"
+                        },
+                        "father": {
+                            "first_name": "Radoi",
+                            "last_name": "Augustin"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "4",
+                    "exam_score": "2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Golea",
+                        "last_name": "Milena-Georgiana",
+                        "mother": {
+                            "first_name": "Golea",
+                            "last_name": "Teodora"
+                        },
+                        "father": {
+                            "first_name": "Golea",
+                            "last_name": "Andrei"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "2.8",
+                    "exam_score": "2.2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Costin",
+                        "last_name": "Bosoaga-Cornel",
+                        "mother": {
+                            "first_name": "Costin",
+                            "last_name": "Mirela"
+                        },
+                        "father": {
+                            "first_name": "Costin",
+                            "last_name": "Ramon"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "4.1",
+                    "exam_score": "3.2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Dumitrescu",
+                        "last_name": "Daiana-Elena",
+                        "mother": {
+                            "first_name": "Dumitrescu",
+                            "last_name": "Iarina"
+                        },
+                        "father": {
+                            "first_name": "Dumitrescu",
+                            "last_name": "Narcis"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "2",
+                    "exam_score": "2",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Baluta",
+                        "last_name": "Valentina-Teodora",
+                        "mother": {
+                            "first_name": "Baluta",
+                            "last_name": "Oriana"
+                        },
+                        "father": {
+                            "first_name": "Baluta",
+                            "last_name": "Valentin"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "1",
+                    "exam_score": "1",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Ghinea",
+                        "last_name": "Ioana-Mara",
+                        "mother": {
+                            "first_name": "Ghinea",
+                            "last_name": "Irina"
+                        },
+                        "father": {
+                            "first_name": "Ghinea",
+                            "last_name": "Stefan"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "3",
+                    "exam_score": "3.1",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Osnaga",
+                        "last_name": "Robert-Viorel",
+                        "mother": {
+                            "first_name": "Osnaga",
+                            "last_name": "Loredana"
+                        },
+                        "father": {
+                            "first_name": "Osnaga",
+                            "last_name": "Augustin"
+                        }
+                    }
+                },
+
+                {
+                    "partial_score": "5.5",
+                    "exam_score": "3.7",
+                    "course_name": "Electronica analogica",
+                    "student": {
+                        "first_name": "Capra",
+                        "last_name": "Cosmina-Ioana",
+                        "mother": {
+                            "first_name": "Capra",
+                            "last_name": "Pandora"
+                        },
+                        "father": {
+                            "first_name": "Capra",
+                            "last_name": "Teodor"
                         }
                     }
                 }

@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -54,8 +53,6 @@ class SelectionPage extends JFrame implements ActionListener {
 		super(message);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 800));
-		getContentPane().setBackground(new Color(200, 123, 198));
-		setLayout(new BorderLayout());
 		
 		title = new JLabel("Welcome to your electronic catalog. Please select what kind of account you have!");
 		title.setFont(new Font("Verdana", Font.BOLD, 15));
@@ -142,13 +139,12 @@ class ParentLoginPage extends JFrame implements ActionListener {
 	JPasswordField passwordText;
 	JButton loginButton;
 	JButton goBackButton;
-	User user;
+	static User user;
 	JPanel userPanel;
 	JPanel loginPanel;
 	JPanel passwordPanel;
 	JPanel goBackPanel;
 	JPanel centerPanel;
-	JInternalFrame internalFrame;
 	SelectionPage previousPage;
 	ParentMainPage parentPage;
 	
@@ -164,9 +160,6 @@ class ParentLoginPage extends JFrame implements ActionListener {
 		userLabel = new JLabel("Parent User Name: ");
 		passwordLabel = new JLabel("Parent User password: ");
 		
-		userLabel.setForeground(Color.green);
-		passwordLabel.setForeground(Color.green);
-		
 		userText = new JTextField();
 		userText.setColumns(30);
 		
@@ -181,16 +174,12 @@ class ParentLoginPage extends JFrame implements ActionListener {
 		userPanel.add(userLabel);
 		userPanel.add(userText);
 		
-		userPanel.setBackground(Color.red);
-		
 		loginPanel = new JPanel();
 		loginPanel.add(userPanel);
-		
 		
 		passwordPanel = new JPanel();
 		passwordPanel.add(passwordLabel);
 		passwordPanel.add(passwordText);
-		passwordPanel.setBackground(Color.red);
 		
 		goBackPanel = new JPanel();
 		goBackPanel.add(goBackButton);
@@ -221,13 +210,6 @@ class ParentLoginPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {
 			if (e.getSource() == goBackButton) {
-				internalFrame = new JInternalFrame("Go back");
-				internalFrame.setMinimumSize(new Dimension(500, 500));
-				internalFrame.getContentPane().setBackground(Color.blue);
-				internalFrame.add(new JLabel("Redirecting you..."));
-				internalFrame.pack();
-				internalFrame.setVisible(true);
-				add(internalFrame, BorderLayout.SOUTH);
 				try {
 					Thread.sleep(1500);
 				} catch (InterruptedException e1) {
@@ -271,7 +253,6 @@ class StudentLoginPage extends JFrame implements ActionListener {
 	JPanel passwordPanel;
 	JPanel goBackPanel;
 	JPanel centerPanel;
-	JInternalFrame internalFrame;
 	SelectionPage previousPage;
 	StudentMainPage studentPage;
 	
@@ -337,13 +318,6 @@ class StudentLoginPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {
 			if (e.getSource() == goBackButton) {
-				internalFrame = new JInternalFrame("Go back");
-				internalFrame.setMinimumSize(new Dimension(500, 500));
-				internalFrame.getContentPane().setBackground(Color.blue);
-				internalFrame.add(new JLabel("Redirecting you..."));
-				internalFrame.pack();
-				internalFrame.setVisible(true);
-				add(internalFrame, BorderLayout.SOUTH);
 				try {
 					Thread.sleep(1500);
 				} catch (InterruptedException e1) {
@@ -387,7 +361,6 @@ class AssistantLoginPage extends JFrame implements ActionListener {
 	JPanel passwordPanel;
 	JPanel goBackPanel;
 	JPanel centerPanel;
-	JInternalFrame internalFrame;
 	SelectionPage previousPage;
 	AssistantMainPage assistantPage;
 	
@@ -453,13 +426,6 @@ class AssistantLoginPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {
 			if (e.getSource() == goBackButton) {
-				internalFrame = new JInternalFrame("Go back");
-				internalFrame.setMinimumSize(new Dimension(500, 500));
-				internalFrame.getContentPane().setBackground(Color.blue);
-				internalFrame.add(new JLabel("Redirecting you..."));
-				internalFrame.pack();
-				internalFrame.setVisible(true);
-				add(internalFrame, BorderLayout.SOUTH);
 				try {
 					Thread.sleep(1500);
 				} catch (InterruptedException e1) {
@@ -503,7 +469,6 @@ class TeacherLoginPage extends JFrame implements ActionListener {
 	JPanel passwordPanel;
 	JPanel goBackPanel;
 	JPanel centerPanel;
-	JInternalFrame internalFrame;
 	SelectionPage previousPage;
 	TeacherMainPage teacherPage;
 	
@@ -569,13 +534,6 @@ class TeacherLoginPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {
 			if (e.getSource() == goBackButton) {
-				internalFrame = new JInternalFrame("Go back");
-				internalFrame.setMinimumSize(new Dimension(500, 500));
-				internalFrame.getContentPane().setBackground(Color.blue);
-				internalFrame.add(new JLabel("Redirecting you..."));
-				internalFrame.pack();
-				internalFrame.setVisible(true);
-				add(internalFrame, BorderLayout.SOUTH);
 				try {
 					Thread.sleep(1500);
 				} catch (InterruptedException e1) {
@@ -607,11 +565,58 @@ class TeacherLoginPage extends JFrame implements ActionListener {
 class ParentMainPage extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
+	JTextArea notificationsArea;
+	
+	JButton notificationsButton;
+	JButton logoutButton;
+	
+	JLabel accountLabel;
+	
+	JScrollPane scrollPane;
+	
+	JPanel southPanel;
+	
+	UserFactory factory = new UserFactory();
+	
+	SelectionPage page;
+	
 	public ParentMainPage(String message) {
 		super(message);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 800));
 		getContentPane().setBackground(new Color(144, 169, 196));
+		
+		Catalog catalog = Catalog.getInstance();
+		
+		try {
+			catalog.coursesParseJSON("./test/courses.json");
+		} catch (java.text.ParseException | ParseException e) {
+			e.printStackTrace();
+		}
+		
+		User user = ParentLoginPage.user;
+		Parent parent = (Parent) factory.getUser("Parent", user.getFirstName(), user.getLastName());
+		
+		accountLabel = new JLabel("--------------------- " + user.getFirstName() + " " + user.getLastName() + " Account ---------------------");
+		accountLabel.setFont(new Font("Verdana", Font.BOLD, 25));
+		
+		notificationsArea = new JTextArea();
+		
+		scrollPane = new JScrollPane(notificationsArea);
+		
+		notificationsButton = new JButton("View");
+		logoutButton = new JButton("Log out");
+		
+		southPanel = new JPanel(new GridLayout(1, 2));
+		southPanel.add(notificationsButton);
+		southPanel.add(logoutButton);
+		
+		add(accountLabel, BorderLayout.NORTH);
+		add(scrollPane, BorderLayout.CENTER);
+		add(southPanel, BorderLayout.SOUTH);
+		
+		notificationsButton.addActionListener(this);
+		logoutButton.addActionListener(this);
 		
 		pack();
 		setVisible(true);
@@ -619,7 +624,21 @@ class ParentMainPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() instanceof JButton) {
+			if (e.getSource() == logoutButton) {
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				
+				this.dispose();
+				
+				page = new SelectionPage("Select");
+			} else if (e.getSource() == notificationsButton) {
+				
+			}
+		}
 	}
 }
 
@@ -652,7 +671,6 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 	JButton logoutButton;
 	Catalog catalog;
 	SelectionPage page;
-	JInternalFrame internalFrame;
 	Student student;
 	Vector<String> icons;
 	UserFactory factory = new UserFactory();
@@ -759,13 +777,6 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {
 			if (e.getSource() == logoutButton) {
-				internalFrame = new JInternalFrame("Go back");
-				internalFrame.setMinimumSize(new Dimension(500, 500));
-				internalFrame.getContentPane().setBackground(Color.blue);
-				internalFrame.add(new JLabel("Redirecting you..."));
-				internalFrame.pack();
-				internalFrame.setVisible(true);
-				add(internalFrame, BorderLayout.SOUTH);
 				try {
 					Thread.sleep(1500);
 				} catch (InterruptedException e1) {
@@ -879,6 +890,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 	Vector<String> informations;
 	SelectionPage page;
 	UserFactory factory = new UserFactory();
+	static Notification notification;
 
 	public AssistantMainPage(String message) {
 		super(message);
@@ -991,16 +1003,10 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 				this.dispose();
 				page = new SelectionPage("Select");
 			} else if (e.getSource() == validateButton) {
-				User user = AssistantLoginPage.user;
-				Assistant assistant = (Assistant) factory.getUser("Assistant", user.getFirstName(), user.getLastName());
-				ScoreVisitor visitor = new ScoreVisitor();
-				
-				assistant.accept(visitor);
-				
-				String grades = visitor.printGradesAssistant(assistant);
-				
+				String grades = validationArea.getText();
+				grades += "The grades have been succesfully validated";
 				validationArea.setText(grades);
-				validationArea.setEditable(false);
+				validationArea.setForeground(Color.green);
 			}
 		}
 	}
@@ -1055,11 +1061,23 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 				}
 			}
 			
+			ScoreVisitor visitor = new ScoreVisitor();
+			
+			assistant.accept(visitor);
+			
+			String grades = visitor.printGradesAssistant(assistant);
+			
+			validationArea.setText(grades);
+			validationArea.setEditable(false);
+			
 			String info = courseInformations.getText() + courseCredits.getText() + courseTeacher.getText() + courseAssistants.getText() 
 				+ assistants + myGroup.getText() + 	id + students;
 			
 			informationsArea.setText(info);
 			informationsArea.setEditable(false);
+			
+			validationArea.setText(grades);
+			validationArea.setEditable(false);
 			
 			SwingUtilities.updateComponentTreeUI(this);
 		}
@@ -1107,6 +1125,7 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 	Vector<String> informations;
 	SelectionPage page;
 	UserFactory factory = new UserFactory();
+	static Notification notification;
 	
 	public TeacherMainPage(String message) {
 		super(message);
