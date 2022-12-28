@@ -564,8 +564,10 @@ class TeacherLoginPage extends JFrame implements ActionListener {
 	}
 }
 
-class ParentMainPage extends JFrame implements ActionListener {
+class ParentMainPage extends JFrame implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("rawtypes")
+	JList childCourses;
 	
 	JTextArea notificationsArea;
 	
@@ -575,12 +577,15 @@ class ParentMainPage extends JFrame implements ActionListener {
 	JLabel accountLabel;
 	
 	JScrollPane scrollPane;
+	JScrollPane coursesPane;
 	
+	JPanel northPanel;
 	JPanel southPanel;
 	
 	UserFactory factory = new UserFactory();
 	
 	SelectionPage page;
+	Vector<Course> courses;
 	
 	public ParentMainPage(String message) {
 		super(message);
@@ -601,6 +606,20 @@ class ParentMainPage extends JFrame implements ActionListener {
 		accountLabel = new JLabel("--------------------- " + user.getFirstName() + " " + user.getLastName() + " Account ---------------------");
 		accountLabel.setFont(new Font("Verdana", Font.BOLD, 25));
 		
+		courses = new Vector<>();
+		
+		for (int i = 0; i < catalog.courses.size(); i++) {
+			courses.add(catalog.courses.get(i));
+		}
+		
+		childCourses = new JList<>(courses);
+		
+		coursesPane = new JScrollPane(childCourses);
+		
+		northPanel = new JPanel(new GridLayout(2, 1));
+		northPanel.add(accountLabel);
+		northPanel.add(coursesPane);
+		
 		notificationsArea = new JTextArea();
 		
 		scrollPane = new JScrollPane(notificationsArea);
@@ -612,11 +631,11 @@ class ParentMainPage extends JFrame implements ActionListener {
 		southPanel.add(notificationsButton);
 		southPanel.add(logoutButton);
 		
-		add(accountLabel, BorderLayout.NORTH);
+		add(northPanel, BorderLayout.NORTH);
 		add(scrollPane, BorderLayout.CENTER);
 		add(southPanel, BorderLayout.SOUTH);
 		
-		notificationsButton.addActionListener(this);
+		childCourses.addListSelectionListener(this);
 		logoutButton.addActionListener(this);
 		
 		pack();
@@ -636,30 +655,33 @@ class ParentMainPage extends JFrame implements ActionListener {
 				this.dispose();
 				
 				page = new SelectionPage("Select");
+				
 			} else if (e.getSource() == notificationsButton) {
-				ArrayList<Student> allStudents = TeacherMainPage.allStudents;
+				ArrayList<Student> allStudents1 = TeacherMainPage.allStudents;
+				ArrayList<Student> allStudents2 = AssistantMainPage.allStudents;
 				
 				User user = ParentLoginPage.user;
 				Parent parent = (Parent) factory.getUser("Parent", user.getFirstName(), user.getLastName());
 				int index = 0;
+				int index2 = 0;
 				
-				if (allStudents == null) {
-					notificationsArea.setText("You don't have any notification yet");
-				} else {
-					for (int i = 0; i < allStudents.size(); i++) {
-						Student s = allStudents.get(i);
+				String notification = "";
+				
+				if (allStudents1 == null && allStudents2 == null) {
+					notification += "You don't have any notification yet";
+				} else if (allStudents1 != null && allStudents2 == null) {
+					for (int i = 0; i < allStudents1.size(); i++) {
+						Student s = allStudents1.get(i);
 						if (parent.equals(s.getFather()) || parent.equals(s.getMother())) {
 							index = i;
 							break;
 						}
 					}
 					
-					Student student = allStudents.get(index);
-					
-					String notification = "";
+					Student student = allStudents1.get(index);
 					
 					if (student.notifications.size() == 0) {
-						notificationsArea.setText("You don't have any notification yet");
+						notification += "You don't have any notification yet";
 					} else {
 						LinkedHashSet<String> set = new LinkedHashSet<>();
 						
@@ -672,11 +694,83 @@ class ParentMainPage extends JFrame implements ActionListener {
 						while (it.hasNext()) {
 							notification += it.next() + "\n";
 						}
+					}
+				} else if (allStudents1 == null && allStudents2 != null) {
+					for (int i = 0; i < allStudents2.size(); i++) {
+						Student s = allStudents2.get(i);
+						if (parent.equals(s.getFather()) || parent.equals(s.getMother())) {
+							index = i;
+							break;
+						}
+					}
+					
+					Student student = allStudents2.get(index);
+					
+					if (student.notifications.size() == 0) {
+						notification += "You don't have any notification yet";
+					} else {
+						LinkedHashSet<String> set = new LinkedHashSet<>();
 						
-						notificationsArea.setText(notification);
+						for (int i = 0; i < student.notifications.size(); i++) {
+							set.add(student.notifications.get(i).toString());
+						}
+						
+						Iterator<String> it = set.iterator();
+						
+						while (it.hasNext()) {
+							notification += it.next() + "\n";
+						}
+					}
+				} else {
+					for (int i = 0; i < allStudents1.size(); i++) {
+						Student s1 = allStudents1.get(i);
+						
+						for (int j = 0; j < allStudents2.size(); j++) {
+							Student s2 = allStudents2.get(j);
+							
+							if ((parent.equals(s1.getFather()) || parent.equals(s1.getMother())) &&
+									(parent.equals(s2.getFather()) || parent.equals(s2.getMother()))) {
+								index = i;
+								break;
+							}
+						}
+					}
+					
+					Student student = allStudents1.get(index);
+					Student student2 = allStudents2.get(index2);
+					
+					if (student.notifications.size() == 0 && student2.notifications.size() == 0) {
+						notification += "You don't have any notification yet";
+					} else {
+						LinkedHashSet<String> set = new LinkedHashSet<>();
+						
+						for (int i = 0; i < student.notifications.size(); i++) {
+							set.add(student.notifications.get(i).toString());
+						}
+						
+						for (int i = 0; i < student2.notifications.size(); i++) {
+							set.add(student2.notifications.get(i).toString());
+						}
+						
+						Iterator<String> it = set.iterator();
+						
+						while (it.hasNext()) {
+							notification += it.next() + "\n";
+						}
 					}
 				}
+				
+				notificationsArea.setText(notification.toString());
 			}
+		}
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		if (childCourses.isSelectionEmpty()) {
+			return;
+		} else {
+			notificationsButton.addActionListener(this);
 		}
 	}
 }
