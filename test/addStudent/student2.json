@@ -1,0 +1,12 @@
+{
+    "first_name": "Mihart",
+    "last_name": "Ionut",
+    "mother": {
+        "first_name": "Mihart",
+        "last_name": "Maria"
+    },
+    "father": {
+        "first_name": "Mihart",
+        "last_name": "Gheorghe"
+    }
+}

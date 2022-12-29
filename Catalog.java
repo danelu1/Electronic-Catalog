@@ -23,14 +23,12 @@ import java.io.IOException;
 import java.io.Reader;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -124,6 +122,124 @@ class Catalog implements Subject {
 		}
 		
 		return grades;
+	}
+	
+	@SuppressWarnings("unused")
+	public String addStudent(String path, Course course, String id) throws ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
+		String info = "";
+		
+		JSONParser parser = new JSONParser();
+		
+		try (Reader reader = new FileReader(path)) {
+			JSONObject studentObject = (JSONObject) parser.parse(reader);
+			
+			String firstName = (String) studentObject.get("first_name");
+			String lastName = (String) studentObject.get("last_name");
+			JSONObject motherObject = (JSONObject) studentObject.get("mother");
+			JSONObject fatherObject = (JSONObject) studentObject.get("father");
+			String motherFirstName = (String) motherObject.get("first_name");
+			String motherLastName = (String) motherObject.get("last_name");
+			String fatherFirstName = (String) fatherObject.get("first_name");
+			String fatherLastName = (String) fatherObject.get("last_name");
+			Parent mother = new Parent(motherFirstName, motherLastName);
+			Parent father = new Parent(fatherFirstName, fatherLastName);
+	
+			Student s = new Student(firstName, lastName);
+			s.setMother(mother);
+			s.setFather(father);
+			course.addStudent(id, s);
+		}
+		
+		String courseInformations = "Course informations:\n";
+		String courseTeacher = "\t- Course Teacher: " + course.getCourseTeacher() + "\n";
+		String courseCredits = "\t- Course credits: " + course.getCourseCredits() + "\n";
+		String courseAssistants = "\t- Course assistants:\n\t\t";
+		
+		Iterator<Assistant> it = course.getCourseAssistants().iterator();
+		
+		while (it.hasNext()) {
+			Assistant assistant = it.next();
+			courseAssistants += assistant.toString() + "\n";
+			courseAssistants += "\t\t";
+		}
+		
+		courseAssistants += "\n";
+		
+		String groups = "\t- Course groups:\n";
+		
+		Map<String, Group> map = course.getGroup();
+		
+		for (Map.Entry<String, Group> mp : map.entrySet()) {
+			groups += "\t\t- ID: " + mp.getKey() + "\n";
+			groups += "\t\t- Assistant: " + mp.getValue().getAssistant().getFirstName() + " " + mp.getValue().getAssistant().getLastName() + "\n";
+			groups += "\t\t- Students:\n";
+			
+			Iterator<Student> itr = mp.getValue().iterator();
+			
+			while (itr.hasNext()) {
+				groups += "\t\t\t" + itr.next();
+				groups += "\n";
+			}
+			
+			groups += "\n";
+		}
+		
+		info += courseInformations + courseTeacher + courseCredits + courseAssistants + groups;
+		return info;
+	}
+	
+	public String addAssistant(String path, Course course) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
+		String info = "";
+		
+		JSONParser parser = new JSONParser();
+		
+		try (Reader reader = new FileReader(path)) {
+			JSONObject studentObject = (JSONObject) parser.parse(reader);
+			
+			String firstName = (String) studentObject.get("first_name");
+			String lastName = (String) studentObject.get("last_name");
+	
+			Assistant a = new Assistant(firstName, lastName);
+			Set<Assistant> assistants = course.getCourseAssistants();
+			assistants.add(a);
+		}
+		
+		String courseInformations = "Course informations:\n";
+		String courseTeacher = "\t- Course Teacher: " + course.getCourseTeacher() + "\n";
+		String courseCredits = "\t- Course credits: " + course.getCourseCredits() + "\n";
+		String courseAssistants = "\t- Course assistants:\n\t\t";
+		
+		Iterator<Assistant> it = course.getCourseAssistants().iterator();
+		
+		while (it.hasNext()) {
+			Assistant assistant = it.next();
+			courseAssistants += assistant.toString() + "\n";
+			courseAssistants += "\t\t";
+		}
+		
+		courseAssistants += "\n";
+		
+		String groups = "\t- Course groups:\n";
+		
+		Map<String, Group> map = course.getGroup();
+		
+		for (Map.Entry<String, Group> mp : map.entrySet()) {
+			groups += "\t\t- ID: " + mp.getKey() + "\n";
+			groups += "\t\t- Assistant: " + mp.getValue().getAssistant().getFirstName() + " " + mp.getValue().getAssistant().getLastName() + "\n";
+			groups += "\t\t- Students:\n";
+			
+			Iterator<Student> itr = mp.getValue().iterator();
+			
+			while (itr.hasNext()) {
+				groups += "\t\t\t" + itr.next();
+				groups += "\n";
+			}
+			
+			groups += "\n";
+		}
+		
+		info += courseInformations + courseTeacher + courseCredits + courseAssistants + groups;
+		return info;
 	}
 	
 	public void gradesParseJSON(String path) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {

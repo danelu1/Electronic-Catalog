@@ -3,7 +3,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "2",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Manolache",
                         "last_name": "George-Vlad",
@@ -21,7 +21,7 @@
                 {
                     "partial_score": "5",
                     "exam_score": "3",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Anghel",
                         "last_name": "David-Tudor",
@@ -39,7 +39,7 @@
                 {
                     "partial_score": "2",
                     "exam_score": "1.5",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Osnaga",
                         "last_name": "Robert-Viorel",
@@ -57,7 +57,7 @@
                 {
                     "partial_score": "6",
                     "exam_score": "3",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Voicu",
                         "last_name": "Catalin-Marian",
@@ -75,7 +75,7 @@
                 {
                     "partial_score": "5.5",
                     "exam_score": "3",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Carp",
                         "last_name": "Alexandru",
@@ -93,7 +93,7 @@
                 {
                     "partial_score": "3.5",
                     "exam_score": "2",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Manescu",
                         "last_name": "Bogdan-Constantin",
@@ -111,7 +111,7 @@
                 {
                     "partial_score": "2.5",
                     "exam_score": "1",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Ciuciulete",
                         "last_name": "Mihai",
@@ -129,7 +129,7 @@
                 {
                     "partial_score": "5",
                     "exam_score": "3.5",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Cernaianu",
                         "last_name": "Maria-Mihaela",
@@ -147,7 +147,7 @@
                 {
                     "partial_score": "5.8",
                     "exam_score": "3.3",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Costea",
                         "last_name": "Maria-Irina",
@@ -165,7 +165,7 @@
                 {
                     "partial_score": "4.75",
                     "exam_score": "3.25",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Duminica",
                         "last_name": "Alexandra",
@@ -183,7 +183,7 @@
                 {
                     "partial_score": "2.82",
                     "exam_score": "2.2",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Sprincenatu",
                         "last_name": "Bogdan-Andrei",
@@ -201,7 +201,7 @@
                 {
                     "partial_score": "3.6",
                     "exam_score": "3.1",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Godeanu",
                         "last_name": "Robert",
@@ -219,7 +219,7 @@
                 {
                     "partial_score": "4.2",
                     "exam_score": "3.3",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Manolache",
                         "last_name": "Roberta-Elena",
@@ -237,7 +237,7 @@
                 {
                     "partial_score": "4",
                     "exam_score": "3",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Costin",
                         "last_name": "Bosoaga-Cornel",
@@ -255,7 +255,7 @@
                 {
                     "partial_score": "5.75",
                     "exam_score": "4",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Giurca",
                         "last_name": "Adrian",
@@ -273,7 +273,7 @@
                 {
                     "partial_score": "2",
                     "exam_score": "2",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Popescu",
                         "last_name": "Maria-Teodora",
@@ -291,7 +291,7 @@
                 {
                     "partial_score": "1",
                     "exam_score": "1",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Vuia",
                         "last_name": "Marina-Emilia",
@@ -309,7 +309,7 @@
                 {
                     "partial_score": "5.5",
                     "exam_score": "3.8",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Uretyan",
                         "last_name": "Dragos-Cristian",
@@ -327,7 +327,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "2.1",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Radoi",
                         "last_name": "Alexandru-Mihail",
@@ -345,7 +345,7 @@
                 {
                     "partial_score": "2.95",
                     "exam_score": "2.05",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Ghinea",
                         "last_name": "Ioana-Mara",
@@ -363,7 +363,7 @@
                 {
                     "partial_score": "5",
                     "exam_score": "2",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Capra",
                         "last_name": "Cosmina-Ioana",
@@ -381,7 +381,7 @@
                 {
                     "partial_score": "3.1",
                     "exam_score": "2.5",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Golea",
                         "last_name": "Milena-Georgiana",
@@ -399,7 +399,7 @@
                 {
                     "partial_score": "2.5",
                     "exam_score": "2",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Dumitrescu",
                         "last_name": "Daiana-Elena",
@@ -417,7 +417,7 @@
                 {
                     "partial_score": "4.2",
                     "exam_score": "2.9",
-                    "course_name": "Programare orientata pe obiecte",
+                    "course_name": "POO",
                     "student": {
                         "first_name": "Baluta",
                         "last_name": "Valentina-Teodora",
@@ -435,7 +435,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Giurca",
                         "last_name": "Adrian",
@@ -453,7 +453,7 @@
                 {
                     "partial_score": "2.5",
                     "exam_score": "2.2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Voicu",
                         "last_name": "Catalin-Marian",
@@ -471,7 +471,7 @@
                 {
                     "partial_score": "4.5",
                     "exam_score": "3",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Manescu",
                         "last_name": "Bogdan-Constantin",
@@ -489,7 +489,7 @@
                 {
                     "partial_score": "2",
                     "exam_score": "2.5",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Sprincenatu",
                         "last_name": "Bogdan-Andrei",
@@ -507,7 +507,7 @@
                 {
                     "partial_score": "2.2",
                     "exam_score": "2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Duminica",
                         "last_name": "Alexandra",
@@ -525,7 +525,7 @@
                 {
                     "partial_score": "4.9",
                     "exam_score": "3.6",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Ciuciulete",
                         "last_name": "Mihai",
@@ -543,7 +543,7 @@
                 {
                     "partial_score": "3.1",
                     "exam_score": "2.6",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Anghel",
                         "last_name": "David-Tudor",
@@ -561,7 +561,7 @@
                 {
                     "partial_score": "4.4",
                     "exam_score": "1.7",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Godeanu",
                         "last_name": "Robert",
@@ -579,7 +579,7 @@
                 {
                     "partial_score": "5.9",
                     "exam_score": "3.3",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Vuia",
                         "last_name": "Marina-Emilia",
@@ -597,7 +597,7 @@
                 {
                     "partial_score": "1.2",
                     "exam_score": "1",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Uretyan",
                         "last_name": "Dragos-Cristian",
@@ -615,7 +615,7 @@
                 {
                     "partial_score": "2.5",
                     "exam_score": "2.5",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Manolache",
                         "last_name": "Roberta-Elena",
@@ -633,7 +633,7 @@
                 {
                     "partial_score": "6",
                     "exam_score": "3.7",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Manolache",
                         "last_name": "George-Vlad",
@@ -651,7 +651,7 @@
                 {
                     "partial_score": "4.3",
                     "exam_score": "2.2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Popescu",
                         "last_name": "Maria-Teodora",
@@ -669,7 +669,7 @@
                 {
                     "partial_score": "1.9",
                     "exam_score": "2.1",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Costea",
                         "last_name": "Maria-Irina",
@@ -687,7 +687,7 @@
                 {
                     "partial_score": "3.5",
                     "exam_score": "1.5",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Cernaianu",
                         "last_name": "Maria-Mihaela",
@@ -705,7 +705,7 @@
                 {
                     "partial_score": "5.2",
                     "exam_score": "4",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Carp",
                         "last_name": "Alexandru",
@@ -723,7 +723,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "3",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Radoi",
                         "last_name": "Alexandru-Mihail",
@@ -741,7 +741,7 @@
                 {
                     "partial_score": "4",
                     "exam_score": "2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Golea",
                         "last_name": "Milena-Georgiana",
@@ -759,7 +759,7 @@
                 {
                     "partial_score": "2.8",
                     "exam_score": "2.2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Costin",
                         "last_name": "Bosoaga-Cornel",
@@ -777,7 +777,7 @@
                 {
                     "partial_score": "4.1",
                     "exam_score": "3.2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Dumitrescu",
                         "last_name": "Daiana-Elena",
@@ -795,7 +795,7 @@
                 {
                     "partial_score": "2",
                     "exam_score": "2",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Baluta",
                         "last_name": "Valentina-Teodora",
@@ -813,7 +813,7 @@
                 {
                     "partial_score": "1",
                     "exam_score": "1",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Ghinea",
                         "last_name": "Ioana-Mara",
@@ -831,7 +831,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "3.1",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Osnaga",
                         "last_name": "Robert-Viorel",
@@ -849,7 +849,7 @@
                 {
                     "partial_score": "5.5",
                     "exam_score": "3.7",
-                    "course_name": "Sisteme de operare",
+                    "course_name": "SO",
                     "student": {
                         "first_name": "Capra",
                         "last_name": "Cosmina-Ioana",
@@ -867,7 +867,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Giurca",
                         "last_name": "Adrian",
@@ -885,7 +885,7 @@
                 {
                     "partial_score": "2.5",
                     "exam_score": "2.2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Voicu",
                         "last_name": "Catalin-Marian",
@@ -903,7 +903,7 @@
                 {
                     "partial_score": "4.5",
                     "exam_score": "3",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Manescu",
                         "last_name": "Bogdan-Constantin",
@@ -921,7 +921,7 @@
                 {
                     "partial_score": "2",
                     "exam_score": "2.5",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Sprincenatu",
                         "last_name": "Bogdan-Andrei",
@@ -939,7 +939,7 @@
                 {
                     "partial_score": "2.2",
                     "exam_score": "2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Duminica",
                         "last_name": "Alexandra",
@@ -957,7 +957,7 @@
                 {
                     "partial_score": "4.9",
                     "exam_score": "3.6",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Ciuciulete",
                         "last_name": "Mihai",
@@ -975,7 +975,7 @@
                 {
                     "partial_score": "3.1",
                     "exam_score": "2.6",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Anghel",
                         "last_name": "David-Tudor",
@@ -993,7 +993,7 @@
                 {
                     "partial_score": "4.4",
                     "exam_score": "1.7",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Godeanu",
                         "last_name": "Robert",
@@ -1011,7 +1011,7 @@
                 {
                     "partial_score": "5.9",
                     "exam_score": "3.3",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Vuia",
                         "last_name": "Marina-Emilia",
@@ -1029,7 +1029,7 @@
                 {
                     "partial_score": "1.2",
                     "exam_score": "1",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Uretyan",
                         "last_name": "Dragos-Cristian",
@@ -1047,7 +1047,7 @@
                 {
                     "partial_score": "2.5",
                     "exam_score": "2.5",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Manolache",
                         "last_name": "Roberta-Elena",
@@ -1065,7 +1065,7 @@
                 {
                     "partial_score": "6",
                     "exam_score": "3.7",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Manolache",
                         "last_name": "George-Vlad",
@@ -1083,7 +1083,7 @@
                 {
                     "partial_score": "4.3",
                     "exam_score": "2.2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Popescu",
                         "last_name": "Maria-Teodora",
@@ -1101,7 +1101,7 @@
                 {
                     "partial_score": "1.9",
                     "exam_score": "2.1",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Costea",
                         "last_name": "Maria-Irina",
@@ -1119,7 +1119,7 @@
                 {
                     "partial_score": "3.5",
                     "exam_score": "1.5",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Cernaianu",
                         "last_name": "Maria-Mihaela",
@@ -1137,7 +1137,7 @@
                 {
                     "partial_score": "5.2",
                     "exam_score": "4",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Carp",
                         "last_name": "Alexandru",
@@ -1155,7 +1155,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "3",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Radoi",
                         "last_name": "Alexandru-Mihail",
@@ -1173,7 +1173,7 @@
                 {
                     "partial_score": "4",
                     "exam_score": "2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Golea",
                         "last_name": "Milena-Georgiana",
@@ -1191,7 +1191,7 @@
                 {
                     "partial_score": "2.8",
                     "exam_score": "2.2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Costin",
                         "last_name": "Bosoaga-Cornel",
@@ -1209,7 +1209,7 @@
                 {
                     "partial_score": "4.1",
                     "exam_score": "3.2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Dumitrescu",
                         "last_name": "Daiana-Elena",
@@ -1227,7 +1227,7 @@
                 {
                     "partial_score": "2",
                     "exam_score": "2",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Baluta",
                         "last_name": "Valentina-Teodora",
@@ -1245,7 +1245,7 @@
                 {
                     "partial_score": "1",
                     "exam_score": "1",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Ghinea",
                         "last_name": "Ioana-Mara",
@@ -1263,7 +1263,7 @@
                 {
                     "partial_score": "3",
                     "exam_score": "3.1",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Osnaga",
                         "last_name": "Robert-Viorel",
@@ -1281,7 +1281,7 @@
                 {
                     "partial_score": "5.5",
                     "exam_score": "3.7",
-                    "course_name": "Electronica analogica",
+                    "course_name": "DEEA",
                     "student": {
                         "first_name": "Capra",
                         "last_name": "Cosmina-Ioana",

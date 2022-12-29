@@ -1,7 +1,7 @@
 {
     "courses": [
         {
-            "course_name": "Programare orientata pe obiecte",
+            "course_name": "POO",
             "course_credits": "5",
             "strategy": "2",
             "course_teacher": {
@@ -381,7 +381,7 @@
         },
         
         {
-            "course_name": "Sisteme de operare",
+            "course_name": "SO",
             "course_credits": "5",
             "strategy": "3",
             "course_teacher": {
@@ -761,7 +761,7 @@
         },
 
         {
-            "course_name": "Electronica analogica",
+            "course_name": "DEEA",
             "course_credits": "5",
             "strategy": "2",
             "course_teacher": {

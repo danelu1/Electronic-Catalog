@@ -3,6 +3,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -11,10 +15,13 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.json.simple.parser.ParseException;
 
-class ModifiableInformationsPage extends JFrame implements ActionListener {
+class ModifiableInformationsPage extends JFrame implements ActionListener, ListSelectionListener {
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("rawtypes")
 	JList allCourses;
@@ -41,7 +48,7 @@ class ModifiableInformationsPage extends JFrame implements ActionListener {
 	JPanel actionPanel;
 	JPanel textPanel;
 	
-	Vector<String> courses;
+	Vector<Course> courses;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ModifiableInformationsPage(String message) {
@@ -60,7 +67,7 @@ class ModifiableInformationsPage extends JFrame implements ActionListener {
 		courses = new Vector<>();
 		
 		for (int i = 0; i < catalog.courses.size(); i++) {
-			courses.add(catalog.courses.get(i).toString());
+			courses.add(catalog.courses.get(i));
 		}
 		
 		allCourses = new JList(courses);
@@ -102,10 +109,14 @@ class ModifiableInformationsPage extends JFrame implements ActionListener {
 		
 		centerPanel = new JPanel(new GridLayout(1, 2));
 		centerPanel.add(actionPanel);
-		centerPanel.add(textPanel);
+		centerPanel.add(textPane);
 		
 		add(northPanel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
+		
+		allCourses.addListSelectionListener(this);
+		addStudent.addActionListener(this);
+		addAssistant.addActionListener(this);
 		
 		pack();
 		setVisible(true);
@@ -113,6 +124,126 @@ class ModifiableInformationsPage extends JFrame implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() instanceof JButton) {
+			if (e.getSource() == addStudent) {
+				Catalog catalog = Catalog.getInstance();
+				
+				try {
+					catalog.coursesParseJSON("./test/courses.json");
+				} catch (java.text.ParseException e1) {
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
+				String text = student.getText();
+				String[] informations = text.split(" ");
+				String file = informations[0];
+				String courseName = informations[1];
+				String groupId = informations[2];
+				String info = "";
+				
+				Course course = null;
+				
+				for (int i = 0; i < catalog.courses.size(); i++) {
+					if (catalog.courses.get(i).getCourseName().equals(courseName)) {
+						course = catalog.courses.get(i);
+						break;
+					}
+				}
+				
+				try {
+					info += catalog.addStudent(file, course, groupId);
+				} catch (java.text.ParseException | ParseException | IOException e1) {
+					e1.printStackTrace();
+				}
+				
+				informationsArea.setText(info);
+			} else if (e.getSource() == addAssistant) {
+				Catalog catalog = Catalog.getInstance();
+				
+				try {
+					catalog.coursesParseJSON("./test/courses.json");
+				} catch (java.text.ParseException e1) {
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
+				String text = assistant.getText();
+				String[] informations = text.split(" ");
+				String file = informations[0];
+				String courseName = informations[1];
+				String info = "";
+				
+				Course course = null;
+				
+				for (int i = 0; i < catalog.courses.size(); i++) {
+					if (catalog.courses.get(i).getCourseName().equals(courseName)) {
+						course = catalog.courses.get(i);
+						break;
+					}
+				}
+				
+				try {
+					info += catalog.addAssistant(file, course);
+				} catch (ParseException | IOException e1) {
+					e1.printStackTrace();
+				}
+				
+				informationsArea.setText(info);
+			}
+		}
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		if (allCourses.isSelectionEmpty()) {
+			return;
+		} else {
+			Object value = allCourses.getSelectedValue();
+			Course course = (Course) value;
+			
+			String courseInformations = "Course informations:\n";
+			String courseTeacher = "\t- Course Teacher: " + course.getCourseTeacher() + "\n";
+			String courseCredits = "\t- Course credits: " + course.getCourseCredits() + "\n";
+			String courseAssistants = "\t- Course assistants:\n\t\t";
+			
+			Iterator<Assistant> it = course.getCourseAssistants().iterator();
+			
+			while (it.hasNext()) {
+				Assistant assistant = it.next();
+				courseAssistants += assistant.toString() + "\n";
+				courseAssistants += "\t\t";
+			}
+			
+			courseAssistants += "\n";
+			
+			String groups = "\t- Course groups:\n";
+			
+			Map<String, Group> map = course.getGroup();
+			
+			for (Map.Entry<String, Group> mp : map.entrySet()) {
+				groups += "\t\t- ID: " + mp.getKey() + "\n";
+				groups += "\t\t- Assistant: " + mp.getValue().getAssistant().getFirstName() + " " + mp.getValue().getAssistant().getLastName() + "\n";
+				groups += "\t\t- Students:\n";
+				
+				Iterator<Student> itr = mp.getValue().iterator();
+				
+				while (itr.hasNext()) {
+					groups += "\t\t\t" + itr.next();
+					groups += "\n";
+				}
+				
+				groups += "\n";
+			}
+			
+			String info = "";
+			info += courseInformations + courseTeacher + courseCredits + courseAssistants + groups;
+			informationsArea.setText(info);
+			informationsArea.setEditable(false);
+			
+			SwingUtilities.updateComponentTreeUI(this);
+		}
 	}
 }

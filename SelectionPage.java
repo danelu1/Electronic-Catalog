@@ -21,6 +21,7 @@ class SelectionPage extends JFrame implements ActionListener {
 	static JCheckBox teacherBox;
 	JButton selectButton;
 	JButton coursesButton;
+	JButton modifyButton;
 	JPanel titlePanel;
 	JPanel checkPanel;
 	JPanel selectPanel;
@@ -30,6 +31,7 @@ class SelectionPage extends JFrame implements ActionListener {
 	AssistantLoginPage assistantPage;
 	TeacherLoginPage teacherPage;
 	GeneralInformationsPage nextPage;
+	ModifiableInformationsPage page;
 	
 	public SelectionPage(String message) {
 		super(message);
@@ -65,14 +67,18 @@ class SelectionPage extends JFrame implements ActionListener {
 		coursesButton = new JButton("Courses");
 		coursesButton.addActionListener(this);
 		
+		modifyButton = new JButton("Modify");
+		modifyButton.addActionListener(this);
+		
 		studentBox.addActionListener(this);
 		parentBox.addActionListener(this);
 		assistantBox.addActionListener(this);
 		teacherBox.addActionListener(this);
 		
-		selectPanel = new JPanel(new GridLayout(1, 2));
+		selectPanel = new JPanel(new GridLayout(1, 3));
 		selectPanel.add(selectButton);
 		selectPanel.add(coursesButton);
+		selectPanel.add(modifyButton);
 		
 		add(titlePanel, BorderLayout.NORTH);
 		add(checkPanel, BorderLayout.CENTER);
@@ -104,6 +110,9 @@ class SelectionPage extends JFrame implements ActionListener {
 			} else if (e.getSource() == coursesButton) {
 				this.dispose();
 				nextPage = new GeneralInformationsPage("Courses Informations");
+			} else if (e.getSource() == modifyButton) {
+				this.dispose();
+				page = new ModifiableInformationsPage("Hello");
 			}
 
 		} else {
