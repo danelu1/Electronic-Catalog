@@ -64,11 +64,7 @@ class Notification implements Observer {
 
 	@Override
 	public void update(Notification notification) {
-		System.out.println(notification);
-	}
-	
-	public Notification updateParent(Notification notification) {
-		return notification;
+		notification.getGrade().getStudent().notifications.add(notification);
 	}
 	
 	public boolean equals(Object obj) {

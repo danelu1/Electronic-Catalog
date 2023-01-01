@@ -1,0 +1,25 @@
+{
+    "ID": "325CC",
+    "assistant": {
+        "first_name": "Nebancea",
+        "last_name": "Sorin-Andrei"
+    },
+    "students": [
+        {
+            "first_name": "Ionescu",
+            "last_name": "Valentin-Stefan"
+        },
+        {
+            "first_name": "Plesa",
+            "last_name": "Dragos"
+        },
+        {
+            "first_name": "Petcu",
+            "last_name": "Andrei"
+        },
+        {
+            "first_name": "Stefan",
+            "last_name": "Diana-Maria"
+        }
+    ]
+}

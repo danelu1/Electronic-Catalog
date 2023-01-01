@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -30,6 +31,7 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 	JButton addStudent;
 	JButton addGroup;
 	JButton addGrade;
+	JButton logoutButton;
 	
 	JTextArea assistant;
 	JTextArea student;
@@ -47,8 +49,10 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 	JPanel centerPanel;
 	JPanel actionPanel;
 	JPanel textPanel;
+	JPanel southPanel;
 	
 	Vector<Course> courses;
+	SelectionPage previousPage;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ModifiableInformationsPage(String message) {
@@ -79,6 +83,7 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 		addStudent = new JButton("Add Student");
 		addGroup = new JButton("Add Group");
 		addGrade = new JButton("Add Grade");
+		logoutButton = new JButton("Previous");
 		
 		assistant = new JTextArea();
 		student = new JTextArea();
@@ -111,12 +116,19 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 		centerPanel.add(actionPanel);
 		centerPanel.add(textPane);
 		
+		southPanel = new JPanel();
+		southPanel.add(logoutButton);
+		
 		add(northPanel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
+		add(southPanel, BorderLayout.SOUTH);
 		
 		allCourses.addListSelectionListener(this);
 		addStudent.addActionListener(this);
 		addAssistant.addActionListener(this);
+		addGroup.addActionListener(this);
+		addGrade.addActionListener(this);
+		logoutButton.addActionListener(this);
 		
 		pack();
 		setVisible(true);
@@ -192,6 +204,42 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 				}
 				
 				informationsArea.setText(info);
+			} else if (e.getSource() == addGroup) {
+				Catalog catalog = Catalog.getInstance();
+				
+				try {
+					catalog.coursesParseJSON("./test/courses.json");
+				} catch (java.text.ParseException e1) {
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
+				String text = group.getText();
+				String[] informations = text.split(" ");
+				String file = informations[0];
+				String courseName = informations[1];
+				String info = "";
+				
+				Course course = null;
+				
+				for (int i = 0; i < catalog.courses.size(); i++) {
+					if (catalog.courses.get(i).getCourseName().equals(courseName)) {
+						course = catalog.courses.get(i);
+						break;
+					}
+				}
+				
+				try {
+					info += catalog.addGroup(file, course);
+				} catch (ParseException | IOException e1) {
+					e1.printStackTrace();
+				}
+				
+				informationsArea.setText(info);
+			} else if (e.getSource() == logoutButton) {
+				this.dispose();
+				previousPage = new SelectionPage("Select");
 			}
 		}
 	}
@@ -238,8 +286,39 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 				groups += "\n";
 			}
 			
+			String courseStatistics = "Course statistics:\n";
+			Student student = course.getBestStudent();
+			courseStatistics += "\t- Best student(according to the course strategy) is: " + student.getFirstName() + " " + student.getLastName() + "\n";
+			courseStatistics += "\t- Students' number: " + course.getAllStudents().size() + "\n";
+			
+			double sum1 = 0.0;
+			double sum2 = 0.0;
+			double sum3 = 0.0;
+			
+			double averagePartialScore = 0.0;
+			double averageExamScore = 0.0;
+			double averageScore = 0.0;
+			
+			ArrayList<Student> allStudents = course.getAllStudents();
+			
+			Map<Student, Grade> grades = course.getAllStudentGrades();
+			
+			for (Map.Entry<Student, Grade> entry : grades.entrySet()) {
+				sum1 += entry.getValue().getPartialScore();
+				sum2 += entry.getValue().getExamScore();
+				sum3 += entry.getValue().getTotal();
+			}
+			
+			averagePartialScore = sum1 / allStudents.size();
+			averageExamScore = sum2 / allStudents.size();
+			averageScore = sum3 / allStudents.size();
+			
+			courseStatistics += "\t- Average partial score: " + String.format("%.2f", averagePartialScore) + "\n";
+			courseStatistics += "\t- Average exam score: " + String.format("%.2f", averageExamScore) + "\n";
+			courseStatistics += "\t- Average total score: " + String.format("%.2f", averageScore) + "\n";
+			
 			String info = "";
-			info += courseInformations + courseTeacher + courseCredits + courseAssistants + groups;
+			info += courseInformations + courseTeacher + courseCredits + courseAssistants + groups + courseStatistics;
 			informationsArea.setText(info);
 			informationsArea.setEditable(false);
 			

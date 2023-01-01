@@ -19,7 +19,9 @@
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -51,6 +53,7 @@ class Catalog implements Subject {
 	private Catalog() {
 		observers = new ArrayList<>();
 		users = new ArrayList<>();
+		grades = new ArrayList<>();
 	}
 	
 	public static Catalog getInstance() {
@@ -124,30 +127,47 @@ class Catalog implements Subject {
 		return grades;
 	}
 	
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unchecked")
 	public String addStudent(String path, Course course, String id) throws ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
 		String info = "";
 		
 		JSONParser parser = new JSONParser();
 		
-		try (Reader reader = new FileReader(path)) {
-			JSONObject studentObject = (JSONObject) parser.parse(reader);
+		try (Reader reader = new FileReader("./test/studentsLogin.json")) {
+			JSONObject studentsLogin = (JSONObject) parser.parse(reader);
+			JSONArray studentsArray = (JSONArray) studentsLogin.get("login_details");
 			
-			String firstName = (String) studentObject.get("first_name");
-			String lastName = (String) studentObject.get("last_name");
-			JSONObject motherObject = (JSONObject) studentObject.get("mother");
-			JSONObject fatherObject = (JSONObject) studentObject.get("father");
-			String motherFirstName = (String) motherObject.get("first_name");
-			String motherLastName = (String) motherObject.get("last_name");
-			String fatherFirstName = (String) fatherObject.get("first_name");
-			String fatherLastName = (String) fatherObject.get("last_name");
-			Parent mother = new Parent(motherFirstName, motherLastName);
-			Parent father = new Parent(fatherFirstName, fatherLastName);
-	
-			Student s = new Student(firstName, lastName);
-			s.setMother(mother);
-			s.setFather(father);
-			course.addStudent(id, s);
+			try (Reader reader_aux = new FileReader(path)) {
+				JSONObject studentObject = (JSONObject) parser.parse(reader_aux);
+				
+				String firstName = (String) studentObject.get("first_name");
+				String lastName = (String) studentObject.get("last_name");
+				JSONObject motherObject = (JSONObject) studentObject.get("mother");
+				JSONObject fatherObject = (JSONObject) studentObject.get("father");
+				String motherFirstName = (String) motherObject.get("first_name");
+				String motherLastName = (String) motherObject.get("last_name");
+				String fatherFirstName = (String) fatherObject.get("first_name");
+				String fatherLastName = (String) fatherObject.get("last_name");
+				Parent mother = new Parent(motherFirstName, motherLastName);
+				Parent father = new Parent(fatherFirstName, fatherLastName);
+				String userName = (String) studentObject.get("user_name");
+				String userPassword = (String) studentObject.get("user_password");
+				String icon = (String) studentObject.get("icon");
+		
+				Student s = new Student(firstName, lastName, userName, userPassword, icon);
+				s.setMother(mother);
+				s.setFather(father);
+				course.addStudent(id, s);
+				users.add(s);
+				
+				studentsArray.add(studentObject);
+				studentsLogin.put("login_details", studentsArray);
+				
+				PrintWriter writer = new PrintWriter(new FileWriter("./test/studentsLogin.json"));
+				
+				writer.write(studentsLogin.toJSONString());
+				writer.close();
+			}
 		}
 		
 		String courseInformations = "Course informations:\n";
@@ -242,9 +262,116 @@ class Catalog implements Subject {
 		return info;
 	}
 	
+	public String addGroup(String path, Course course) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
+		String info = "";
+		
+		JSONParser parser = new JSONParser();
+		
+		try (Reader reader = new FileReader(path)) {
+			JSONObject groupObject = (JSONObject) parser.parse(reader);	
+			
+			String groupID = (String) groupObject.get("ID");
+			JSONObject assistant = (JSONObject) groupObject.get("assistant");
+			String assistantFirstName = (String) assistant.get("first_name");
+			String assistantLastName = (String) assistant.get("last_name");
+			Assistant groupAssistant = new Assistant(assistantFirstName, assistantLastName);
+			
+			Group group = new Group(groupID, groupAssistant);
+			
+			JSONArray studentsArray = (JSONArray) groupObject.get("students");
+			
+			for (int i = 0; i < studentsArray.size(); i++) {
+				JSONObject studentObject = (JSONObject) studentsArray.get(i);
+				String firstName = (String) studentObject.get("first_name");
+				String lastName = (String) studentObject.get("last_name");
+				Student student = new Student(firstName, lastName);
+				group.add(student);
+				
+				Map<String, Group> map = course.getGroup();
+				map.put(groupID, group);
+			}
+			
+			Set<Assistant> set = course.getCourseAssistants();
+			set.add(groupAssistant);
+		}
+		
+		String courseInformations = "Course informations:\n";
+		String courseTeacher = "\t- Course Teacher: " + course.getCourseTeacher() + "\n";
+		String courseCredits = "\t- Course credits: " + course.getCourseCredits() + "\n";
+		String courseAssistants = "\t- Course assistants:\n\t\t";
+		
+		Iterator<Assistant> it = course.getCourseAssistants().iterator();
+		
+		while (it.hasNext()) {
+			Assistant assistant = it.next();
+			courseAssistants += assistant.toString() + "\n";
+			courseAssistants += "\t\t";
+		}
+		
+		courseAssistants += "\n";
+		
+		String groups = "\t- Course groups:\n";
+		
+		Map<String, Group> map = course.getGroup();
+		
+		for (Map.Entry<String, Group> mp : map.entrySet()) {
+			groups += "\t\t- ID: " + mp.getKey() + "\n";
+			groups += "\t\t- Assistant: " + mp.getValue().getAssistant().getFirstName() + " " + mp.getValue().getAssistant().getLastName() + "\n";
+			groups += "\t\t- Students:\n";
+			
+			Iterator<Student> itr = mp.getValue().iterator();
+			
+			while (itr.hasNext()) {
+				groups += "\t\t\t" + itr.next();
+				groups += "\n";
+			}
+			
+			groups += "\n";
+		}
+		
+		info += courseInformations + courseTeacher + courseCredits + courseAssistants + groups;
+		
+		return info;
+	}
+	
+	public String addGrade(String path, Course course) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
+		String info = "";
+		
+		JSONParser parser = new JSONParser();
+		
+		try (Reader reader = new FileReader(path)) {
+			JSONObject gradeObject = (JSONObject) parser.parse(reader);
+			String partialScore = (String) gradeObject.get("partial_score");
+			String examScore = (String) gradeObject.get("exam_score");
+			String name = (String) gradeObject.get("course_name");
+			
+			JSONObject student = (JSONObject) gradeObject.get("student");
+			String firstName = (String) student.get("first_name");
+			String lastName = (String) student.get("last_name");
+			Student s = new Student(firstName, lastName);
+			
+			JSONObject motherObject = (JSONObject) student.get("mother");
+			String motherFirstName = (String) motherObject.get("first_name");
+			String motherLastName = (String) motherObject.get("last_name");
+			s.setMother(new Parent(motherFirstName, motherLastName));
+			
+			JSONObject fatherObject = (JSONObject) student.get("father");
+			String fatherFirstName = (String) fatherObject.get("first_name");
+			String fatherLastName = (String)  fatherObject.get("last_name");
+			s.setFather(new Parent(fatherFirstName, fatherLastName));
+			
+			Grade grade = new Grade(Double.parseDouble(partialScore), Double.parseDouble(examScore), name, s);
+			Notification notification = new Notification(name, grade, s.getMother(), s.getFather());
+			
+			grades.add(grade);
+			observers.add(notification);
+		}
+		
+		return info;
+	}
+	
 	public void gradesParseJSON(String path) throws FileNotFoundException, IOException, org.json.simple.parser.ParseException {
 		JSONParser parser = new JSONParser();
-		grades = new ArrayList<>();
 		
 		try (Reader reader = new FileReader(path)) {
 			JSONObject gradesJSONObject = (JSONObject) parser.parse(reader);
@@ -482,7 +609,6 @@ class Catalog implements Subject {
 		
 		if (observers.contains(notification)) {
 			observers.get(observers.indexOf(notification)).update(notification);
-			notification.getGrade().getStudent().notifications.add(notification);
 		}
 	}
 	

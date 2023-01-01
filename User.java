@@ -57,4 +57,14 @@ abstract class User {
 	public String toString() {
 		return firstName + " " + lastName;
 	}
+	
+	public boolean equals(Object obj) {
+		User user = (User) obj;
+		
+		if (this.getFirstName().equals(user.getFirstName()) && this.getLastName().equals(user.getLastName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
