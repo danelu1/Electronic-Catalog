@@ -93,7 +93,7 @@ class Grade implements Cloneable, Comparable {
 		String lastName = student.getLastName();
 		
 		String ans = "Student " + firstName + " " + lastName + " has at " + course + " the grades:\n";
-		ans = "\t-> Partial score: " + partialScore + ";\n";
+		ans += "\t-> Partial score: " + partialScore + ";\n";
 		ans += "\t-> Exam score: " + examScore + ";\n";
 		ans += "\t-> Total score: " + getTotal() + ".\n";
 		return ans;

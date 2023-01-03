@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -109,12 +111,12 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 		
 		textPane = new JScrollPane(informationsArea);
 		
-		textPanel = new JPanel();
+		textPanel = new JPanel(new GridLayout(1, 2));
 		textPanel.add(textPane);
 		
 		centerPanel = new JPanel(new GridLayout(1, 2));
 		centerPanel.add(actionPanel);
-		centerPanel.add(textPane);
+		centerPanel.add(textPanel);
 		
 		southPanel = new JPanel();
 		southPanel.add(logoutButton);
@@ -150,9 +152,10 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 				
 				String text = student.getText();
 				String[] informations = text.split(" ");
-				String file = informations[0];
-				String courseName = informations[1];
-				String groupId = informations[2];
+				String loginFile = informations[0];
+				String file = informations[1];
+				String courseName = informations[2];
+				String groupId = informations[3];
 				String info = "";
 				
 				Course course = null;
@@ -165,7 +168,7 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 				}
 				
 				try {
-					info += catalog.addStudent(file, course, groupId);
+					info += catalog.addStudent(loginFile, file, course, groupId);
 				} catch (java.text.ParseException | ParseException | IOException e1) {
 					e1.printStackTrace();
 				}
@@ -232,6 +235,37 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 				
 				try {
 					info += catalog.addGroup(file, course);
+				} catch (ParseException | IOException e1) {
+					e1.printStackTrace();
+				}
+				
+				informationsArea.setText(info);
+			} else if (e.getSource() == addGrade) {
+				Catalog catalog = Catalog.getInstance();
+				
+				try {
+					catalog.gradesParseJSON("./test/grades.json");
+				} catch (IOException | ParseException e2) {
+					e2.printStackTrace();
+				}
+				
+				String text = grade.getText();
+				String[] informations = text.split(" ");
+				String file = informations[0];
+				String courseName = informations[1];
+				String info = "";
+				
+				Course course = null;
+				
+				for (int i = 0; i < catalog.courses.size(); i++) {
+					if (catalog.courses.get(i).getCourseName().equals(courseName)) {
+						course = catalog.courses.get(i);
+						break;
+					}
+				}
+				
+				try {
+					info += catalog.addGrade(file, course);
 				} catch (ParseException | IOException e1) {
 					e1.printStackTrace();
 				}

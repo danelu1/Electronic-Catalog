@@ -82,7 +82,7 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 		}
 		
 		User user = TeacherLoginPage.user;
-		Teacher teacher = (Teacher) factory.getUser("Teacher", user.getFirstName(), user.getLastName());
+		Teacher teacher = (Teacher) UserFactory.getUser("Teacher", user.getFirstName(), user.getLastName());
 		
 		courses = new Vector<>();
 		
@@ -172,9 +172,17 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 				this.dispose();
 				page = new SelectionPage("Select");
 			} else if (e.getSource() == validateButton) {
-				String grades = validationArea.getText();
-				grades += "The grades have been succesfully validated";
+				User user = TeacherLoginPage.user;
+				Teacher teacher = (Teacher) UserFactory.getUser("Teacher", user.getFirstName(), user.getLastName());
+				
+				ScoreVisitor visitor = new ScoreVisitor();
+				
+				teacher.accept(visitor);
+				
+				String grades = visitor.printGradesTeacher(teacher);
+				
 				validationArea.setText(grades);
+				validationArea.setEditable(false);
 				validationArea.setForeground(Color.green);
 				validateButton.setEnabled(false);
 			}
@@ -220,18 +228,6 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 		
 			informationsArea.setText(info);
 			informationsArea.setEditable(false);
-			
-			User user = TeacherLoginPage.user;
-			Teacher teacher = (Teacher) factory.getUser("Teacher", user.getFirstName(), user.getLastName());
-			
-			ScoreVisitor visitor = new ScoreVisitor();
-			
-			teacher.accept(visitor);
-			
-			String grades = visitor.printGradesTeacher(teacher);
-			
-			validationArea.setText(grades);
-			validationArea.setEditable(false);
 		
 			SwingUtilities.updateComponentTreeUI(this);
 		}

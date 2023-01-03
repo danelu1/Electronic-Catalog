@@ -73,7 +73,7 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 		
 		defList = new Vector<>();
 		User user = StudentLoginPage.user;
-		Student s = (Student) factory.getUser("Student", user.getFirstName(), user.getLastName());
+		Student s = (Student) UserFactory.getUser("Student", user.getFirstName(), user.getLastName());
 		
 		ArrayList<Student> students = new ArrayList<>();
 		
@@ -193,7 +193,7 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 			String myGrade = "\t- My grade:\n\t\t";
 			
 			User user = StudentLoginPage.user;
-			Student s = (Student) factory.getUser("Student", user.getFirstName(), user.getLastName());
+			Student s = (Student) UserFactory.getUser("Student", user.getFirstName(), user.getLastName());
 			
 			Map<String, Group> map = course.getGroup();
 			

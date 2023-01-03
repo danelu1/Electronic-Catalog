@@ -179,9 +179,18 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 				this.dispose();
 				page = new SelectionPage("Select");
 			} else if (e.getSource() == validateButton) {
-				String grades = validationArea.getText();
-				grades += "The grades have been succesfully validated";
+				User user = AssistantLoginPage.user;
+				
+				Assistant assistant = (Assistant) UserFactory.getUser("Assistant", user.getFirstName(), user.getLastName());
+				
+				ScoreVisitor visitor = new ScoreVisitor();
+				
+				assistant.accept(visitor);
+				
+				String grades = visitor.printGradesAssistant(assistant);
+				
 				validationArea.setText(grades);
+				validationArea.setEditable(false);
 				validationArea.setForeground(Color.green);
 				validateButton.setEnabled(false);
 			}
@@ -241,23 +250,11 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 				}
 			}
 			
-			ScoreVisitor visitor = new ScoreVisitor();
-			
-			assistant.accept(visitor);
-			
-			String grades = visitor.printGradesAssistant(assistant);
-			
-			validationArea.setText(grades);
-			validationArea.setEditable(false);
-			
 			String info = courseInformations.getText() + courseCredits.getText() + courseTeacher.getText() + courseAssistants.getText() 
 				+ assistants + myGroup.getText() + 	id + students;
 			
 			informationsArea.setText(info);
 			informationsArea.setEditable(false);
-			
-			validationArea.setText(grades);
-			validationArea.setEditable(false);
 			
 			SwingUtilities.updateComponentTreeUI(this);
 		}

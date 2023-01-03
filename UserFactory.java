@@ -1,5 +1,5 @@
 class UserFactory {
-	public User getUser(String userType, String firstName, String lastName) {
+	public static User getUser(String userType, String firstName, String lastName) {
 		if (userType == null) {
 			return null;
 		} else if (userType.equals("Parent")) {

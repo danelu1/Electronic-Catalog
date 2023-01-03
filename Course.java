@@ -167,18 +167,25 @@ abstract class Course {
 	}
 	
 	public LinkedHashMap<Student, Grade> getAllStudentGrades() {
-		Catalog catalog = Catalog.getInstance();
-		
-		ArrayList<ArrayList<Grade>> list = catalog.addGradesToCatalog();
+//		Catalog catalog = Catalog.getInstance();
+//		
+//		ArrayList<ArrayList<Grade>> list = catalog.addGradesToCatalog();
+//		
+//		LinkedHashMap<Student, Grade> result = new LinkedHashMap<>();
+//		
+//		for (int i = 0; i < catalog.courses.size(); i++) {
+//			for (int j = 0; j < list.get(i).size(); j++) {
+//				if (this.getCourseName().equals(list.get(i).get(j).getCourse())) {
+//					result.put(list.get(i).get(j).getStudent(), list.get(i).get(j));
+//					grades.add(list.get(i).get(j));
+//				}
+//			}
+//		}
 		
 		LinkedHashMap<Student, Grade> result = new LinkedHashMap<>();
 		
-		for (int i = 0; i < catalog.courses.size(); i++) {
-			for (int j = 0; j < list.get(i).size(); j++) {
-				if (this.getCourseName().equals(list.get(i).get(j).getCourse())) {
-					result.put(list.get(i).get(j).getStudent(), list.get(i).get(j));
-				}
-			}
+		for (int i = 0; i < grades.size(); i++) {
+			result.put(grades.get(i).getStudent(), grades.get(i));
 		}
 		
 		return result;

@@ -100,7 +100,7 @@ class ParentMainPage extends JFrame implements ActionListener {
 				ArrayList<Student> allStudents2 = AssistantMainPage.allStudents;
 				
 				User user = ParentLoginPage.user;
-				Parent parent = (Parent) factory.getUser("Parent", user.getFirstName(), user.getLastName());
+				Parent parent = (Parent) UserFactory.getUser("Parent", user.getFirstName(), user.getLastName());
 				int index = 0;
 				int index2 = 0;
 				
