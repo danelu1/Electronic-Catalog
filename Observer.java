@@ -55,9 +55,21 @@ class Notification implements Observer {
 	
 	public String toString() {
 		String str = "";
-		str += "Dear Mr. " + father.getFirstName() + " " + father.getLastName() + " and Ms. " + mother.getFirstName() 
+		if (mother != null && father == null) {
+			str += "Dear Ms. " + mother.getFirstName() + " " + mother.getLastName() +
+					", we announce you that your son/daughter has received the grade " + grade.getTotal() + 
+					" at the " + courseName + " subject";
+		} else if (mother == null && father != null) {
+			str += "Dear Mr. " + father.getFirstName() + " " + father.getLastName() + 
+					", we announce you that your son/daughter has received the grade " + grade.getTotal() + 
+					" at the " + courseName + " subject";
+		} else if (mother != null && father != null) {
+			str += "Dear Mr. " + father.getFirstName() + " " + father.getLastName() + " and Ms. " + mother.getFirstName() 
 			+ " " + mother.getLastName() + ", we announce you that your son/daughter has received the grade " + grade.getTotal() + 
 			" at the " + courseName + " subject";
+		} else {
+			str += "You received the grade " + grade.getTotal() + " at the " + courseName + " subject";
+		}
 		
 		return str;
 	}
@@ -65,6 +77,7 @@ class Notification implements Observer {
 	@Override
 	public void update(Notification notification) {
 		notification.getGrade().getStudent().notifications.add(notification);
+		System.out.println(notification);
 	}
 	
 	public boolean equals(Object obj) {

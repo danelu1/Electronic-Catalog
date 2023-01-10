@@ -34,22 +34,4 @@ class Assistant extends User implements Element {
 		
 		return ans;
 	}
-	
-//	public boolean equals(Object obj) {
-//		Assistant a = (Assistant) obj;
-//		
-//		if (this.getFirstName().equals(a.getFirstName()) && this.getLastName().equals(a.getLastName())) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
-//	
-//	public int hashCode() {
-//		if (this.getFirstName() == null ^ this.getLastName() == null) {
-//			return 0;
-//		} else {
-//			return this.getFirstName().hashCode() ^ this.getLastName().hashCode();
-//		}
-//	}
 }

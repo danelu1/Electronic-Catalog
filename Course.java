@@ -109,17 +109,10 @@ abstract class Course {
 	}
 	
 	public void addAssistant(String ID, Assistant assistant) {
-		if (map.get(ID).getAssistant() == null) {
-			map.get(ID).setAssistant(assistant);
-			return;
-		} else {
-			System.out.println("You can't assign an assistant to a group that already has one");
-		}
+		addGroup(ID, assistant);
 		
-		if (!courseAssistants.contains(assistant) && map.get(ID).getAssistant() == null) {
+		if (!courseAssistants.contains(assistant)) {
 			courseAssistants.add(assistant);
-		} else {
-			System.out.println("The assistant is already assigned in this course");
 		}
 	}
 	
@@ -270,10 +263,13 @@ abstract class Course {
 		for (Grade grade : grades) {
 			snapshot.backup.add(grade.clone());
 		}
+		
+		System.out.println("A backup was realised");
 	}
 	
 	public void undo() {
 		this.grades = snapshot.backup;
+		System.out.println("Grades restored");
 	}
 	
 	public String toString() {

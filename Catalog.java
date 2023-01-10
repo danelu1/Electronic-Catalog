@@ -830,7 +830,7 @@ class Catalog implements Subject {
 	}
 	
 	public void open() throws ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
-		SelectionPage page = new SelectionPage("Select");
+		new SelectionPage("Select");
 	}
 	
 	public String toString() {

@@ -173,7 +173,6 @@ class TestVisitor implements Visitor {
 	@Override
 	public void visit(Assistant assistant) {
 		Catalog catalog = Catalog.getInstance();
-//		catalog.courses.clear();
 		
 		try {
 			parseAssistant();
@@ -199,6 +198,7 @@ class TestVisitor implements Visitor {
 							if (!check) {
 								Grade partial = new Grade(grade, 0D, name, s);
 								course.getGrades().add(partial);
+								catalog.notifyObservers(partial);
 							}
 						}
 					}
@@ -210,7 +210,6 @@ class TestVisitor implements Visitor {
 	@Override
 	public void visit(Teacher teacher) {
 		Catalog catalog = Catalog.getInstance();
-//		catalog.courses.clear();
 		
 		try {
 			parseTeacher();
@@ -236,21 +235,13 @@ class TestVisitor implements Visitor {
 							if (!check) {
 								Grade exam = new Grade(0D, grade, name, s);
 								course.getGrades().add(exam);
+								catalog.notifyObservers(exam);
 							}
 						}
 					}
 				}
 			}
 		}
-	}
-	
-	public void combine(Teacher teacher, Assistant assistant) {
-		Catalog catalog = Catalog.getInstance();
-		
-		TestVisitor visitor = new TestVisitor();
-		
-		assistant.accept(visitor);
-		teacher.accept(visitor);
 	}
 	
 	private class Tuple<A, B, C> {

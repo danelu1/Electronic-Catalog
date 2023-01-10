@@ -22,22 +22,4 @@ class Parent extends User {
 	public void setLastName(String name) {
 		super.setLastName(name);
 	}
-	
-	public int hashCode() {
-		if (this.getFirstName() == null ^ this.getLastName() == null) {
-			return 0;
-		} else {
-			return this.getFirstName().hashCode() ^ this.getLastName().hashCode();
-		}
-	}
-	
-	public boolean equals(Object obj) {
-		Parent p = (Parent) obj;
-		
-		if (this.getFirstName().equals(p.getFirstName()) && this.getLastName().equals(p.getLastName())) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 }

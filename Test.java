@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -131,5 +130,60 @@ class Test {
 			Student s = courses.get(i).getBestStudent();
 			System.out.println("\t\t\t-> " + s.getFirstName() + " " + s.getLastName());
 		}
+		
+		Course course = catalog.courses.get(1);
+		try {
+			course.makeBackup();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		
+		course.getGrades().add(new Grade(3.4, 2.5, course.getCourseName(), new Student("Marian", "Andreica")));
+		course.getGrades().add(new Grade(1.34, 2.42, course.getCourseName(), new Student("Alin", "Cernobil")));
+		
+		System.out.println("\t- Grades after modifications:");
+		
+		for (Grade grade : course.getGrades()) {
+			System.out.println("\t\t- Student " + grade.getStudent().getFirstName() + " " + grade.getStudent().getLastName());
+			System.out.println("\t\t\t" + grade.printPartialScore());
+			System.out.println("\t\t\t" + grade.printExamScore());
+			System.out.println("\t\t\t" + grade.printTotalScore());
+		}
+		
+		course.undo();
+		
+		System.out.println("\t- Grades after undo:");
+		
+		for (Grade grade : course.getGrades()) {
+			System.out.println("\t\t- Student " + grade.getStudent().getFirstName() + " " + grade.getStudent().getLastName());
+			System.out.println("\t\t\t" + grade.printPartialScore());
+			System.out.println("\t\t\t" + grade.printExamScore());
+			System.out.println("\t\t\t" + grade.printTotalScore());
+		}
+		
+		System.out.println();
+		
+		course.addAssistant("315CC", (Assistant) UserFactory.getUser("Assistant", "Mihaita", "Pufuletdulce"));
+		
+		Iterator<Assistant> itr = course.getCourseAssistants().iterator();
+		
+		System.out.println("\t- Course assistants after adding an assistant:");
+		
+		while (itr.hasNext()) {
+			System.out.println("\t\t" + itr.next());
+		}
+		
+		System.out.println();
+		
+		course.addStudent("314CC", (Student) UserFactory.getUser("Student", "Eustache", "Traista"));
+		
+		Iterator<Student> group = course.getGroup().get("314CC").iterator();
+		
+		System.out.println("\t- The group 314CC after adding a student:");
+		
+		while (group.hasNext()) {
+			System.out.println("\t\t" + group.next());
+		}
+		
 	}
 }
