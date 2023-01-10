@@ -65,7 +65,6 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 	Vector<Course> courses; 
 	Vector<String> informations;
 	SelectionPage page;
-	UserFactory factory = new UserFactory();
 	static ArrayList<Student> allStudents;
 
 	public AssistantMainPage(String message) {
@@ -83,7 +82,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 		}
 		
 		User user = AssistantLoginPage.user;
-		Assistant assistant = (Assistant) factory.getUser("Assistant", user.getFirstName(), user.getLastName());
+		Assistant assistant = (Assistant) UserFactory.getUser("Assistant", user.getFirstName(), user.getLastName());
 		
 		courses = new Vector<>();
 		
@@ -110,7 +109,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 		myPhotoLabel = new JLabel("My photo");
 		
 		photoLabel = new JLabel();
-		ImageIcon imageIcon = new ImageIcon("./imagini/" + user.getIcon());
+		ImageIcon imageIcon = new ImageIcon("./imagini/assistants/" + user.getIcon());
 		Image image = imageIcon.getImage();
 		Image newImage = image.getScaledInstance(100, 60, Image.SCALE_FAST);
 		ImageIcon newIcon = new ImageIcon(newImage);
@@ -231,7 +230,7 @@ class AssistantMainPage extends JFrame implements ActionListener, ListSelectionL
 			allStudents = new ArrayList<>();
 			
 			User user = AssistantLoginPage.user;
-			Assistant assistant = new Assistant(user.getFirstName(), user.getLastName());
+			Assistant assistant = (Assistant) UserFactory.getUser("Assistant", user.getFirstName(), user.getLastName());
 			
 			assistant.accept(new ScoreVisitor());
 			

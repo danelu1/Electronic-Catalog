@@ -61,20 +61,20 @@ class Student extends User implements Comparable<Student> {
 		return ans;
 	}
 	
-	public boolean equals(Object obj) {
-		Student s = (Student) obj;
-		if (this.getFirstName().equals(s.getFirstName()) && this.getLastName().equals(s.getLastName())) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public int hashCode() {
-		if (this.getFirstName() == null ^ this.getLastName() == null) {
-			return 0;
-		} else {
-			return this.getFirstName().hashCode() ^ this.getLastName().hashCode();
-		}
-	}
+//	public boolean equals(Object obj) {
+//		Student s = (Student) obj;
+//		if (this.getFirstName().equals(s.getFirstName()) && this.getLastName().equals(s.getLastName())) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
+//	
+//	public int hashCode() {
+//		if (this.getFirstName() == null ^ this.getLastName() == null) {
+//			return 0;
+//		} else {
+//			return this.getFirstName().hashCode() ^ this.getLastName().hashCode();
+//		}
+//	}
 }

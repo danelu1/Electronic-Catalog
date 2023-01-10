@@ -325,6 +325,14 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 			courseStatistics += "\t- Best student(according to the course strategy) is: " + student.getFirstName() + " " + student.getLastName() + "\n";
 			courseStatistics += "\t- Students' number: " + course.getAllStudents().size() + "\n";
 			
+			String graduated = "\t- Graduated students' number: " + course.getGraduatedStudents().size() + "\n";
+			
+			String winRate = "\t- Win Rate: ";
+			double ratio = ((double) course.getGraduatedStudents().size()) / course.getAllStudents().size() * 100;
+			winRate += String.format("%.2f", ratio) + "\n";
+			
+			courseStatistics += graduated + winRate;
+			
 			double sum1 = 0.0;
 			double sum2 = 0.0;
 			double sum3 = 0.0;
@@ -347,9 +355,9 @@ class ModifiableInformationsPage extends JFrame implements ActionListener, ListS
 			averageExamScore = sum2 / allStudents.size();
 			averageScore = sum3 / allStudents.size();
 			
-			courseStatistics += "\t- Average partial score: " + String.format("%.2f", averagePartialScore) + "\n";
-			courseStatistics += "\t- Average exam score: " + String.format("%.2f", averageExamScore) + "\n";
-			courseStatistics += "\t- Average total score: " + String.format("%.2f", averageScore) + "\n";
+			courseStatistics += "\t- Average partial score: " + String.format("%.2f", averagePartialScore) + " out of 6" + "\n";
+			courseStatistics += "\t- Average exam score: " + String.format("%.2f", averageExamScore) + " out of 4" + "\n";
+			courseStatistics += "\t- Average total score: " + String.format("%.2f", averageScore) + " out of 10" + "\n";
 			
 			String info = "";
 			info += courseInformations + courseTeacher + courseCredits + courseAssistants + groups + courseStatistics;

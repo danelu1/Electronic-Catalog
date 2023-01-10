@@ -12,12 +12,8 @@ class Grade implements Cloneable, Comparable {
 		this.student = student;
 	}
 	
-	public Grade(Double partialScore, String course, Student student) {
-		this(partialScore, null, course, student);
-	}
-	
-	public Grade(String course, Double examScore, Student student) {
-		this(null, examScore, course, student);
+	public Grade() {
+		
 	}
 	
 	public Double getPartialScore() {

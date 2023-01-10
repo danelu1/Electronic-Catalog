@@ -1,0 +1,17 @@
+{
+    "partial_score": "4.1",
+    "exam_score": "2.8",
+    "course_name": "POO",
+    "student": {
+        "first_name": "Andrei",
+        "last_name": "Vasile",
+        "mother": {
+            "first_name": "Andrei",
+            "last_name": "Maria"
+        },
+        "father": {
+            "first_name": "Andrei",
+            "last_name": "Gheorghe"
+        }
+    }
+}

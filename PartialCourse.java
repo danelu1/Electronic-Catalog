@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 class PartialCourse extends Course {
-	private PartialCourse(Course.CourseBuilder builder) {
+	public PartialCourse(Course.CourseBuilder builder) {
 		super(builder);
 	}
 
@@ -25,7 +25,7 @@ class PartialCourse extends Course {
 		}
 	
 		@Override
-		public PartialCourse build() {
+		public Course build() {
 			return new PartialCourse(this);
 		}
 	}

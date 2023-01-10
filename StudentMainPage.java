@@ -56,7 +56,6 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 	SelectionPage page;
 	Student student;
 	Vector<String> icons;
-	UserFactory factory = new UserFactory();
 	
 	public StudentMainPage(String message) {
 		super(message);
@@ -98,7 +97,7 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 		myPhotoLabel = new JLabel("My photo");
 		
 		photoLabel = new JLabel();
-		ImageIcon imageIcon = new ImageIcon("./imagini/" + user.getIcon());
+		ImageIcon imageIcon = new ImageIcon("./imagini/students/" + user.getIcon());
 		Image image = imageIcon.getImage();
 		Image newImage = image.getScaledInstance(100, 60, Image.SCALE_FAST);
 		ImageIcon newIcon = new ImageIcon(newImage);
@@ -217,11 +216,28 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 			
 			String str = "\t- ";
 			
-			if (course.getBestStudent().equals(s)) {
-				str += "Congratulations! You are the courses's best student!!!";
+			String state = "\t- State: ";
+			
+			if (course instanceof FullCourse) {
+				if (course.getGraduatedStudents().contains(s)) {
+					state += "graduated\n";
+				} else {
+					state += "failed\n";
+				}
+			} else if (course instanceof PartialCourse) {
+				if (course.getGraduatedStudents().contains(s)) {
+					state += "graduated\n";
+				} else {
+					state += "failed\n";
+				}
 			}
 			
-			String info = courseInformations + courseCredits + courseTeacher + assistants + myGroup + myAssistant + myGrade + str;
+			String info = courseInformations + courseCredits + courseTeacher + assistants + myGroup + myAssistant + myGrade + state;
+			
+			if (course.getBestStudent().equals(s)) {
+				str += "Congratulations! You are the courses's best student!!!";
+				info += str;
+			}
 			
 			informationsArea.setText(info);
 			informationsArea.setEditable(false);		

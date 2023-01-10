@@ -9,27 +9,16 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.lang.model.util.Elements;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-interface Visitor {
-	public void visit(Assistant assistant);
-	public void visit(Teacher teacher);
-}
-
-interface Element {
-	public void accept(Visitor visitor);
-}
-
-class ScoreVisitor implements Visitor {
+class TestVisitor implements Visitor {
 	Map<Teacher, ArrayList<Tuple<Student, String, Double>>> examScores;
 	Map<Assistant, ArrayList<Tuple<Student, String, Double>>> partialScores;
 	
-	public ScoreVisitor() {
+	public TestVisitor() {
 		examScores = new LinkedHashMap<>();
 		partialScores = new LinkedHashMap<>();
 	}
@@ -180,151 +169,88 @@ class ScoreVisitor implements Visitor {
 			}
 		}
 	}
+	
+	@Override
+	public void visit(Assistant assistant) {
+		Catalog catalog = Catalog.getInstance();
+//		catalog.courses.clear();
+		
+		try {
+			parseAssistant();
+		} catch (ParseException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		for (Map.Entry<Assistant, ArrayList<Tuple<Student, String, Double>>> entry : partialScores.entrySet()) {
+			if (assistant.equals(entry.getKey())) {
+				for (Tuple<Student, String, Double> element : entry.getValue()) {
+					Student s = element.getStudent();
+					String name = element.getCourse();
+					Double grade = element.getDoubleGrade();
+					for (Course course : catalog.courses) {
+						if (course.getCourseName().equals(element.getCourse())) {
+							boolean check = false;
+							for (Grade g : course.getGrades()) {
+								if (g.getStudent().equals(s)) {
+									check = true;
+									g.setExamScore(grade);
+								}
+							}
+							if (!check) {
+								Grade partial = new Grade(grade, 0D, name, s);
+								course.getGrades().add(partial);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
 	@Override
 	public void visit(Teacher teacher) {
 		Catalog catalog = Catalog.getInstance();
+//		catalog.courses.clear();
 		
 		try {
-			catalog.gradesParseJSON("./test/grades.json");
+			parseTeacher();
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		
-		for (int i = 0; i < catalog.courses.size(); i++) {
-			Course course = catalog.courses.get(i);
-			String courseName = course.getCourseName();
-			
-			if (course.getCourseTeacher().equals(teacher)) {
-				ArrayList<Student> students = course.getAllStudents();
-				
-				ArrayList<Tuple<Student, String, Double>> gradesList = new ArrayList<>();
-				
-				for (int j = 0; j < students.size(); j++) {
-					Tuple<Student, String, Double> grade_aux = new Tuple<>(students.get(j), courseName, catalog.getGrade(students.get(j), course).getExamScore());
-					gradesList.add(grade_aux);
-				}
-				
-				examScores.put(teacher, gradesList);
-				
-				for (Tuple<Student, String, Double> tuple : gradesList) {
-					catalog.notifyObservers(new Grade(0.0,  tuple.getDoubleGrade(), tuple.getCourse(), tuple.getStudent()));
-				}
-			}
-		}
-	}
-	
-	public String printGradesTeacher(Teacher teacher) {
-		String grades = "Grades to validate:\n";
-		
-		ScoreVisitor visitor = new ScoreVisitor();
-		
-		ArrayList<Tuple<Student, String, Double>> list = examScores.get(teacher);
-		
-		teacher.accept(visitor);
-		
-		for (int i = 0; i < list.size(); i++) {
-			grades += "\t" + list.get(i).toString() + "\n";
-		}
-		
-		return grades;
-	}
-
-	@Override
-	public void visit(Assistant assistant) {
-		Catalog catalog = Catalog.getInstance();
-		
-		try {
-			catalog.gradesParseJSON("./test/grades.json");
-		} catch (IOException | org.json.simple.parser.ParseException e) {
-			e.printStackTrace();
-		}
-		
-		for (int i = 0; i < catalog.courses.size(); i++) {
-			Course course = catalog.courses.get(i);
-			String courseName = course.getCourseName();
-			
-			if (course.getCourseAssistants().contains(assistant)) {
-				ArrayList<Student> students = new ArrayList<>();
-				Map<String, Group> map = course.getGroup();
-				
-				for (Map.Entry<String, Group> mp : map.entrySet()) {
-					if (mp.getValue().getAssistant().equals(assistant)) {
-						Iterator<Student> it = mp.getValue().iterator();
-						
-						while (it.hasNext()) {
-							students.add(it.next());
+		for (Map.Entry<Teacher, ArrayList<Tuple<Student, String, Double>>> entry : examScores.entrySet()) {
+			if (teacher.equals(entry.getKey())) {
+				for (Tuple<Student, String, Double> element : entry.getValue()) {
+					Student s = element.getStudent();
+					String name = element.getCourse();
+					Double grade = element.getDoubleGrade();
+					for (Course course : catalog.courses) {
+						if (course.getCourseName().equals(element.getCourse())) {
+							boolean check = false;
+							for (Grade g : course.getGrades()) {
+								if (g.getStudent().equals(s)) {
+									check = true;
+									g.setExamScore(grade);
+								}
+							}
+							if (!check) {
+								Grade exam = new Grade(0D, grade, name, s);
+								course.getGrades().add(exam);
+							}
 						}
 					}
 				}
-				
-				ArrayList<Tuple<Student, String, Double>> gradesList = new ArrayList<>();
-				
-				for (int j = 0; j < students.size(); j++) {
-					Student student = students.get(j);
-					Tuple<Student, String, Double> grade_aux = new Tuple<>(student, courseName, catalog.getGrade(student, course).getPartialScore());
-					gradesList.add(grade_aux);
-				}
-				
-				partialScores.put(assistant, gradesList);
-				
-				for (Tuple<Student, String, Double> tuple : gradesList) {
-					catalog.notifyObservers(new Grade(tuple.getDoubleGrade(), 0.0, tuple.getCourse(), tuple.getStudent()));
-				}
 			}
 		}
 	}
 	
-	public String printGradesAssistant(Assistant assistant) {
-		String grades = "Grades to validate:\n";
-		
-		ScoreVisitor visitor = new ScoreVisitor();
-		
-		ArrayList<Tuple<Student, String, Double>> list = partialScores.get(assistant);
-		
-		assistant.accept(visitor);
-		
-		for (int i = 0; i < list.size(); i++) {
-			grades += "\t" + list.get(i).toString() + "\n";
-		}
-		
-		return grades;
-	}
-	
-	public ArrayList<Grade> combine(Teacher teacher, Assistant assistant) {
+	public void combine(Teacher teacher, Assistant assistant) {
 		Catalog catalog = Catalog.getInstance();
 		
-		ScoreVisitor visitor = new ScoreVisitor();
+		TestVisitor visitor = new TestVisitor();
 		
-		teacher.accept(visitor);
 		assistant.accept(visitor);
-		
-		for (int i = 0; i < catalog.courses.size(); i++) {
-			Course course = catalog.courses.get(i);
-			
-			if (course.getCourseTeacher().equals(teacher) && course.getCourseAssistants().contains(assistant)) {
-				ArrayList<Tuple<Student, String, Double>> gradesAssistant = visitor.partialScores.get(assistant);
-				ArrayList<Tuple<Student, String, Double>> gradesTeacher = visitor.examScores.get(teacher);
-				ArrayList<Grade> grades = new ArrayList<>();
-				
-				for (int j = 0; j < gradesTeacher.size(); j++) {
-					for (int k = 0; k < gradesAssistant.size(); k++) {
-						if (gradesTeacher.get(j).getCourse().equals(gradesAssistant.get(k).getCourse()) && gradesTeacher.get(j).getStudent().
-								equals(gradesAssistant.get(k).getStudent())) {
-							Double partialScore = gradesAssistant.get(k).getDoubleGrade();
-							Double examScore = gradesTeacher.get(j).getDoubleGrade();
-							String name = course.getCourseName();
-							Student s = gradesTeacher.get(j).getStudent();
-							grades.add(new Grade(partialScore, examScore, name, s));
-						}
-					}
-				}
-				
-				return grades;
-			}
-		}
-		
-		return null;
+		teacher.accept(visitor);
 	}
 	
 	private class Tuple<A, B, C> {

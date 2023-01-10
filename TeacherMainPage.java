@@ -64,7 +64,6 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 	Vector<Course> courses; 
 	Vector<String> informations;
 	SelectionPage page;
-	UserFactory factory = new UserFactory();
 	static ArrayList<Student> allStudents;
 	
 	public TeacherMainPage(String message) {
@@ -103,7 +102,7 @@ class TeacherMainPage extends JFrame implements ActionListener, ListSelectionLis
 		myPhotoLabel = new JLabel("My photo");
 		
 		photoLabel = new JLabel();
-		ImageIcon imageIcon = new ImageIcon("./imagini/" + user.getIcon());
+		ImageIcon imageIcon = new ImageIcon("./imagini/teachers/" + user.getIcon());
 		Image image = imageIcon.getImage();
 		Image newImage = image.getScaledInstance(100, 60, Image.SCALE_FAST);
 		ImageIcon newIcon = new ImageIcon(newImage);

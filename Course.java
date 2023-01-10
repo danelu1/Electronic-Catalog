@@ -12,9 +12,10 @@ abstract class Course {
 	private ArrayList<Grade> grades;
 	private Map<String, Group> map;
 	private int courseCredits;
+	private String courseType;
 	private Snapshot snapshot;
 	private Strategy strategy;
-	ArrayList<Grade> backup;
+	private int typeOfStrategy;
 	
 	public Course(CourseBuilder builder) {
 		this.courseName = builder.courseName;
@@ -23,9 +24,8 @@ abstract class Course {
 		this.grades = builder.grades;
 		this.map = builder.map;
 		this.courseCredits = builder.courseCredits;
-		this.snapshot = new Snapshot(grades);
 		this.strategy = builder.strategy;
-		backup = new ArrayList<>();
+		this.courseType = builder.courseType;
 	}
 	
 	public String getCourseName() {
@@ -60,6 +60,14 @@ abstract class Course {
 		return strategy;
 	}
 	
+	public int getStrategyType() {
+		return typeOfStrategy;
+	}
+	
+	public String getCourseType() {
+		return courseType;
+	}
+	
 	public void setCourseName(String course) {
 		this.courseName = course;
 	}
@@ -90,6 +98,14 @@ abstract class Course {
 	
 	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
+	}
+	
+	public void setStrategyType(int type) {
+		this.typeOfStrategy = type;
+	}
+	
+	public void setCourseType(String type) {
+		this.courseType = type;
 	}
 	
 	public void addAssistant(String ID, Assistant assistant) {
@@ -124,12 +140,12 @@ abstract class Course {
 	
 	public void addGroup(String ID, Assistant assistant) {
 		Group group = new Group(ID, assistant);
-		map.put(group.getID(), group);
+		addGroup(group);
 	}
 	
 	public void addGroup(String ID, Assistant assistant, Comparator<Student> comp) {
 		Group group = new Group(ID, assistant, comp);
-		map.put(group.getID(), group);
+		addGroup(group);
 	}
 	
 	public Grade getGrade(Student student) {
@@ -167,21 +183,6 @@ abstract class Course {
 	}
 	
 	public LinkedHashMap<Student, Grade> getAllStudentGrades() {
-//		Catalog catalog = Catalog.getInstance();
-//		
-//		ArrayList<ArrayList<Grade>> list = catalog.addGradesToCatalog();
-//		
-//		LinkedHashMap<Student, Grade> result = new LinkedHashMap<>();
-//		
-//		for (int i = 0; i < catalog.courses.size(); i++) {
-//			for (int j = 0; j < list.get(i).size(); j++) {
-//				if (this.getCourseName().equals(list.get(i).get(j).getCourse())) {
-//					result.put(list.get(i).get(j).getStudent(), list.get(i).get(j));
-//					grades.add(list.get(i).get(j));
-//				}
-//			}
-//		}
-		
 		LinkedHashMap<Student, Grade> result = new LinkedHashMap<>();
 		
 		for (int i = 0; i < grades.size(); i++) {
@@ -201,6 +202,7 @@ abstract class Course {
 		private Map<String, Group> map;
 		private int courseCredits;
 		private Strategy strategy;
+		private String courseType;
 		
 		public CourseBuilder(String courseName, int courseCredits) {
 			this.courseName = courseName;
@@ -232,32 +234,24 @@ abstract class Course {
 			return this;
 		}
 		
+		public CourseBuilder setCourseType(String type) {
+			this.courseType = type;
+			return this;
+		}
+		
 		abstract Course build();
 	}
 	
-	public Student getBestStudent() {
-		Catalog catalog = Catalog.getInstance();
-		
-		if (strategy instanceof BestPartialScore) {
+	public Student getBestStudent() {	
+		if (typeOfStrategy == 1) {
 			strategy = new BestPartialScore();
-		} else if (strategy instanceof BestExamScore) {
+		} else if (typeOfStrategy == 2) {
 			strategy = new BestExamScore();
-		} else if (strategy instanceof BestTotalScore) {
+		} else if (typeOfStrategy == 3) {
 			strategy = new BestTotalScore();
 		}
 		
-		ArrayList<ArrayList<Grade>> list = catalog.addGradesToCatalog();
-		ArrayList<Grade> arrayList = new ArrayList<>();
-		
-		for (int i = 0; i < list.size(); i++) {
-			for (int j = 0; j < list.get(i).size(); j++) {
-				if (this.getCourseName().equals(list.get(i).get(j).getCourse())) {
-					arrayList.add(list.get(i).get(j));
-				}
-			}
-		}
-		
-		Grade score = strategy.getBestScore(arrayList);
+		Grade score = strategy.getBestScore(grades);
 		
 		return score.getStudent();
 	}
@@ -265,33 +259,21 @@ abstract class Course {
 	private class Snapshot {
 		private ArrayList<Grade> backup;
 		
-		public Snapshot(ArrayList<Grade> grades_aux) {
-			this.backup = grades_aux;
-		}
-		
-		public String toString() {
-			String ans = "";
-			Iterator<Grade> it = backup.iterator();
-			
-			while (it.hasNext()) {
-				ans += it.next() + "\n";
-			}
-			
-			return ans;
+		public Snapshot() {
+			backup = new ArrayList<>();
 		}
 	}
 	
 	public void makeBackup() throws CloneNotSupportedException {
-		Iterator<Grade> it = grades.iterator();
+		snapshot = new Snapshot();
 		
-		while (it.hasNext()) {
-			Grade grade = (Grade) it.next().clone();
-			backup.add(grade);
+		for (Grade grade : grades) {
+			snapshot.backup.add(grade.clone());
 		}
 	}
 	
 	public void undo() {
-		this.grades = backup;
+		this.grades = snapshot.backup;
 	}
 	
 	public String toString() {
@@ -299,5 +281,22 @@ abstract class Course {
 		ans += "-> " + courseName + "\n";
 		
 		return ans;
+	}
+	
+	public boolean equals(Object obj) {
+		Course c = (Course) obj;
+		if (c.getCourseName().equals(this.getCourseName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public int hashCode() {
+		if (this.getCourseName() == null) {
+			return 0;
+		} else {
+			return this.getCourseName().hashCode();
+		}
 	}
 }

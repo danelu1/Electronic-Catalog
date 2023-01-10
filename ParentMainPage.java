@@ -33,8 +33,6 @@ class ParentMainPage extends JFrame implements ActionListener {
 	JPanel northPanel;
 	JPanel southPanel;
 	
-	UserFactory factory = new UserFactory();
-	
 	SelectionPage page;
 	
 	public ParentMainPage(String message) {
@@ -42,6 +40,7 @@ class ParentMainPage extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(800, 800));
 		getContentPane().setBackground(new Color(144, 169, 196));
+		setResizable(false);
 		
 		Catalog catalog = Catalog.getInstance();
 		
@@ -60,7 +59,7 @@ class ParentMainPage extends JFrame implements ActionListener {
 		northPanel = new JPanel();
 		northPanel.add(accountLabel);
 		
-		notificationsArea = new JTextArea();
+		notificationsArea = new JTextArea("");
 		
 		scrollPane = new JScrollPane(notificationsArea);
 		
@@ -108,6 +107,7 @@ class ParentMainPage extends JFrame implements ActionListener {
 				
 				if (allStudents1 == null && allStudents2 == null) {
 					notification += "You don't have any notification yet";
+					notificationsArea.append(notification);
 				} else if (allStudents1 != null && allStudents2 == null) {
 					for (int i = 0; i < allStudents1.size(); i++) {
 						Student s = allStudents1.get(i);
@@ -133,6 +133,8 @@ class ParentMainPage extends JFrame implements ActionListener {
 						while (it.hasNext()) {
 							notification += it.next() + "\n";
 						}
+						
+						notificationsArea.append(notification);
 					}
 				} else if (allStudents1 == null && allStudents2 != null) {
 					for (int i = 0; i < allStudents2.size(); i++) {
@@ -159,6 +161,8 @@ class ParentMainPage extends JFrame implements ActionListener {
 						while (it.hasNext()) {
 							notification += it.next() + "\n";
 						}
+						
+						notificationsArea.append(notification);
 					}
 				} else {
 					for (int i = 0; i < allStudents1.size(); i++) {
@@ -197,10 +201,10 @@ class ParentMainPage extends JFrame implements ActionListener {
 						while (it.hasNext()) {
 							notification += it.next() + "\n";
 						}
+						
+						notificationsArea.append(notification);
 					}
 				}
-				
-				notificationsArea.setText(notification);
 			}
 		}
 	}

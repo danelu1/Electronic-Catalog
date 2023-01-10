@@ -67,4 +67,12 @@ abstract class User {
 			return false;
 		}
 	}
+	
+	public int hashCode() {
+		if (this.getFirstName() == null ^ this.getLastName() == null) {
+			return 0;
+		} else {
+			return this.getFirstName().hashCode() ^ this.getLastName().hashCode();
+		}
+	}
 }

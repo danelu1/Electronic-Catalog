@@ -40,19 +40,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-class Main {
-	public static void main(String[] args) throws CloneNotSupportedException, ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
-		Catalog catalog = Catalog.getInstance();
-		catalog.open();
-		
-		catalog.coursesParseJSON("./test/courses.json");
-		
-		Course course = catalog.courses.get(0);
-		
-		System.out.println(catalog.grades);
-	}
-}
-
 class Catalog implements Subject {
 	private static Catalog single_instance = null;
 	List<Course> courses;
@@ -61,6 +48,7 @@ class Catalog implements Subject {
 	List<Grade> grades;
 	
 	private Catalog() {
+		courses = new ArrayList<>();
 		observers = new ArrayList<>();
 		users = new ArrayList<>();
 		grades = new ArrayList<>();
@@ -71,6 +59,132 @@ class Catalog implements Subject {
 			single_instance = new Catalog();
 		}
 		return single_instance;
+	}
+	
+	public void testParse(String path) throws org.json.simple.parser.ParseException {
+		JSONParser parser = new JSONParser();
+		
+		try (Reader reader = new FileReader(path)) {
+			JSONObject coursesJSONObject = (JSONObject) parser.parse(reader);
+			JSONArray coursesArray = (JSONArray) coursesJSONObject.get("courses");
+			
+			for (int i = 0; i < coursesArray.size(); i++) {
+				JSONObject arrayEntry = (JSONObject) coursesArray.get(i);
+				
+				String courseName = (String) arrayEntry.get("name");
+				String courseCredits = (String) arrayEntry.get("credits");
+				
+				JSONObject teacher = (JSONObject) arrayEntry.get("teacher");
+				String teacherFirstName = (String) teacher.get("firstName");
+				String teacherLastName = (String) teacher.get("lastName");
+				Teacher courseTeacher = (Teacher) UserFactory.getUser("Teacher", teacherFirstName, teacherLastName);
+				
+				Set<Assistant> assistants = new LinkedHashSet<>();
+				Map<String, Group> map = new LinkedHashMap<>();
+				
+				JSONArray assistantsArray = (JSONArray) arrayEntry.get("assistants");
+				
+				
+				for (int j = 0; j < assistantsArray.size(); j++) {
+					JSONObject assistant = (JSONObject) assistantsArray.get(j);
+					String assistantFirstName = (String) assistant.get("firstName");
+					String assistantLastName = (String) assistant.get("lastName");
+					Assistant assistant_aux = (Assistant) UserFactory.getUser("Assistant", assistantFirstName, assistantLastName);
+					assistants.add(assistant_aux);
+				}
+				
+				JSONArray groupsArray = (JSONArray) arrayEntry.get("groups");
+				
+				for (int j = 0; j < groupsArray.size(); j++) {
+					JSONObject group = (JSONObject) groupsArray.get(j);
+					
+					String id = (String) group.get("ID");
+					
+					JSONObject assistant = (JSONObject) group.get("assistant");
+					String assistantFirstName = (String) assistant.get("firstName");
+					String assistantLastName = (String) assistant.get("lastName");
+					Assistant assistant_aux = (Assistant) UserFactory.getUser("Assistant", assistantFirstName, assistantLastName);
+					
+					Group group_aux = new Group(id, assistant_aux);
+					
+					JSONArray students = (JSONArray) group.get("students");
+					
+					for (int k = 0; k < students.size(); k++) {
+						JSONObject student = (JSONObject) students.get(k);
+						String firstName = (String) student.get("firstName");
+						String lastName = (String) student.get("lastName");
+						
+						Student s = (Student) UserFactory.getUser("Student", firstName, lastName);
+						
+						JSONObject motherObject = (JSONObject) student.get("mother");
+						JSONObject fatherObject = (JSONObject) student.get("father");
+						
+						if (motherObject != null) {
+							String motherFirstName = (String) motherObject.get("firstName");
+							String motherLastName = (String) motherObject.get("lastName");
+							Parent mother = (Parent) UserFactory.getUser("Parent", motherFirstName, motherLastName);
+							s.setMother(mother);
+						}
+						
+						if (fatherObject != null) {
+							String fatherFirstName = (String) fatherObject.get("firstName");
+							String fatherLastName = (String) fatherObject.get("lastName");
+							Parent father = (Parent) UserFactory.getUser("Parent", fatherFirstName, fatherLastName);
+							s.setFather(father);
+						}
+						
+						group_aux.add(s);
+					}
+					map.put(id, group_aux);
+				}
+				
+				String strategyObject = (String) arrayEntry.get("strategy");
+				
+				Strategy strategy = null;
+				
+				if (strategyObject.equals("BestPartialScore")) {
+					strategy = new BestPartialScore();
+				} else if (strategyObject.equals("BestExamScore")) {
+					strategy = new BestExamScore();
+				} else if (strategyObject.equals("BestTotalScore")) {
+					strategy = new BestTotalScore();
+				}
+				
+				ArrayList<Grade> courseGrades = new ArrayList<>();
+				
+				for (Grade grade : grades) {
+					if (grade.getCourse().equals(courseName)) {
+						courseGrades.add(grade);
+					}
+				}
+				
+				String courseType = (String) arrayEntry.get("type");
+				
+				if (courseType.equals("FullCourse")) {
+					Course course = new FullCourse.FullCourseBuilder(courseName, Integer.parseInt(courseCredits))
+							.setCourseAssistants(assistants)
+							.setMap(map)
+							.setTeacher(courseTeacher)
+							.setStrategy(strategy)
+							.setGrades(courseGrades)
+							.build();
+					courses.add(course);
+				} else if (courseType.equals("PartialCourse")) {
+					Course course = new PartialCourse.PartialCourseBuilder(courseName, Integer.parseInt(courseCredits))
+							.setCourseAssistants(assistants)
+							.setMap(map)
+							.setTeacher(courseTeacher)
+							.setStrategy(strategy)
+							.setGrades(courseGrades)
+							.build();
+					courses.add(course);
+				}
+			}
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void addCourse(Course course) {
@@ -154,7 +268,11 @@ class Catalog implements Subject {
 				String userPassword = (String) studentObject.get("user_password");
 				String icon = (String) studentObject.get("icon");
 		
-				Student s = new Student(firstName, lastName, userName, userPassword, icon);
+				Student s = (Student) UserFactory.getUser("Student", firstName, lastName);
+				s.setIcon(icon);
+				s.setUserName(userName);
+				s.setUserPassword(userPassword);
+				
 				course.addStudent(id, s);
 				users.add(s);
 				
@@ -491,7 +609,7 @@ class Catalog implements Subject {
 				JSONObject teacher = (JSONObject) arrayEntry.get("course_teacher");
 				String teacherFirstName = (String) teacher.get("first_name");
 				String teacherLastName = (String) teacher.get("last_name");
-				Teacher courseTeacher = new Teacher(teacherFirstName, teacherLastName);
+				Teacher courseTeacher = (Teacher) UserFactory.getUser("Teacher", teacherFirstName, teacherLastName);
 				
 				Set<Assistant> assistants = new LinkedHashSet<>();
 				Map<String, Group> map = new LinkedHashMap<>();
@@ -503,7 +621,7 @@ class Catalog implements Subject {
 					JSONObject assistant = (JSONObject) assistantsArray.get(j);
 					String assistantFirstName = (String) assistant.get("first_name");
 					String assistantLastName = (String) assistant.get("last_name");
-					Assistant assistant_aux = new Assistant(assistantFirstName, assistantLastName);
+					Assistant assistant_aux = (Assistant) UserFactory.getUser("Assistant", assistantFirstName, assistantLastName);
 					assistants.add(assistant_aux);
 				}
 				
@@ -519,7 +637,7 @@ class Catalog implements Subject {
 					JSONObject assistant = (JSONObject) group.get("assistant");
 					String assistantFirstName = (String) assistant.get("first_name");
 					String assistantLastName = (String) assistant.get("last_name");
-					Assistant assistant_aux = new Assistant(assistantFirstName, assistantLastName);
+					Assistant assistant_aux = (Assistant) UserFactory.getUser("Assistant", assistantFirstName, assistantLastName);
 					
 					Group group_aux = new Group(id, assistant_aux);
 					
@@ -536,10 +654,10 @@ class Catalog implements Subject {
 						String motherLastName = (String) motherObject.get("last_name");
 						String fatherFirstName = (String) fatherObject.get("first_name");
 						String fatherLastName = (String) fatherObject.get("last_name");
-						Parent mother = new Parent(motherFirstName, motherLastName);
-						Parent father = new Parent(fatherFirstName, fatherLastName);
+						Parent mother = (Parent) UserFactory.getUser("Parent", motherFirstName, motherLastName);
+						Parent father = (Parent) UserFactory.getUser("Parent", fatherFirstName, fatherLastName);
 				
-						Student s = new Student(firstName, lastName);
+						Student s = (Student) UserFactory.getUser("Student", firstName, lastName);
 						s.setMother(mother);
 						s.setFather(father);
 						
@@ -569,10 +687,27 @@ class Catalog implements Subject {
 					}
 				}
 				
-				Course.CourseBuilder course = new FullCourse.FullCourseBuilder(courseName, Integer.parseInt(courseCredits));
-				course.setCourseAssistants(assistants).setMap(map).setTeacher(courseTeacher).setStrategy(strategy).setGrades(courseGrades);
-				Course newCourse = new FullCourse(course);
-				courses.add(newCourse);
+				String courseType = (String) arrayEntry.get("course_type");
+				
+				if (courseType.equals("full")) {
+					Course course = new FullCourse.FullCourseBuilder(courseName, Integer.parseInt(courseCredits))
+							.setCourseAssistants(assistants)
+							.setMap(map)
+							.setTeacher(courseTeacher)
+							.setStrategy(strategy)
+							.setGrades(courseGrades)
+							.build();
+					courses.add(course);
+				} else if (courseType.equals("partial")) {
+					Course course = new PartialCourse.PartialCourseBuilder(courseName, Integer.parseInt(courseCredits))
+							.setCourseAssistants(assistants)
+							.setMap(map)
+							.setTeacher(courseTeacher)
+							.setStrategy(strategy)
+							.setGrades(courseGrades)
+							.build();
+					courses.add(course);
+				}
 			}
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
@@ -596,7 +731,7 @@ class Catalog implements Subject {
 					String userName = (String) student.get("user_name");
 					String userPassword = (String) student.get("user_password");
 					String icon = (String) student.get("icon");
-					Student student_aux = new Student(firstName, lastName, userName, userPassword, icon);
+					Student student_aux = (Student) UserFactory.getUser("Student", firstName, lastName);
 					student_aux.setUserName(userName);
 					student_aux.setUserPassword(userPassword);
 					student_aux.setIcon(icon);
@@ -615,7 +750,7 @@ class Catalog implements Subject {
 					String userName = (String) assistant.get("user_name");
 					String userPassword = (String) assistant.get("user_password");
 					String icon = (String) assistant.get("icon");
-					Assistant assistant_aux = new Assistant(firstName, lastName, userName, userPassword, icon);
+					Assistant assistant_aux = (Assistant) UserFactory.getUser("Assistant", firstName, lastName);
 					assistant_aux.setUserName(userName);
 					assistant_aux.setUserPassword(userPassword);
 					assistant_aux.setIcon(icon);
@@ -634,7 +769,7 @@ class Catalog implements Subject {
 					String userName = (String) teacher.get("user_name");
 					String userPassword = (String) teacher.get("user_password");
 					String icon = (String) teacher.get("icon");
-					Teacher teacher_aux = new Teacher(firstName, lastName, userName, userPassword, icon);
+					Teacher teacher_aux = (Teacher) UserFactory.getUser("Teacher", firstName, lastName);
 					teacher_aux.setUserName(userName);
 					teacher_aux.setUserPassword(userPassword);
 					teacher_aux.setIcon(icon);
@@ -653,7 +788,7 @@ class Catalog implements Subject {
 					String userName = (String) parent.get("user_name");
 					String userPassword = (String) parent.get("user_password");
 					String icon = (String) parent.get("icon");
-					Parent parent_aux = new Parent(firstName, lastName, userName, userPassword, icon);
+					Parent parent_aux = (Parent) UserFactory.getUser("Parent", firstName, lastName);
 					parent_aux.setUserName(userName);
 					parent_aux.setUserPassword(userPassword);
 					parent_aux.setIcon(icon);
@@ -694,7 +829,6 @@ class Catalog implements Subject {
 		return null;
 	}
 	
-	@SuppressWarnings("unused")
 	public void open() throws ParseException, org.json.simple.parser.ParseException, FileNotFoundException, IOException {
 		SelectionPage page = new SelectionPage("Select");
 	}
