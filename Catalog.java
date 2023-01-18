@@ -1,26 +1,3 @@
-// toate Builderele merg
-// Strategy merge
-// Singleton merge
-// Clasa Course: merge toata (la fel si clasele FullCourse si PartialCourse)
-	// getAllStudents merge
-	// getAllStudentGrades merge
-	// getGraduatedStudents merge
-	// getGrade merge
-	// addAssistant merge
-	// addStudent merge
-	// addGrade merge
-	// addGroup(Group) merge
-	// addGroup(String, Assistant) merge
-	// addGroup(String, Assistant, Comparator) merge
-// Clasa Grade merge
-// Clasa Course merge
-// Clasa Snapshot merge
-// Clasa Catalog merge
-// Visitor pattern merge
-// Observer pattern merge
-// Notification merge
-// Interfata grafica merge toata tipla
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;

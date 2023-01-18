@@ -184,6 +184,5 @@ class Test {
 		while (group.hasNext()) {
 			System.out.println("\t\t" + group.next());
 		}
-		
 	}
 }

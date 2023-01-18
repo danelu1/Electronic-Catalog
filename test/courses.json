@@ -2,360 +2,6 @@
 	"courses": [
 		{
 			"course_teacher": {
-				"last_name": "Razvan-Andrei",
-				"first_name": "Deaconescu"
-			},
-			"course_type": "full",
-			"course_name": "SO",
-			"course_assistants": [
-				{
-					"last_name": "Razvan-Nicolae",
-					"first_name": "Virtan"
-				},
-				{
-					"last_name": "Maria-Elena",
-					"first_name": "Mihailescu"
-				},
-				{
-					"last_name": "Razvan-George",
-					"first_name": "Nutu"
-				},
-				{
-					"last_name": "Teo",
-					"first_name": "Dutu"
-				}
-			],
-			"groups": [
-				{
-					"assistant": {
-						"last_name": "Razvan-Nicolae",
-						"first_name": "Virtan"
-					},
-					"students": [
-						{
-							"mother": {
-								"last_name": "Anemona",
-								"first_name": "Ciuciulete"
-							},
-							"father": {
-								"last_name": "Adrian",
-								"first_name": "Ciuciulete"
-							},
-							"last_name": "Mihai",
-							"first_name": "Ciuciulete"
-						},
-						{
-							"mother": {
-								"last_name": "Loredana",
-								"first_name": "Osnaga"
-							},
-							"father": {
-								"last_name": "Augustin",
-								"first_name": "Osnaga"
-							},
-							"last_name": "Robert-Viorel",
-							"first_name": "Osnaga"
-						},
-						{
-							"mother": {
-								"last_name": "Camelia",
-								"first_name": "Sprincenatu"
-							},
-							"father": {
-								"last_name": "Marius-Constantin",
-								"first_name": "Sprincenatu"
-							},
-							"last_name": "Bogdan-Andrei",
-							"first_name": "Sprincenatu"
-						},
-						{
-							"mother": {
-								"last_name": "Camelia",
-								"first_name": "Manescu"
-							},
-							"father": {
-								"last_name": "Constantin",
-								"first_name": "Manescu"
-							},
-							"last_name": "Bogdan-Constantin",
-							"first_name": "Manescu"
-						},
-						{
-							"mother": {
-								"last_name": "Oana",
-								"first_name": "Voicu"
-							},
-							"father": {
-								"last_name": "Marian",
-								"first_name": "Voicu"
-							},
-							"last_name": "Catalin-Marian",
-							"first_name": "Voicu"
-						},
-						{
-							"mother": {
-								"last_name": "Elena",
-								"first_name": "Manolache"
-							},
-							"father": {
-								"last_name": "Mihai",
-								"first_name": "Manolache"
-							},
-							"last_name": "George-Vlad",
-							"first_name": "Manolache"
-						}
-					],
-					"ID": "321CC"
-				},
-				{
-					"assistant": {
-						"last_name": "Maria-Elena",
-						"first_name": "Mihailescu"
-					},
-					"students": [
-						{
-							"mother": {
-								"last_name": "Lucretia",
-								"first_name": "Anghel"
-							},
-							"father": {
-								"last_name": "Ilie",
-								"first_name": "Anghel"
-							},
-							"last_name": "David-Tudor",
-							"first_name": "Anghel"
-						},
-						{
-							"mother": {
-								"last_name": "Ramona",
-								"first_name": "Duminica"
-							},
-							"father": {
-								"last_name": "Cornel",
-								"first_name": "Duminica"
-							},
-							"last_name": "Alexandra",
-							"first_name": "Duminica"
-						},
-						{
-							"mother": {
-								"last_name": "Lorena",
-								"first_name": "Radoi"
-							},
-							"father": {
-								"last_name": "Augustin",
-								"first_name": "Radoi"
-							},
-							"last_name": "Alexandru-Mihail",
-							"first_name": "Radoi"
-						},
-						{
-							"mother": {
-								"last_name": "Argentina",
-								"first_name": "Uretyan"
-							},
-							"father": {
-								"last_name": "Remus",
-								"first_name": "Uretyan"
-							},
-							"last_name": "Dragos-Cristian",
-							"first_name": "Uretyan"
-						},
-						{
-							"mother": {
-								"last_name": "Teodora",
-								"first_name": "Golea"
-							},
-							"father": {
-								"last_name": "Andrei",
-								"first_name": "Golea"
-							},
-							"last_name": "Milena-Georgiana",
-							"first_name": "Golea"
-						},
-						{
-							"mother": {
-								"last_name": "Mirela",
-								"first_name": "Costin"
-							},
-							"father": {
-								"last_name": "Ramon",
-								"first_name": "Costin"
-							},
-							"last_name": "Bosoaga-Cornel",
-							"first_name": "Costin"
-						}
-					],
-					"ID": "322CC"
-				},
-				{
-					"assistant": {
-						"last_name": "Razvan-George",
-						"first_name": "Nutu"
-					},
-					"students": [
-						{
-							"mother": {
-								"last_name": "Iuliana",
-								"first_name": "Popescu"
-							},
-							"father": {
-								"last_name": "Vasile",
-								"first_name": "Popescu"
-							},
-							"last_name": "Maria-Teodora",
-							"first_name": "Popescu"
-						},
-						{
-							"mother": {
-								"last_name": "Oriana",
-								"first_name": "Baluta"
-							},
-							"father": {
-								"last_name": "Valenin",
-								"first_name": "Baluta"
-							},
-							"last_name": "Valentina-Teodora",
-							"first_name": "Baluta"
-						},
-						{
-							"mother": {
-								"last_name": "Miruna",
-								"first_name": "Godeanu"
-							},
-							"father": {
-								"last_name": "Alex",
-								"first_name": "Godeanu"
-							},
-							"last_name": "Robert",
-							"first_name": "Godeanu"
-						},
-						{
-							"mother": {
-								"last_name": "Iolanda",
-								"first_name": "Manolache"
-							},
-							"father": {
-								"last_name": "Ionel",
-								"first_name": "Manolache"
-							},
-							"last_name": "Roberta-Elena",
-							"first_name": "Manolache"
-						},
-						{
-							"mother": {
-								"last_name": "Iarina",
-								"first_name": "Dumitrescu"
-							},
-							"father": {
-								"last_name": "Narcis",
-								"first_name": "Dumitrescu"
-							},
-							"last_name": "Daiana-Elena",
-							"first_name": "Dumitrescu"
-						},
-						{
-							"mother": {
-								"last_name": "Adriana",
-								"first_name": "Costea"
-							},
-							"father": {
-								"last_name": "Marius",
-								"first_name": "Costea"
-							},
-							"last_name": "Maria-Irina",
-							"first_name": "Costea"
-						}
-					],
-					"ID": "323CC"
-				},
-				{
-					"assistant": {
-						"last_name": "Teo",
-						"first_name": "Dutu"
-					},
-					"students": [
-						{
-							"mother": {
-								"last_name": "Miruna",
-								"first_name": "Carp"
-							},
-							"father": {
-								"last_name": "Ion",
-								"first_name": "Carp"
-							},
-							"last_name": "Alexandru",
-							"first_name": "Carp"
-						},
-						{
-							"mother": {
-								"last_name": "Irina",
-								"first_name": "Ghinea"
-							},
-							"father": {
-								"last_name": "Stefan",
-								"first_name": "Ghinea"
-							},
-							"last_name": "Ioana-Mara",
-							"first_name": "Ghinea"
-						},
-						{
-							"mother": {
-								"last_name": "Pandora",
-								"first_name": "Capra"
-							},
-							"father": {
-								"last_name": "Teodor",
-								"first_name": "Capra"
-							},
-							"last_name": "Cosmina-Ioana",
-							"first_name": "Capra"
-						},
-						{
-							"mother": {
-								"last_name": "Ioana",
-								"first_name": "Cernaianu"
-							},
-							"father": {
-								"last_name": "Ginel",
-								"first_name": "Cernaianu"
-							},
-							"last_name": "Maria-Mihaela",
-							"first_name": "Cernaianu"
-						},
-						{
-							"mother": {
-								"last_name": "Ariana",
-								"first_name": "Vuia"
-							},
-							"father": {
-								"last_name": "Iulian",
-								"first_name": "Vuia"
-							},
-							"last_name": "Marina-Emilia",
-							"first_name": "Vuia"
-						},
-						{
-							"mother": {
-								"last_name": "Andreea",
-								"first_name": "Giurca"
-							},
-							"father": {
-								"last_name": "Eusebiu",
-								"first_name": "Giurca"
-							},
-							"last_name": "Adrian",
-							"first_name": "Giurca"
-						}
-					],
-					"ID": "324CC"
-				}
-			],
-			"strategy": "3",
-			"course_credits": "5"
-		},
-		{
-			"course_teacher": {
 				"last_name": "Carmen",
 				"first_name": "Odubasteanu"
 			},
@@ -710,6 +356,360 @@
 		},
 		{
 			"course_teacher": {
+				"last_name": "Razvan-Andrei",
+				"first_name": "Deaconescu"
+			},
+			"course_type": "full",
+			"course_name": "SO",
+			"course_assistants": [
+				{
+					"last_name": "Razvan-Nicolae",
+					"first_name": "Virtan"
+				},
+				{
+					"last_name": "Maria-Elena",
+					"first_name": "Mihailescu"
+				},
+				{
+					"last_name": "Razvan-George",
+					"first_name": "Nutu"
+				},
+				{
+					"last_name": "Teo",
+					"first_name": "Dutu"
+				}
+			],
+			"groups": [
+				{
+					"assistant": {
+						"last_name": "Razvan-Nicolae",
+						"first_name": "Virtan"
+					},
+					"students": [
+						{
+							"mother": {
+								"last_name": "Anemona",
+								"first_name": "Ciuciulete"
+							},
+							"father": {
+								"last_name": "Adrian",
+								"first_name": "Ciuciulete"
+							},
+							"last_name": "Mihai",
+							"first_name": "Ciuciulete"
+						},
+						{
+							"mother": {
+								"last_name": "Loredana",
+								"first_name": "Osnaga"
+							},
+							"father": {
+								"last_name": "Augustin",
+								"first_name": "Osnaga"
+							},
+							"last_name": "Robert-Viorel",
+							"first_name": "Osnaga"
+						},
+						{
+							"mother": {
+								"last_name": "Camelia",
+								"first_name": "Sprincenatu"
+							},
+							"father": {
+								"last_name": "Marius-Constantin",
+								"first_name": "Sprincenatu"
+							},
+							"last_name": "Bogdan-Andrei",
+							"first_name": "Sprincenatu"
+						},
+						{
+							"mother": {
+								"last_name": "Camelia",
+								"first_name": "Manescu"
+							},
+							"father": {
+								"last_name": "Constantin",
+								"first_name": "Manescu"
+							},
+							"last_name": "Bogdan-Constantin",
+							"first_name": "Manescu"
+						},
+						{
+							"mother": {
+								"last_name": "Oana",
+								"first_name": "Voicu"
+							},
+							"father": {
+								"last_name": "Marian",
+								"first_name": "Voicu"
+							},
+							"last_name": "Catalin-Marian",
+							"first_name": "Voicu"
+						},
+						{
+							"mother": {
+								"last_name": "Elena",
+								"first_name": "Manolache"
+							},
+							"father": {
+								"last_name": "Mihai",
+								"first_name": "Manolache"
+							},
+							"last_name": "George-Vlad",
+							"first_name": "Manolache"
+						}
+					],
+					"ID": "321CC"
+				},
+				{
+					"assistant": {
+						"last_name": "Maria-Elena",
+						"first_name": "Mihailescu"
+					},
+					"students": [
+						{
+							"mother": {
+								"last_name": "Lucretia",
+								"first_name": "Anghel"
+							},
+							"father": {
+								"last_name": "Ilie",
+								"first_name": "Anghel"
+							},
+							"last_name": "David-Tudor",
+							"first_name": "Anghel"
+						},
+						{
+							"mother": {
+								"last_name": "Ramona",
+								"first_name": "Duminica"
+							},
+							"father": {
+								"last_name": "Cornel",
+								"first_name": "Duminica"
+							},
+							"last_name": "Alexandra",
+							"first_name": "Duminica"
+						},
+						{
+							"mother": {
+								"last_name": "Lorena",
+								"first_name": "Radoi"
+							},
+							"father": {
+								"last_name": "Augustin",
+								"first_name": "Radoi"
+							},
+							"last_name": "Alexandru-Mihail",
+							"first_name": "Radoi"
+						},
+						{
+							"mother": {
+								"last_name": "Argentina",
+								"first_name": "Uretyan"
+							},
+							"father": {
+								"last_name": "Remus",
+								"first_name": "Uretyan"
+							},
+							"last_name": "Dragos-Cristian",
+							"first_name": "Uretyan"
+						},
+						{
+							"mother": {
+								"last_name": "Teodora",
+								"first_name": "Golea"
+							},
+							"father": {
+								"last_name": "Andrei",
+								"first_name": "Golea"
+							},
+							"last_name": "Milena-Georgiana",
+							"first_name": "Golea"
+						},
+						{
+							"mother": {
+								"last_name": "Mirela",
+								"first_name": "Costin"
+							},
+							"father": {
+								"last_name": "Ramon",
+								"first_name": "Costin"
+							},
+							"last_name": "Bosoaga-Cornel",
+							"first_name": "Costin"
+						}
+					],
+					"ID": "322CC"
+				},
+				{
+					"assistant": {
+						"last_name": "Razvan-George",
+						"first_name": "Nutu"
+					},
+					"students": [
+						{
+							"mother": {
+								"last_name": "Iuliana",
+								"first_name": "Popescu"
+							},
+							"father": {
+								"last_name": "Vasile",
+								"first_name": "Popescu"
+							},
+							"last_name": "Maria-Teodora",
+							"first_name": "Popescu"
+						},
+						{
+							"mother": {
+								"last_name": "Oriana",
+								"first_name": "Baluta"
+							},
+							"father": {
+								"last_name": "Valentin",
+								"first_name": "Baluta"
+							},
+							"last_name": "Valentina-Teodora",
+							"first_name": "Baluta"
+						},
+						{
+							"mother": {
+								"last_name": "Miruna",
+								"first_name": "Godeanu"
+							},
+							"father": {
+								"last_name": "Alex",
+								"first_name": "Godeanu"
+							},
+							"last_name": "Robert",
+							"first_name": "Godeanu"
+						},
+						{
+							"mother": {
+								"last_name": "Iolanda",
+								"first_name": "Manolache"
+							},
+							"father": {
+								"last_name": "Ionel",
+								"first_name": "Manolache"
+							},
+							"last_name": "Roberta-Elena",
+							"first_name": "Manolache"
+						},
+						{
+							"mother": {
+								"last_name": "Iarina",
+								"first_name": "Dumitrescu"
+							},
+							"father": {
+								"last_name": "Narcis",
+								"first_name": "Dumitrescu"
+							},
+							"last_name": "Daiana-Elena",
+							"first_name": "Dumitrescu"
+						},
+						{
+							"mother": {
+								"last_name": "Adriana",
+								"first_name": "Costea"
+							},
+							"father": {
+								"last_name": "Marius",
+								"first_name": "Costea"
+							},
+							"last_name": "Maria-Irina",
+							"first_name": "Costea"
+						}
+					],
+					"ID": "323CC"
+				},
+				{
+					"assistant": {
+						"last_name": "Teo",
+						"first_name": "Dutu"
+					},
+					"students": [
+						{
+							"mother": {
+								"last_name": "Miruna",
+								"first_name": "Carp"
+							},
+							"father": {
+								"last_name": "Ion",
+								"first_name": "Carp"
+							},
+							"last_name": "Alexandru",
+							"first_name": "Carp"
+						},
+						{
+							"mother": {
+								"last_name": "Irina",
+								"first_name": "Ghinea"
+							},
+							"father": {
+								"last_name": "Stefan",
+								"first_name": "Ghinea"
+							},
+							"last_name": "Ioana-Mara",
+							"first_name": "Ghinea"
+						},
+						{
+							"mother": {
+								"last_name": "Pandora",
+								"first_name": "Capra"
+							},
+							"father": {
+								"last_name": "Teodor",
+								"first_name": "Capra"
+							},
+							"last_name": "Cosmina-Ioana",
+							"first_name": "Capra"
+						},
+						{
+							"mother": {
+								"last_name": "Ioana",
+								"first_name": "Cernaianu"
+							},
+							"father": {
+								"last_name": "Ginel",
+								"first_name": "Cernaianu"
+							},
+							"last_name": "Maria-Mihaela",
+							"first_name": "Cernaianu"
+						},
+						{
+							"mother": {
+								"last_name": "Ariana",
+								"first_name": "Vuia"
+							},
+							"father": {
+								"last_name": "Iulian",
+								"first_name": "Vuia"
+							},
+							"last_name": "Marina-Emilia",
+							"first_name": "Vuia"
+						},
+						{
+							"mother": {
+								"last_name": "Andreea",
+								"first_name": "Giurca"
+							},
+							"father": {
+								"last_name": "Eusebiu",
+								"first_name": "Giurca"
+							},
+							"last_name": "Adrian",
+							"first_name": "Giurca"
+						}
+					],
+					"ID": "324CC"
+				}
+			],
+			"strategy": "3",
+			"course_credits": "5"
+		},
+		{
+			"course_teacher": {
 				"last_name": "Daniel",
 				"first_name": "Rosner"
 			},
@@ -898,87 +898,6 @@
 				},
 				{
 					"assistant": {
-						"last_name": "Theodor",
-						"first_name": "Oprea"
-					},
-					"students": [
-						{
-							"mother": {
-								"last_name": "Iuliana",
-								"first_name": "Popescu"
-							},
-							"father": {
-								"last_name": "Vasile",
-								"first_name": "Popescu"
-							},
-							"last_name": "Maria-Teodora",
-							"first_name": "Popescu"
-						},
-						{
-							"mother": {
-								"last_name": "Oriana",
-								"first_name": "Baluta"
-							},
-							"father": {
-								"last_name": "Valenin",
-								"first_name": "Baluta"
-							},
-							"last_name": "Valentina-Teodora",
-							"first_name": "Baluta"
-						},
-						{
-							"mother": {
-								"last_name": "Miruna",
-								"first_name": "Godeanu"
-							},
-							"father": {
-								"last_name": "Alex",
-								"first_name": "Godeanu"
-							},
-							"last_name": "Robert",
-							"first_name": "Godeanu"
-						},
-						{
-							"mother": {
-								"last_name": "Iolanda",
-								"first_name": "Manolache"
-							},
-							"father": {
-								"last_name": "Ionel",
-								"first_name": "Manolache"
-							},
-							"last_name": "Roberta-Elena",
-							"first_name": "Manolache"
-						},
-						{
-							"mother": {
-								"last_name": "Iarina",
-								"first_name": "Dumitrescu"
-							},
-							"father": {
-								"last_name": "Narcis",
-								"first_name": "Dumitrescu"
-							},
-							"last_name": "Daiana-Elena",
-							"first_name": "Dumitrescu"
-						},
-						{
-							"mother": {
-								"last_name": "Adriana",
-								"first_name": "Costea"
-							},
-							"father": {
-								"last_name": "Marius",
-								"first_name": "Costea"
-							},
-							"last_name": "Maria-Irina",
-							"first_name": "Costea"
-						}
-					],
-					"ID": "323CC"
-				},
-				{
-					"assistant": {
 						"last_name": "Ana-Maria",
 						"first_name": "Simion"
 					},
@@ -1057,6 +976,87 @@
 						}
 					],
 					"ID": "324CC"
+				},
+				{
+					"assistant": {
+						"last_name": "Theodor",
+						"first_name": "Oprea"
+					},
+					"students": [
+						{
+							"mother": {
+								"last_name": "Iuliana",
+								"first_name": "Popescu"
+							},
+							"father": {
+								"last_name": "Vasile",
+								"first_name": "Popescu"
+							},
+							"last_name": "Maria-Teodora",
+							"first_name": "Popescu"
+						},
+						{
+							"mother": {
+								"last_name": "Oriana",
+								"first_name": "Baluta"
+							},
+							"father": {
+								"last_name": "Valenin",
+								"first_name": "Baluta"
+							},
+							"last_name": "Valentina-Teodora",
+							"first_name": "Baluta"
+						},
+						{
+							"mother": {
+								"last_name": "Miruna",
+								"first_name": "Godeanu"
+							},
+							"father": {
+								"last_name": "Alex",
+								"first_name": "Godeanu"
+							},
+							"last_name": "Robert",
+							"first_name": "Godeanu"
+						},
+						{
+							"mother": {
+								"last_name": "Iolanda",
+								"first_name": "Manolache"
+							},
+							"father": {
+								"last_name": "Ionel",
+								"first_name": "Manolache"
+							},
+							"last_name": "Roberta-Elena",
+							"first_name": "Manolache"
+						},
+						{
+							"mother": {
+								"last_name": "Iarina",
+								"first_name": "Dumitrescu"
+							},
+							"father": {
+								"last_name": "Narcis",
+								"first_name": "Dumitrescu"
+							},
+							"last_name": "Daiana-Elena",
+							"first_name": "Dumitrescu"
+						},
+						{
+							"mother": {
+								"last_name": "Adriana",
+								"first_name": "Costea"
+							},
+							"father": {
+								"last_name": "Marius",
+								"first_name": "Costea"
+							},
+							"last_name": "Maria-Irina",
+							"first_name": "Costea"
+						}
+					],
+					"ID": "323CC"
 				}
 			],
 			"strategy": "2",

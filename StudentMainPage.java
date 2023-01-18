@@ -158,11 +158,6 @@ class StudentMainPage extends JFrame implements ActionListener, ListSelectionLis
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {
 			if (e.getSource() == logoutButton) {
-				try {
-					Thread.sleep(1500);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
 				this.dispose();
 				page = new SelectionPage("Select");
 			}

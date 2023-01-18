@@ -15,7 +15,6 @@ abstract class Course {
 	private String courseType;
 	private Snapshot snapshot;
 	private Strategy strategy;
-	private int typeOfStrategy;
 	
 	public Course(CourseBuilder builder) {
 		this.courseName = builder.courseName;
@@ -60,10 +59,6 @@ abstract class Course {
 		return strategy;
 	}
 	
-	public int getStrategyType() {
-		return typeOfStrategy;
-	}
-	
 	public String getCourseType() {
 		return courseType;
 	}
@@ -98,10 +93,6 @@ abstract class Course {
 	
 	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
-	}
-	
-	public void setStrategyType(int type) {
-		this.typeOfStrategy = type;
 	}
 	
 	public void setCourseType(String type) {
@@ -148,18 +139,18 @@ abstract class Course {
 		}
 		return null;
 	}
-	
-	public void addGrade(Grade grade) {
-		ArrayList<Student> students = getAllStudents();
 		
-		for (int i = 0; i < students.size(); i++) {
-			if (students.get(i).equals(grade.getStudent())) {
-				return;
-			} else if (!students.get(i).equals(grade.getStudent()) && grades.get(i) == null) {
-				grades.add(grade);
-			}
-		}
-	}
+	public void addGrade(Grade grade) {
+    	for (Grade g : grades) {
+    		if (g.getStudent().equals(grade.getStudent()) && g.getCourse().equals(grade.getCourse())) {
+    			System.out.println("We can't have the same grade for two students!!!");
+    			return;
+    		} else {
+    			grades.add(grade);
+    			break;
+    		}
+    	}
+    }
 	
 	public ArrayList<Student> getAllStudents() {
 		ArrayList<Student> result = new ArrayList<>();
@@ -236,14 +227,6 @@ abstract class Course {
 	}
 	
 	public Student getBestStudent() {	
-		if (typeOfStrategy == 1) {
-			strategy = new BestPartialScore();
-		} else if (typeOfStrategy == 2) {
-			strategy = new BestExamScore();
-		} else if (typeOfStrategy == 3) {
-			strategy = new BestTotalScore();
-		}
-		
 		Grade score = strategy.getBestScore(grades);
 		
 		return score.getStudent();
